@@ -64,14 +64,30 @@
 			isa = PBXGroup;
 			children = (
 				408291541F7B34280070FC0C /* GoogleService-Info.plist */,
-				40179B261F7B25E9003E0021 /* AppDelegate.swift */,
-				40179B281F7B25E9003E0021 /* ViewController.swift */,
-				40179B2A1F7B25E9003E0021 /* Main.storyboard */,
+				40499F831F7B3E6D007E6EC0 /* SwiftFiles */,
+				40499F841F7B4055007E6EC0 /* Storyboards */,
 				40179B2D1F7B25E9003E0021 /* Assets.xcassets */,
-				40179B2F1F7B25E9003E0021 /* LaunchScreen.storyboard */,
 				40179B321F7B25E9003E0021 /* Info.plist */,
 			);
 			path = "JobSpot-iOS";
+			sourceTree = "<group>";
+		};
+		40499F831F7B3E6D007E6EC0 /* SwiftFiles */ = {
+			isa = PBXGroup;
+			children = (
+				40179B261F7B25E9003E0021 /* AppDelegate.swift */,
+				40179B281F7B25E9003E0021 /* ViewController.swift */,
+			);
+			name = SwiftFiles;
+			sourceTree = "<group>";
+		};
+		40499F841F7B4055007E6EC0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				40179B2A1F7B25E9003E0021 /* Main.storyboard */,
+				40179B2F1F7B25E9003E0021 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		91E4E48300A208F53E54BAEE /* Pods */ = {
