@@ -3,7 +3,7 @@
 //  JobSpot-iOS
 //
 //  Created by Krista Appel and Marlow Fernandez on 9/26/17.
-//  Copyright © 2017 JobSpot. All rights reserved.
+//  Copyright © 2017-2018 JobSpot. All rights reserved.
 //
 
 import UIKit
