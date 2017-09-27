@@ -7,5 +7,7 @@ target 'JobSpot-iOS' do
 
   # Pods for JobSpot-iOS
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
 end
