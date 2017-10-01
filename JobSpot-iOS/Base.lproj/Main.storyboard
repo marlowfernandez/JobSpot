@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -147,7 +148,7 @@
         <!--Home Controller-->
         <scene sceneID="Y5g-kq-Lcf">
             <objects>
-                <viewController id="f9r-Vy-h5s" customClass="HomeController" sceneMemberID="viewController">
+                <viewController id="f9r-Vy-h5s" customClass="HomeController" customModule="JobSpot_iOS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zXx-Y7-ydZ"/>
                         <viewControllerLayoutGuide type="bottom" id="22F-Lg-B28"/>
@@ -156,31 +157,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="saW-q8-kRY">
-                                <rect key="frame" x="0.0" y="121" width="414" height="517"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TS3-8T-Y8B">
+                                <rect key="frame" x="0.0" y="89" width="414" height="548"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="548" id="a6d-nm-ls4"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="f9r-Vy-h5s" id="9i4-Dl-Afx"/>
+                                </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZL-Qp-vD5">
-                                <rect key="frame" x="307" y="672" width="75" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="23"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtX-YX-QYY">
+                                <rect key="frame" x="307" y="672" width="63" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="J64-H3-prA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
-                                    <segue destination="zeY-Dq-EyD" kind="presentation" identifier="homeToProfile" id="wAm-ab-hxC"/>
+                                    <action selector="profileButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="ahA-02-Ep6"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="RtX-YX-QYY" secondAttribute="trailing" constant="24" id="6hZ-V9-BiB"/>
+                            <constraint firstItem="RtX-YX-QYY" firstAttribute="top" secondItem="TS3-8T-Y8B" secondAttribute="bottom" constant="35" id="CEj-QQ-Fpf"/>
+                            <constraint firstAttribute="trailing" secondItem="TS3-8T-Y8B" secondAttribute="trailing" id="JjC-BU-5vJ"/>
+                            <constraint firstAttribute="bottom" secondItem="RtX-YX-QYY" secondAttribute="bottom" constant="20" symbolic="YES" id="dPC-FE-Dlh"/>
+                            <constraint firstItem="TS3-8T-Y8B" firstAttribute="top" secondItem="zXx-Y7-ydZ" secondAttribute="bottom" constant="69" id="qq7-x3-nh4"/>
+                            <constraint firstItem="TS3-8T-Y8B" firstAttribute="leading" secondItem="W5L-cS-Exl" secondAttribute="leading" id="tGM-kx-YQJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapViewOutlet" destination="TS3-8T-Y8B" id="0ws-cC-iOv"/>
+                        <segue destination="zeY-Dq-EyD" kind="presentation" identifier="homeToProfile" id="2EG-7D-vq1"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="homeToLogin" id="mrU-jZ-LFK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgE-RD-bPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621.7391304347827" y="37.5"/>
+            <point key="canvasLocation" x="1608.6956521739132" y="37.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile Controller-->
         <scene sceneID="t5q-e4-SM3">
             <objects>
-                <viewController id="zeY-Dq-EyD" sceneMemberID="viewController">
+                <viewController id="zeY-Dq-EyD" customClass="ProfileController" customModule="JobSpot_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iSc-FK-Pt9"/>
                         <viewControllerLayoutGuide type="bottom" id="Nq9-OL-eQH"/>
@@ -199,6 +220,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnd-JO-p32"/>
+                                    <action selector="logoutButtonAction:" destination="zeY-Dq-EyD" eventType="touchUpInside" id="mEw-j8-LbN"/>
                                     <action selector="registerButtonAction:" destination="LPO-TC-0fS" eventType="touchUpInside" id="trc-iY-5La"/>
                                 </connections>
                             </button>
