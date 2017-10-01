@@ -10,5 +10,6 @@ target 'JobSpot-iOS' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 
 end

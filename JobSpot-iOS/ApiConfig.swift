@@ -19,7 +19,6 @@ class ApiConfig {
     
     func getJobs() {
         
-        //Version 4
         Alamofire.request("https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/manager/wesley%20chapel%20fl/25/accquisitiondate/desc/0/200/30/", headers: headers).responseJSON { response in
             debugPrint("Alamofire response: \(response)")
         }
