@@ -17,6 +17,7 @@
 		40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F871F7EF581007E6EC0 /* HomeController.swift */; };
 		40499F8A1F7EFF44007E6EC0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F891F7EFF44007E6EC0 /* ProfileController.swift */; };
 		408291551F7B34280070FC0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 408291541F7B34280070FC0C /* GoogleService-Info.plist */; };
+		40A6D9971F808EE2004CCE9E /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6D9961F808EE2004CCE9E /* ApiConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		40499F871F7EF581007E6EC0 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		40499F891F7EFF44007E6EC0 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		408291541F7B34280070FC0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		40A6D9961F808EE2004CCE9E /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
 		D27025ACAE22468321F205B2 /* Pods-JobSpot-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSpot-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobSpot-iOS/Pods-JobSpot-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 				40499F851F7ED87A007E6EC0 /* CreateAccount.swift */,
 				40499F871F7EF581007E6EC0 /* HomeController.swift */,
 				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
+				40A6D9961F808EE2004CCE9E /* ApiConfig.swift */,
 			);
 			name = SwiftFiles;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40A6D9971F808EE2004CCE9E /* ApiConfig.swift in Sources */,
 				40499F8A1F7EFF44007E6EC0 /* ProfileController.swift in Sources */,
 				40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */,
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
