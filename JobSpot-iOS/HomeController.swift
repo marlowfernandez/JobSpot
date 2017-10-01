@@ -26,40 +26,6 @@ class HomeController: UIViewController, MKMapViewDelegate {
         
         mapLocationSet(location: locationLatLong)
         
-        
-        //https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/programmer/orlando%2C%20fl/25/0/0/0/10/60
-        
-        
-//        let url = NSURL(string: urlCareerOneStop)!
-//        
-//        let config = URLSessionConfiguration.default
-//        
-//        config.httpAdditionalHeaders = [
-//            "Accept": "application/json",
-//            "user_key": "imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ=="
-//        ]
-//        
-//        let urlSession = URLSession(configuration: config)
-//        
-//        let myQuery = urlSession.dataTask(with: url as URL, completionHandler: {
-//            data, response, error -> Void in
-//            /* ... */
-//            
-//            if error != nil {
-//                debugPrint(error!)
-//            } else {
-//                do {
-//                    
-//                    let parsedData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
-//                    debugPrint(parsedData)
-//                } catch let error as NSError {
-//                    print(error)
-//                }
-//            }
-//            
-//            
-//        })
-//        myQuery.resume()
     }
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
