@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F28146910C4B023A6092E94 /* Pods_JobSpot_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C8BD7E9C5F24A65C41403F /* Pods_JobSpot_iOS.framework */; };
+		400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */; };
 		40179B271F7B25E9003E0021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40179B261F7B25E9003E0021 /* AppDelegate.swift */; };
 		40179B291F7B25E9003E0021 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40179B281F7B25E9003E0021 /* ViewController.swift */; };
 		40179B2C1F7B25E9003E0021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40179B2A1F7B25E9003E0021 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		0457E86B935DC28F6B9CBC84 /* Pods-JobSpot-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSpot-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobSpot-iOS/Pods-JobSpot-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		27C8BD7E9C5F24A65C41403F /* Pods_JobSpot_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobSpot_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAnnotation.swift; sourceTree = "<group>"; };
 		40179B231F7B25E9003E0021 /* JobSpot-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JobSpot-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40179B261F7B25E9003E0021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40179B281F7B25E9003E0021 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
 				40A6D9961F808EE2004CCE9E /* ApiConfig.swift */,
 				401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */,
+				400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */,
 			);
 			name = SwiftFiles;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				40A6D9971F808EE2004CCE9E /* ApiConfig.swift in Sources */,
 				40499F8A1F7EFF44007E6EC0 /* ProfileController.swift in Sources */,
 				401CD2FB1F81672A009370CE /* ApiConfigTesting.swift in Sources */,
+				400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */,
 				40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */,
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
 				40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */,
