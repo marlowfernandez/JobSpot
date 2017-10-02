@@ -51,10 +51,7 @@ class ApiConfig {
             
             for item in jsonArrayVal! {
                 
-                
-                
                 let jobTitle = item["JobTitle"].stringValue
-                
                 print(jobTitle)
                 
                 let company = item["Company"].stringValue

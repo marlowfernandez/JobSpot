@@ -10,21 +10,19 @@ import Foundation
 import MapKit
 
 class DisplayAnnotation: NSObject, MKAnnotation {
-    let titleNew: String
+    let title: String?
     let locationName: String
-    let discipline: String
     let coordinate: CLLocationCoordinate2D
     
-    init(titleNew: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
-        self.titleNew = titleNew
+    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
         self.locationName = locationName
-        self.discipline = discipline
         self.coordinate = coordinate
         
         super.init()
     }
     
-    var subtitleNew: String {
+    var subtitle: String? {
         return locationName
     }
 }

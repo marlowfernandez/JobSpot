@@ -18,7 +18,7 @@ class HomeController: UIViewController, MKMapViewDelegate {
     let homeToProfile = "homeToProfile"
     let homeToLogin = "homeToLogin"
     @IBOutlet weak var mapViewOutlet: MKMapView!
-    let locationLatLong = CLLocation(latitude: 21.282778, longitude: -157.829444)
+    let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     let urlCareerOneStop = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/programmer/orlando%2C%20fl/25/0/0/0/10/60"
     let apiController = ApiConfig()
     
@@ -31,15 +31,12 @@ class HomeController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         debugPrint("viewDidLoad")
         
+        mapViewOutlet.delegate = self
+        
         mapLocationSet(location: locationLatLong)
         
-        let displayMarker = DisplayAnnotation(titleNew: "King David Kalakaua",
-                              locationName: "Waikiki Gateway Park",
-                              discipline: "Sculpture",
-                              coordinate: CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.829444))
         
-        mapViewOutlet.addAnnotation(displayMarker)
-        
+    
     }
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
@@ -61,7 +58,7 @@ class HomeController: UIViewController, MKMapViewDelegate {
         
     }
     
-    let radius: CLLocationDistance = 1000
+    let radius: CLLocationDistance = 5000
     func mapLocationSet(location: CLLocation) {
         let coordinates = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   radius * 2.0, radius * 2.0)
@@ -146,15 +143,41 @@ class HomeController: UIViewController, MKMapViewDelegate {
                         debugPrint("jsonLat: \(jsonLatitude)")
                         debugPrint("jsonLng: \(jsonLongitude)")
                         
+                        
+                        let displayMarker = DisplayAnnotation(title: jobTitle,
+                                                              locationName: company,
+                                                              coordinate: CLLocationCoordinate2D(latitude: jsonLatitude, longitude: jsonLongitude))
+                        
+                        self.mapViewOutlet.addAnnotation(displayMarker)
                     }
                     
                 }
                 
                 print(" ")
-                
             }
         }
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? DisplayAnnotation {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+                as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+            }
+            return view
+        }
+        return nil
+    }
 
 }
+
+
 

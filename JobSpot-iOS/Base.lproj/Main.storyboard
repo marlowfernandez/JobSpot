@@ -157,7 +157,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TS3-8T-Y8B">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS3-8T-Y8B">
                                 <rect key="frame" x="0.0" y="89" width="414" height="548"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="548" id="a6d-nm-ls4"/>
@@ -240,7 +240,7 @@
         <image name="JobSpot Logo" width="451" height="195"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Irk-76-Yr8"/>
         <segue reference="VRh-GE-KSu"/>
+        <segue reference="mrU-jZ-LFK"/>
     </inferredMetricsTieBreakers>
 </document>
