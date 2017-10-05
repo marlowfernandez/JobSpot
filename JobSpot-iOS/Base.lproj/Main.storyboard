@@ -6,9 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -159,46 +156,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nyx-kd-jSO">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nyx-kd-jSO">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
-                                    <navigationItem title="Jobs - Map" id="hCx-0a-brZ"/>
+                                    <navigationItem title="JobSpot" id="hCx-0a-brZ"/>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS3-8T-Y8B">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TS3-8T-Y8B">
                                 <rect key="frame" x="0.0" y="194" width="414" height="484"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="f9r-Vy-h5s" id="9i4-Dl-Afx"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtX-YX-QYY">
-                                <rect key="frame" x="307" y="684" width="63" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="63" id="Fzi-cD-Tbg"/>
-                                    <constraint firstAttribute="height" constant="44" id="try-bX-YqL"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtX-YX-QYY">
+                                <rect key="frame" x="331" y="684" width="63" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
                                     <action selector="profileButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="ahA-02-Ep6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcd-mC-1pF">
-                                <rect key="frame" x="115" y="127" width="93" height="47"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1v-ug-JbC">
+                                <rect key="frame" x="125" y="684" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Saved"/>
+                                <connections>
+                                    <action selector="savedButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="erS-t8-UKU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLk-98-Eh5">
+                                <rect key="frame" x="225" y="684" width="72" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Applied"/>
+                                <connections>
+                                    <action selector="appliedJobsButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="kkq-Ms-8Zc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcd-mC-1pF">
+                                <rect key="frame" x="10" y="146" width="198" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="kpU-WV-fjU"/>
-                                </constraints>
                                 <state key="normal" title="Map">
                                     <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3r-jN-2he">
-                                <rect key="frame" x="206" y="127" width="93" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="bhm-mx-Wle"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3r-jN-2he">
+                                <rect key="frame" x="207" y="146" width="198" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="List">
                                     <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
@@ -206,68 +217,67 @@
                                     <action selector="listActionButton:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="QjM-qA-etP"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="job title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Wi-dQ-UVb">
-                                <rect key="frame" x="20" y="75" width="164" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="job title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZG-sz-ADY">
-                                <rect key="frame" x="20" y="74" width="164" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="job title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPN-n5-kbf">
-                                <rect key="frame" x="20" y="75" width="164" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="164" id="voa-N4-RtN"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxw-zK-aeG">
-                                <rect key="frame" x="307" y="75" width="75" height="30"/>
-                                <state key="normal" title="Search"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxw-zK-aeG">
+                                <rect key="frame" x="350" y="70" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go"/>
                                 <connections>
                                     <action selector="searchButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="1P3-Ip-qWy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAH-6Q-TFa">
+                                <rect key="frame" x="285" y="108" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Saved Searches"/>
+                                <connections>
+                                    <action selector="savedSearchesAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="eXN-kF-uWy"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Job Title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPN-n5-kbf">
+                                <rect key="frame" x="54" y="108" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City, State or Zip Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJH-ct-ttn">
+                                <rect key="frame" x="54" y="70" width="286" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeh-8g-3mG">
+                                <rect key="frame" x="10" y="70" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Loc"/>
+                                <connections>
+                                    <action selector="currLocationAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="Yk0-tF-UFY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCV-zI-K9q">
+                                <rect key="frame" x="13" y="108" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Filt"/>
+                                <connections>
+                                    <action selector="filterAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="ceS-jZ-7u1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6F-Bx-WPi">
+                                <rect key="frame" x="20" y="684" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="homePageAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="jpD-qc-REc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="fxw-zK-aeG" firstAttribute="leading" secondItem="RtX-YX-QYY" secondAttribute="leading" id="0G8-DN-kVb"/>
-                            <constraint firstItem="T3r-jN-2he" firstAttribute="baseline" secondItem="pcd-mC-1pF" secondAttribute="firstBaseline" id="1PC-eM-h57"/>
-                            <constraint firstItem="NZG-sz-ADY" firstAttribute="top" secondItem="nyx-kd-jSO" secondAttribute="bottom" constant="10" id="49E-0b-iTU"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="bottom" secondItem="fxw-zK-aeG" secondAttribute="bottom" id="50e-x8-1vO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RtX-YX-QYY" secondAttribute="trailing" constant="24" id="7JN-Zl-daw"/>
-                            <constraint firstItem="nyx-kd-jSO" firstAttribute="leading" secondItem="W5L-cS-Exl" secondAttribute="leading" id="EEc-bM-hON"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="leading" secondItem="2Wi-dQ-UVb" secondAttribute="leading" id="GKk-se-8m6"/>
-                            <constraint firstItem="TS3-8T-Y8B" firstAttribute="top" secondItem="fxw-zK-aeG" secondAttribute="bottom" constant="89" id="HQX-Eg-BJo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fxw-zK-aeG" secondAttribute="trailing" constant="12" id="Hdp-qn-gny"/>
-                            <constraint firstItem="pcd-mC-1pF" firstAttribute="top" secondItem="T3r-jN-2he" secondAttribute="top" id="IVh-HX-ZVS"/>
-                            <constraint firstItem="pcd-mC-1pF" firstAttribute="baseline" secondItem="T3r-jN-2he" secondAttribute="firstBaseline" id="KPN-0f-uuA"/>
-                            <constraint firstItem="22F-Lg-B28" firstAttribute="top" secondItem="RtX-YX-QYY" secondAttribute="bottom" constant="8" symbolic="YES" id="Nho-Wq-fgT"/>
-                            <constraint firstItem="nyx-kd-jSO" firstAttribute="leading" secondItem="TS3-8T-Y8B" secondAttribute="leading" id="O1b-4V-BBf"/>
-                            <constraint firstItem="RtX-YX-QYY" firstAttribute="top" secondItem="TS3-8T-Y8B" secondAttribute="bottom" constant="6" id="Ol3-eU-IGX"/>
-                            <constraint firstItem="nyx-kd-jSO" firstAttribute="top" secondItem="zXx-Y7-ydZ" secondAttribute="bottom" id="QT2-WE-nTt"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="leading" secondItem="W5L-cS-Exl" secondAttribute="leadingMargin" id="T9Q-KB-dVg"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="trailing" secondItem="NZG-sz-ADY" secondAttribute="trailing" id="VOG-qr-F7D"/>
-                            <constraint firstItem="pcd-mC-1pF" firstAttribute="leading" secondItem="W5L-cS-Exl" secondAttribute="leadingMargin" constant="95" id="ceZ-Rb-GFd"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="baseline" secondItem="2Wi-dQ-UVb" secondAttribute="baseline" id="dbU-lq-U6A"/>
-                            <constraint firstItem="TS3-8T-Y8B" firstAttribute="top" secondItem="pcd-mC-1pF" secondAttribute="bottom" constant="20" id="hzv-Jz-5fN"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="leading" secondItem="NZG-sz-ADY" secondAttribute="leading" id="ksz-cS-q8p"/>
-                            <constraint firstItem="pcd-mC-1pF" firstAttribute="top" secondItem="xPN-n5-kbf" secondAttribute="bottom" constant="22" id="nxJ-a5-RX9"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="trailing" secondItem="2Wi-dQ-UVb" secondAttribute="trailing" id="qVz-6p-seb"/>
-                            <constraint firstAttribute="trailing" secondItem="nyx-kd-jSO" secondAttribute="trailing" id="rSr-2E-V30"/>
-                            <constraint firstItem="nyx-kd-jSO" firstAttribute="trailing" secondItem="TS3-8T-Y8B" secondAttribute="trailing" id="rnU-m6-Q60"/>
-                            <constraint firstItem="xPN-n5-kbf" firstAttribute="top" secondItem="nyx-kd-jSO" secondAttribute="bottom" constant="11" id="s6E-l2-PJ5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="T3r-jN-2he" secondAttribute="trailing" constant="95" id="tHO-d5-Ncg"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="jobTitleTextField" destination="xPN-n5-kbf" id="gw7-CY-pyB"/>
+                        <outlet property="locationTextField" destination="OJH-ct-ttn" id="WpA-Er-0ki"/>
                         <outlet property="mapViewOutlet" destination="TS3-8T-Y8B" id="0ws-cC-iOv"/>
                         <segue destination="zeY-Dq-EyD" kind="presentation" identifier="homeToProfile" id="2EG-7D-vq1"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="homeToLogin" id="mrU-jZ-LFK"/>
@@ -290,8 +300,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbI-57-Dye">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbI-57-Dye">
                                 <rect key="frame" x="0.0" y="194" width="414" height="479"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCell" textLabel="5ae-PO-JIH" detailTextLabel="2W9-74-TgV" style="IBUITableViewCellStyleSubtitle" id="OsB-hD-2eN">
@@ -324,53 +335,16 @@
                                     <outlet property="delegate" destination="mvU-em-Ndk" id="5MO-ck-bjT"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ptl-Il-yQs">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ptl-Il-yQs">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
                                     <navigationItem title="Jobs - List" id="JgF-uE-tGa"/>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search for job..." showsSearchResultsButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fot-42-dA5">
-                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-t2-opz">
-                                <rect key="frame" x="211" y="124" width="93" height="47"/>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="List">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avd-Lm-ujS">
-                                <rect key="frame" x="110" y="124" width="93" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="ACt-Gg-r1a"/>
-                                    <constraint firstAttribute="height" constant="47" id="Ecw-nG-uOP"/>
-                                </constraints>
-                                <state key="normal" title="Map">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Avd-Lm-ujS" firstAttribute="baseline" secondItem="bGg-t2-opz" secondAttribute="firstBaseline" id="0Tz-TZ-976"/>
-                            <constraint firstItem="kbI-57-Dye" firstAttribute="leading" secondItem="ptl-Il-yQs" secondAttribute="leading" id="9NH-dD-oaV"/>
-                            <constraint firstItem="kbI-57-Dye" firstAttribute="trailing" secondItem="ptl-Il-yQs" secondAttribute="trailing" id="Kjh-xt-ec3"/>
-                            <constraint firstItem="Avd-Lm-ujS" firstAttribute="leading" secondItem="mvU-em-Ndk" secondAttribute="leadingMargin" constant="90" id="QNf-ga-Wwa"/>
-                            <constraint firstItem="bGg-t2-opz" firstAttribute="leading" secondItem="Avd-Lm-ujS" secondAttribute="trailing" constant="8" symbolic="YES" id="RvG-ar-9VT"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bGg-t2-opz" secondAttribute="trailing" constant="90" id="T9D-Mp-l5O"/>
-                            <constraint firstAttribute="trailing" secondItem="ptl-Il-yQs" secondAttribute="trailing" id="VRY-Sf-XAg"/>
-                            <constraint firstItem="vsT-ze-LT8" firstAttribute="top" secondItem="kbI-57-Dye" secondAttribute="bottom" constant="63" id="Yk2-b0-NeW"/>
-                            <constraint firstItem="ptl-Il-yQs" firstAttribute="leading" secondItem="mvU-em-Ndk" secondAttribute="leading" id="eCS-d4-TJ0"/>
-                            <constraint firstItem="kbI-57-Dye" firstAttribute="top" secondItem="Avd-Lm-ujS" secondAttribute="bottom" constant="23" id="jTv-ge-2Zp"/>
-                            <constraint firstItem="Avd-Lm-ujS" firstAttribute="top" secondItem="bGg-t2-opz" secondAttribute="top" id="o0r-sM-vEw"/>
-                            <constraint firstItem="ptl-Il-yQs" firstAttribute="top" secondItem="Tn4-kp-MK2" secondAttribute="bottom" id="oo3-sm-lJL"/>
-                            <constraint firstItem="Avd-Lm-ujS" firstAttribute="top" secondItem="ptl-Il-yQs" secondAttribute="bottom" constant="60" id="wst-nB-Sld"/>
-                            <constraint firstItem="bGg-t2-opz" firstAttribute="baseline" secondItem="Avd-Lm-ujS" secondAttribute="firstBaseline" id="xlw-uP-dEL"/>
-                        </constraints>
                     </view>
                     <connections>
                         <segue destination="f9r-Vy-h5s" kind="presentation" identifier="listToHome" id="hzW-pD-IhX"/>

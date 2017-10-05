@@ -26,6 +26,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //let apiController = ApiConfig()
     var cLLocationManager = CLLocationManager()
     @IBOutlet weak var jobTitleTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    
     
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",
@@ -52,11 +54,51 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
-        let jobTitleName = jobTitleTextField.text
-        let postalCodeLoc = String(describing: postalCodeLocation)
-        getJobs(location: postalCodeLoc, jobTitle: jobTitleName!)
+        let jobTitleEntered = jobTitleTextField.text
+        let locationEntered = locationTextField.text
+        //let postalCodeLoc = String(describing: postalCodeLocation)
+        
+        if jobTitleEntered != "" && locationEntered != "" {
+            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!)
+        } else {
+            let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
+            emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(emptyFields, animated: true, completion: nil)
+        }
+
     }
     
+    @IBAction func savedSearchesAction(_ sender: UIButton) {
+        debugPrint("savedSearchesAction")
+    }
+    
+    
+    @IBAction func currLocationAction(_ sender: UIButton) {
+        debugPrint("currLocationAction")
+        
+        checkUserLocationStatus()
+        
+    }
+    
+    
+    @IBAction func filterAction(_ sender: UIButton) {
+        debugPrint("filterAction")
+    }
+    
+    
+    @IBAction func homePageAction(_ sender: UIButton) {
+        debugPrint("homePageAction")
+    }
+    
+    
+    @IBAction func savedButtonAction(_ sender: UIButton) {
+        debugPrint("savedButtonAction")
+    }
+    
+    
+    @IBAction func appliedJobsButtonAction(_ sender: UIButton) {
+        debugPrint("appliedJobsButtonAction")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,8 +109,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 //debugPrint(user?.email! as Any)
             }
         }
-        
-        
         
     }
     
@@ -111,6 +151,15 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func getJobs(location: String, jobTitle: String) {
         let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + location + "/25/accquisitiondate/desc/0/200/30/"
         debugPrint("urlRequestString: \(urlRequestString)")
+        
+        if let annotations = self.mapViewOutlet?.annotations {
+            for _annotation in annotations {
+                if let annotation = _annotation as? MKAnnotation
+                {
+                    self.mapViewOutlet.removeAnnotation(annotation)
+                }
+            }
+        }
         
         Alamofire.request(urlRequestString, headers: headers).responseJSON { response in
             debugPrint("Alamofire response: \(response)")
@@ -160,12 +209,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         let jsonGeometry = item["geometry"]
                         
                         let jsonLocation = jsonGeometry["location"]
-                        //debugPrint("jsonLocation: \(jsonLocation)")
                         
                         let jsonLatitude = jsonLocation["lat"].doubleValue
                         let jsonLongitude = jsonLocation["lng"].doubleValue
-                        //debugPrint("jsonLat: \(jsonLatitude)")
-                        //debugPrint("jsonLng: \(jsonLongitude)")
                         
                         
                         let displayMarker = DisplayAnnotation(title: jobTitle,
@@ -214,8 +260,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         debugPrint(locations.first!)
         
         if let location = locations.first {
-            //print("location lat:  \(location.coordinate.latitude)")
-            //print("location lng:  \(location.coordinate.longitude)")
             
             let lat = location.coordinate.latitude as Double
             let lng = location.coordinate.longitude as Double
@@ -234,29 +278,30 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let jsonGeo = JSON(data: jsonResponseGeo!)
                 let jsonObjGeo = jsonGeo["results"].arrayValue.first
                 let jsonGeometry = jsonObjGeo?["address_components"].arrayValue
-                //debugPrint("jsonGeometry \(jsonGeometry)")
                 
                 for components in jsonGeometry! {
                     debugPrint("components: \(components)")
                     
-                    
-                    
                     let addressType = components["types"].arrayValue
-                    
-                    
                     
                     for types in addressType {
                         debugPrint("addressTypes: \(types.stringValue)")
                         if types.stringValue == "postal_code" {
                             
                             self.postalCodeLocation = components["long_name"].stringValue
-                            //debugPrint("postalCode: \(postalCode)")
-                            //postalCodeLocation
                             debugPrint("postalCode: \(self.postalCodeLocation)")
+                            
+                            if self.postalCodeLocation != " " {
+                                self.locationTextField.text = self.postalCodeLocation
+                            }
                         }
                     }
                 }
             }
+            
+            
+            
+            
         }
     }
     
