@@ -21,9 +21,11 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let radius: CLLocationDistance = 5000
     let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     @IBOutlet weak var mapViewOutlet: MKMapView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    //@IBOutlet weak var searchBar: UISearchBar!
+    var postalCodeLocation = " "
     //let apiController = ApiConfig()
     var cLLocationManager = CLLocationManager()
+    @IBOutlet weak var jobTitleTextField: UITextField!
     
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",
@@ -37,10 +39,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         cLLocationManager.delegate = self
         cLLocationManager.desiredAccuracy = kCLLocationAccuracyBest
-        cLLocationManager.requestWhenInUseAuthorization()
-        cLLocationManager.requestLocation()
-        
-        mapLocationSet(location: locationLatLong)
+        cLLocationManager.distanceFilter = 500
+        //cLLocationManager.stopUpdatingLocation()
+        //cLLocationManager.delegate = nil
     
     }
     
@@ -48,6 +49,14 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func profileButtonAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.homeToProfile, sender: nil)
     }
+    
+    
+    @IBAction func searchButtonAction(_ sender: UIButton) {
+        let jobTitleName = jobTitleTextField.text
+        let postalCodeLoc = String(describing: postalCodeLocation)
+        getJobs(location: postalCodeLoc, jobTitle: jobTitleName!)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,7 +68,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
         
-        getJobs()
+        
         
     }
     
@@ -73,14 +82,20 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func checkUserLocationStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            debugPrint("checkUserLocationStatus - authorizedWhenInUse")
             mapViewOutlet.showsUserLocation = true
+            cLLocationManager.requestLocation()
         } else {
+            debugPrint("checkUserLocationStatus - requestWhenInUseAuthorization")
             cLLocationManager.requestWhenInUseAuthorization()
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        debugPrint("viewDidAppear")
+        
         checkUserLocationStatus()
     }
     
@@ -93,10 +108,12 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //self.performSegue(withIdentifier: self.homeToList, sender: nil)
     }
     
-    func getJobs() {
+    func getJobs(location: String, jobTitle: String) {
+        let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + location + "/25/accquisitiondate/desc/0/200/30/"
+        debugPrint("urlRequestString: \(urlRequestString)")
         
-        Alamofire.request("https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/manager/wesley%20chapel%20fl/25/accquisitiondate/desc/0/200/30/", headers: headers).responseJSON { response in
-            //debugPrint("Alamofire response: \(response)")
+        Alamofire.request(urlRequestString, headers: headers).responseJSON { response in
+            debugPrint("Alamofire response: \(response)")
             let jsonResponse = response.data
             let json = JSON(data: jsonResponse!)
             let jsonObj = json["Jobs"]
@@ -185,22 +202,27 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        debugPrint("locationManager: didChangeAuthorizationStatus")
         if status == .authorizedWhenInUse {
             cLLocationManager.requestLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        debugPrint("locationManager: didUpdateLocations")
+        
+        debugPrint(locations.first!)
+        
         if let location = locations.first {
-            print("location lat:  \(location.coordinate.latitude)")
-            print("location lng:  \(location.coordinate.longitude)")
+            //print("location lat:  \(location.coordinate.latitude)")
+            //print("location lng:  \(location.coordinate.longitude)")
             
             let lat = location.coordinate.latitude as Double
             let lng = location.coordinate.longitude as Double
             
             let locationLatLong = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             
-            //mapLocationSet(location: locationLatLong)
+            mapLocationSet(location: locationLatLong)
             
             let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + String(lat) + "," + String(lng) + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
             
@@ -210,20 +232,30 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 
                 let jsonResponseGeo = response.data
                 let jsonGeo = JSON(data: jsonResponseGeo!)
-                let jsonObjGeo = jsonGeo["results"].arrayValue
-                for item in jsonObjGeo {
-                    let jsonGeometry = item["address_components"]
-                    debugPrint("jsonGeometry: \(jsonGeometry)")
-                    
-                    let jsonLocation = jsonGeometry["location"]
-                    
-                    
-                    //let jsonLatitude = jsonLocation["lat"].doubleValue
-                    //let jsonLongitude = jsonLocation["lng"].doubleValue
-                    //debugPrint("jsonLat: \(jsonLatitude)")
-                    //debugPrint("jsonLng: \(jsonLongitude)")
-                }
+                let jsonObjGeo = jsonGeo["results"].arrayValue.first
+                let jsonGeometry = jsonObjGeo?["address_components"].arrayValue
+                //debugPrint("jsonGeometry \(jsonGeometry)")
                 
+                for components in jsonGeometry! {
+                    debugPrint("components: \(components)")
+                    
+                    
+                    
+                    let addressType = components["types"].arrayValue
+                    
+                    
+                    
+                    for types in addressType {
+                        debugPrint("addressTypes: \(types.stringValue)")
+                        if types.stringValue == "postal_code" {
+                            
+                            self.postalCodeLocation = components["long_name"].stringValue
+                            //debugPrint("postalCode: \(postalCode)")
+                            //postalCodeLocation
+                            debugPrint("postalCode: \(self.postalCodeLocation)")
+                        }
+                    }
+                }
             }
         }
     }
