@@ -159,7 +159,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nyx-kd-jSO">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="JobSpot" id="hCx-0a-brZ"/>
                                 </items>
@@ -175,7 +175,9 @@
                                 <rect key="frame" x="331" y="684" width="63" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
-                                <state key="normal" title="Profile"/>
+                                <state key="normal" title="Profile">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="profileButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="ahA-02-Ep6"/>
                                 </connections>
@@ -184,7 +186,9 @@
                                 <rect key="frame" x="125" y="684" width="66" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
-                                <state key="normal" title="Saved"/>
+                                <state key="normal" title="Saved">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="savedButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="erS-t8-UKU"/>
                                 </connections>
@@ -193,7 +197,9 @@
                                 <rect key="frame" x="225" y="684" width="72" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
-                                <state key="normal" title="Applied"/>
+                                <state key="normal" title="Applied">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="appliedJobsButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="kkq-Ms-8Zc"/>
                                 </connections>
@@ -220,7 +226,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxw-zK-aeG">
                                 <rect key="frame" x="350" y="70" width="55" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go"/>
+                                <state key="normal" title="Go">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="searchButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="1P3-Ip-qWy"/>
                                 </connections>
@@ -228,7 +236,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAH-6Q-TFa">
                                 <rect key="frame" x="285" y="108" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Saved Searches"/>
+                                <state key="normal" title="Saved Searches">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="savedSearchesAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="eXN-kF-uWy"/>
                                 </connections>
@@ -250,7 +260,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeh-8g-3mG">
                                 <rect key="frame" x="10" y="70" width="36" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Loc"/>
+                                <state key="normal" title="Loc">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="currLocationAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="Yk0-tF-UFY"/>
                                 </connections>
@@ -258,7 +270,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCV-zI-K9q">
                                 <rect key="frame" x="13" y="108" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Filt"/>
+                                <state key="normal" title="Filt">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="filterAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="ceS-jZ-7u1"/>
                                 </connections>
@@ -267,7 +281,9 @@
                                 <rect key="frame" x="20" y="684" width="66" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
-                                <state key="normal" title="Search"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="homePageAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="jpD-qc-REc"/>
                                 </connections>

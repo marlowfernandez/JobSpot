@@ -18,8 +18,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let homeToProfile = "homeToProfile"
     let homeToLogin = "homeToLogin"
     let homeToList = "homeToList"
-    let radius: CLLocationDistance = 5000
-    let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
+    let radius: CLLocationDistance = 15000
+    //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
+    var typedLocation = false
     @IBOutlet weak var mapViewOutlet: MKMapView!
     //@IBOutlet weak var searchBar: UISearchBar!
     var postalCodeLocation = " "
@@ -59,7 +60,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
-            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!)
+            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: "60", sortColumns: "accquisitiondate", sortOrder: "desc", pageSize: "200", days: "60")
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
             emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -148,9 +149,12 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //self.performSegue(withIdentifier: self.homeToList, sender: nil)
     }
     
-    func getJobs(location: String, jobTitle: String) {
-        let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + location + "/25/accquisitiondate/desc/0/200/30/"
+    func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
+        //                                                                      user id         keyword         location        radius          sortColumns        sortOrder       startRecord   pageSize       days
+        let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + location + "/" + radius + "/" + sortColumns + "/" + sortOrder + "/" + "0" + "/" + pageSize + "/" + days + "/"
         debugPrint("urlRequestString: \(urlRequestString)")
+        
+        ///v1/jobsearch/{userId}/{keyword}/{location}/{radius}/{sortColumns}/{sortOrder}/{startRecord}/{pageSize}/{days}
         
         if let annotations = self.mapViewOutlet?.annotations {
             for _annotation in annotations {
@@ -161,8 +165,41 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
         
+        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+        
+        debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
+        
+        Alamofire.request(strGeoCodeLocInput, method: .post).responseJSON { response in
+            
+            debugPrint("Alamofire response 1: \(strGeoCodeLocInput)")
+            
+            let jsonResponseGeo = response.data
+            let jsonGeo = JSON(data: jsonResponseGeo!)
+            let jsonObjGeo = jsonGeo["results"].arrayValue
+            for item in jsonObjGeo {
+                let jsonGeometry = item["geometry"]
+                
+                let jsonLocation = jsonGeometry["location"]
+                
+                let jsonLatitude = jsonLocation["lat"].doubleValue
+                let jsonLongitude = jsonLocation["lng"].doubleValue
+                
+                
+                debugPrint("Location Lat: \(jsonLatitude)")
+                debugPrint("Location Lng: \(jsonLongitude)")
+                
+                let locationLatLngInput = CLLocation(latitude: jsonLatitude, longitude: jsonLongitude)
+
+                
+                self.mapLocationSet(location: locationLatLngInput)
+            }
+            
+        }
+    
+
+        
         Alamofire.request(urlRequestString, headers: headers).responseJSON { response in
-            debugPrint("Alamofire response: \(response)")
+            debugPrint("Alamofire response 2: \(response)")
             let jsonResponse = response.data
             let json = JSON(data: jsonResponse!)
             let jsonObj = json["Jobs"]
@@ -196,9 +233,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let newCompany = company.replacingOccurrences(of: " ", with: "+")
                 let newLocation = location.replacingOccurrences(of: " ", with: "+")
                 
-                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
                 
-                //debugPrint("GeoCodeString URL: \(geoCodeString)")
+                debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
                 
                 Alamofire.request(geoCodeString, method: .post).responseJSON { response in
                     
@@ -274,29 +311,43 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             Alamofire.request(geoCodeString, method: .post).responseJSON { response in
                 
+                debugPrint("response: \(response)")
+                
                 let jsonResponseGeo = response.data
                 let jsonGeo = JSON(data: jsonResponseGeo!)
-                let jsonObjGeo = jsonGeo["results"].arrayValue.first
-                let jsonGeometry = jsonObjGeo?["address_components"].arrayValue
                 
-                for components in jsonGeometry! {
-                    debugPrint("components: \(components)")
+                let apiStatus = jsonGeo["status"].stringValue
+                debugPrint("apiStatus: \(apiStatus)")
+                
+                if apiStatus == "OVER_QUERY_LIMIT" {
+                    let emptyFields = UIAlertController(title: "API Limit Error", message: "The application has exceeded the API limit usage for Geocoding api. We are aware of the issue and please be patient.", preferredStyle: UIAlertControllerStyle.alert)
+                    emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(emptyFields, animated: true, completion: nil)
+                } else if apiStatus == "OK" {
+                    let jsonObjGeo = jsonGeo["results"].arrayValue.first
+                    let jsonGeometry = jsonObjGeo?["address_components"].arrayValue
                     
-                    let addressType = components["types"].arrayValue
-                    
-                    for types in addressType {
-                        debugPrint("addressTypes: \(types.stringValue)")
-                        if types.stringValue == "postal_code" {
-                            
-                            self.postalCodeLocation = components["long_name"].stringValue
-                            debugPrint("postalCode: \(self.postalCodeLocation)")
-                            
-                            if self.postalCodeLocation != " " {
-                                self.locationTextField.text = self.postalCodeLocation
+                    for components in jsonGeometry! {
+                        debugPrint("components: \(components)")
+                        
+                        let addressType = components["types"].arrayValue
+                        
+                        for types in addressType {
+                            debugPrint("addressTypes: \(types.stringValue)")
+                            if types.stringValue == "postal_code" {
+                                
+                                self.postalCodeLocation = components["long_name"].stringValue
+                                debugPrint("postalCode: \(self.postalCodeLocation)")
+                                
+                                if self.postalCodeLocation != " " {
+                                    self.locationTextField.text = self.postalCodeLocation
+                                }
                             }
                         }
                     }
                 }
+                
+                
             }
             
             
