@@ -11,5 +11,6 @@ target 'JobSpot-iOS' do
   pod 'Firebase/Database'
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'YNDropDownMenu'
 
 end

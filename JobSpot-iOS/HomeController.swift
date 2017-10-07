@@ -11,6 +11,7 @@ import Firebase
 import MapKit
 import Alamofire
 import SwiftyJSON
+import YNDropDownMenu
 
 class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -28,8 +29,10 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var cLLocationManager = CLLocationManager()
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
-    
-    
+    @IBOutlet weak var locOutletLabel: UIButton!
+    @IBOutlet weak var filterDropDown: UIView!
+    @IBOutlet weak var savedSearchesOutlet: UIButton!
+    @IBOutlet weak var filterButtonOutlet: UIButton!
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",
         "Content-Type": "application/json"
@@ -45,6 +48,14 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         cLLocationManager.distanceFilter = 500
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
+        
+        let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
+        if let _YNDropDown = YNDropDown {
+            let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)
+            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter"])
+            self.view.addSubview(view)
+        }
+        
     
     }
     

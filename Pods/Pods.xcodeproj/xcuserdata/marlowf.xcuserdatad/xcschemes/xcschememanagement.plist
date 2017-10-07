@@ -29,10 +29,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>YNDropDownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>501A4AA273B151FA0E185C7B24494251</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5703E0FB5E262AE9BE4888A9BEF20F77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,17 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9EDF6E5BE43A8F8567E8632C2C1D8B26</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C63B79B868C4B6B150B1F4AC3A3DB29C</key>
+		<key>FB18AE17F89D420F98027A4A7F883A64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
