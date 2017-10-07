@@ -51,6 +51,10 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
         
+        YNFilterView.FilterValues.radiusString = "20"
+        YNFilterView.FilterValues.daysEntered = "30"
+        YNFilterView.FilterValues.jobSort = "accquisitiondate"
+        
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
             let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)

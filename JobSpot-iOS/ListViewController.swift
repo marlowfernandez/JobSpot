@@ -33,6 +33,19 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var filterDropDown: UIView!
     @IBOutlet weak var savedSearchesOutlet: UIButton!
     @IBOutlet weak var filterButtonOutlet: UIButton!
+    @IBOutlet weak var tableViewOutlet: UITableView!
+    
+    
+    var jobItems: [DisplayStruct] = []
+    
+    var noItems = ["No items to display"]
+    
+    var fruits = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
+                  "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
+                  "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
+                  "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
+                  "Pear", "Pineapple", "Raspberry", "Strawberry"]
+    
     
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",
@@ -48,13 +61,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
         
+        YNFilterView.FilterValues.radiusString = "20"
+        YNFilterView.FilterValues.daysEntered = "30"
+        YNFilterView.FilterValues.jobSort = "accquisitiondate"
+        
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
             let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)
             let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter","Saved Search"])
             self.view.addSubview(view)
         }
-        
     
     }
     
@@ -64,13 +80,30 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        if jobItems.count > 0 {
+            return jobItems.count
+        } else {
+            return noItems.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
         
-        cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+        //cell.textLabel?.text = fruits[indexPath.row]
+        
+        if jobItems.count > 0 {
+            let jobData = jobItems[indexPath.row]
+            cell.textLabel?.text = jobData.companyName
+            cell.detailTextLabel?.text = jobData.jobTitle
+        } else {
+            let noData = noItems[indexPath.row]
+            cell.textLabel?.text = noData
+            cell.detailTextLabel?.text = " "
+        }
+        
+        //cell.imageView?.image = UIImage(named: fruitName)
         
         return cell
     }
@@ -93,7 +126,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
-            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "200", days: YNFilterView.FilterValues.daysEntered)
+            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "100", days: YNFilterView.FilterValues.daysEntered)
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
             emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -244,10 +277,17 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //print("JobID: \(jobID)")
                 
                 let jobTitle = item["JobTitle"].stringValue
-                //print("JobTitle: \(jobTitle)")
+                print("JobTitle: \(jobTitle)")
                 
                 let company = item["Company"].stringValue
-                //print("Company: \(company)")
+                print("Company: \(company)")
+                
+                let structItem = DisplayStruct(jobName: jobTitle, company: company)
+                self.jobItems.append(structItem)
+                
+                debugPrint("jobItems: \(self.jobItems)")
+                
+                debugPrint("jobItems Count: \(self.jobItems.count)")
                 
                 //let accquisitionDate = item["AccquisitionDate"].stringValue
                 //print("AccquisitionDate: \(accquisitionDate)")
@@ -264,30 +304,36 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let newCompany = company.replacingOccurrences(of: " ", with: "+")
                 let newLocation = location.replacingOccurrences(of: " ", with: "+")
                 
-                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+//                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+//                
+//                debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
+//                
+//                Alamofire.request(geoCodeString, method: .post).responseJSON { response in
+//                    
+//                    let jsonResponseGeo = response.data
+//                    let jsonGeo = JSON(data: jsonResponseGeo!)
+//                    let jsonObjGeo = jsonGeo["results"].arrayValue
+//                    for item in jsonObjGeo {
+//                        let jsonGeometry = item["geometry"]
+//                        
+//                        let jsonLocation = jsonGeometry["location"]
+//                        
+//                        let jsonLatitude = jsonLocation["lat"].doubleValue
+//                        let jsonLongitude = jsonLocation["lng"].doubleValue
+//                        
+//                    }
+//                    
+//                }
                 
-                debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
-                
-                Alamofire.request(geoCodeString, method: .post).responseJSON { response in
-                    
-                    let jsonResponseGeo = response.data
-                    let jsonGeo = JSON(data: jsonResponseGeo!)
-                    let jsonObjGeo = jsonGeo["results"].arrayValue
-                    for item in jsonObjGeo {
-                        let jsonGeometry = item["geometry"]
-                        
-                        let jsonLocation = jsonGeometry["location"]
-                        
-                        let jsonLatitude = jsonLocation["lat"].doubleValue
-                        let jsonLongitude = jsonLocation["lng"].doubleValue
-                        
-                    }
-                    
-                }
-                
-                print(" ")
             }
+            
+            DispatchQueue.main.async {
+                self.tableViewOutlet.reloadData()
+            }
+            
         }
+        
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

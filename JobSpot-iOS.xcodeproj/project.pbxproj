@@ -18,6 +18,7 @@
 		401A049B1F8862F90061AA79 /* YNDropDown.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401A049A1F8862F90061AA79 /* YNDropDown.xib */; };
 		401A049D1F886BD00061AA79 /* YNDropDownClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A049C1F886BD00061AA79 /* YNDropDownClasses.swift */; };
 		401A049F1F8890A20061AA79 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A049E1F8890A20061AA79 /* ListViewController.swift */; };
+		401A04A21F89678F0061AA79 /* DisplayStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A11F89678F0061AA79 /* DisplayStruct.swift */; };
 		401CD2FB1F81672A009370CE /* ApiConfigTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */; };
 		40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F851F7ED87A007E6EC0 /* CreateAccount.swift */; };
 		40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F871F7EF581007E6EC0 /* HomeController.swift */; };
@@ -41,6 +42,7 @@
 		401A049A1F8862F90061AA79 /* YNDropDown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNDropDown.xib; sourceTree = "<group>"; };
 		401A049C1F886BD00061AA79 /* YNDropDownClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YNDropDownClasses.swift; sourceTree = "<group>"; };
 		401A049E1F8890A20061AA79 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		401A04A11F89678F0061AA79 /* DisplayStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayStruct.swift; sourceTree = "<group>"; };
 		401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfigTesting.swift; sourceTree = "<group>"; };
 		40499F851F7ED87A007E6EC0 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		40499F871F7EF581007E6EC0 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -83,6 +85,7 @@
 		40179B251F7B25E9003E0021 /* JobSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				401A04A01F8967750061AA79 /* Structures */,
 				408291541F7B34280070FC0C /* GoogleService-Info.plist */,
 				40499F831F7B3E6D007E6EC0 /* SwiftFiles */,
 				40499F841F7B4055007E6EC0 /* Storyboards */,
@@ -99,6 +102,14 @@
 				401A049A1F8862F90061AA79 /* YNDropDown.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		401A04A01F8967750061AA79 /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				401A04A11F89678F0061AA79 /* DisplayStruct.swift */,
+			);
+			name = Structures;
 			sourceTree = "<group>";
 		};
 		40499F831F7B3E6D007E6EC0 /* SwiftFiles */ = {
@@ -272,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A6D9971F808EE2004CCE9E /* ApiConfigNotUsed.swift in Sources */,
+				401A04A21F89678F0061AA79 /* DisplayStruct.swift in Sources */,
 				400F9CA61F81C3A600572B04 /* HomeControllerLV.swift in Sources */,
 				401A049D1F886BD00061AA79 /* YNDropDownClasses.swift in Sources */,
 				40499F8A1F7EFF44007E6EC0 /* ProfileController.swift in Sources */,

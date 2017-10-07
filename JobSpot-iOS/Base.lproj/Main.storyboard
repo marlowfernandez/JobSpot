@@ -227,7 +227,7 @@
                                 <rect key="frame" x="189" y="65" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Saved Searches">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="savedSearchesAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="eXN-kF-uWy"/>
@@ -255,7 +255,7 @@
                                 <rect key="frame" x="365" y="95" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Go">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="searchButtonAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="1P3-Ip-qWy"/>
@@ -272,7 +272,7 @@
                                 <rect key="frame" x="10" y="94" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Loc">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="currLocationAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="Yk0-tF-UFY"/>
@@ -282,14 +282,14 @@
                                 <rect key="frame" x="95" y="65" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Filter">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="filterAction:" destination="f9r-Vy-h5s" eventType="touchUpInside" id="ceS-jZ-7u1"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
                     <connections>
                         <outlet property="filterButtonOutlet" destination="vCV-zI-K9q" id="Pgx-gi-Whg"/>
@@ -359,7 +359,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
-                                    <navigationItem title="Jobs - List" id="JgF-uE-tGa"/>
+                                    <navigationItem title="Jobs" id="JgF-uE-tGa">
+                                        <barButtonItem key="backBarButtonItem" title="Back" id="ftN-eO-7vh"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtc-tf-KeM">
@@ -436,7 +438,7 @@
                                 <rect key="frame" x="365" y="93" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Go">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="searchButtonAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Pyo-eg-87v"/>
@@ -453,7 +455,7 @@
                                 <rect key="frame" x="10" y="92" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Loc">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="currLocationAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Ffu-15-ncS"/>
@@ -463,7 +465,7 @@
                                 <rect key="frame" x="189" y="64" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Saved Searches">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="savedSearchesAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Hln-6B-g8B"/>
@@ -473,14 +475,14 @@
                                 <rect key="frame" x="95" y="64" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Filter">
-                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="filterAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="OPM-l0-fLi"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="filterButtonOutlet" destination="Buk-MI-wD5" id="gDG-SG-Hk5"/>
@@ -488,6 +490,7 @@
                         <outlet property="locOutletLabel" destination="Ytd-F8-dNs" id="nFO-Qv-K5j"/>
                         <outlet property="locationTextField" destination="bIb-QC-u0z" id="n11-jt-P7k"/>
                         <outlet property="savedSearchesOutlet" destination="BaD-hy-Cw5" id="qBN-5i-8nB"/>
+                        <outlet property="tableViewOutlet" destination="kbI-57-Dye" id="3Dd-fh-Pzu"/>
                         <segue destination="f9r-Vy-h5s" kind="show" identifier="listToHome" id="hzW-pD-IhX"/>
                         <segue destination="zeY-Dq-EyD" kind="show" identifier="listToProfile" id="L4m-AS-6JC"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="listToLogin" id="WQH-nU-clU"/>
@@ -540,7 +543,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="L4m-AS-6JC"/>
-        <segue reference="gvW-Wd-lr1"/>
-        <segue reference="Irk-76-Yr8"/>
+        <segue reference="hzW-pD-IhX"/>
+        <segue reference="WQH-nU-clU"/>
     </inferredMetricsTieBreakers>
 </document>
