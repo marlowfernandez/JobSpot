@@ -13,17 +13,16 @@ import Alamofire
 import SwiftyJSON
 import YNDropDownMenu
 
-class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var handle: FIRAuthStateDidChangeListenerHandle?
     var rootRef: FIRDatabaseReference!
-    let homeToProfile = "homeToProfile"
-    let homeToLogin = "homeToLogin"
-    let homeToList = "homeToList"
+    let listToHome = "listToHome"
+    let listToProfile = "listToProfile"
+    let listToLogin = "listToLogin"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     var typedLocation = false
-    @IBOutlet weak var mapViewOutlet: MKMapView!
     //@IBOutlet weak var searchBar: UISearchBar!
     var postalCodeLocation = " "
     //let apiController = ApiConfig()
@@ -43,8 +42,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapViewOutlet.delegate = self
-        
         cLLocationManager.delegate = self
         cLLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         cLLocationManager.distanceFilter = 500
@@ -61,17 +58,34 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     }
     
-    public func receiveRadius() -> String {
-        
-        
-        return ""
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
+        
+        cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Jobs"
+    }
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.homeToProfile, sender: nil)
+        self.performSegue(withIdentifier: self.listToProfile, sender: nil)
     }
     
+    @IBAction func mapButtonAction(_ sender: UIButton) {
+        debugPrint("mapButtonAction clicked")
+    }
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
         let jobTitleEntered = jobTitleTextField.text
@@ -125,7 +139,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if user == nil {
-                self.performSegue(withIdentifier: self.homeToLogin, sender: nil)
+                self.performSegue(withIdentifier: self.listToLogin, sender: nil)
                 //debugPrint(user?.email! as Any)
             }
         }
@@ -153,17 +167,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     
-    func mapLocationSet(location: CLLocation) {
-        let coordinates = MKCoordinateRegionMakeWithDistance(location.coordinate,
-                                                                  radius * 2.0, radius * 2.0)
-        mapViewOutlet.setRegion(coordinates, animated: true)
-    }
-    
-    
     func checkUserLocationStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             //debugPrint("checkUserLocationStatus - authorizedWhenInUse")
-            mapViewOutlet.showsUserLocation = true
             cLLocationManager.requestLocation()
         } else {
             //debugPrint("checkUserLocationStatus - requestWhenInUseAuthorization")
@@ -184,25 +190,12 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
-    @IBAction func listActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.homeToList, sender: nil)
-    }
-    
     func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
         //                                                                      user id         keyword         location        radius          sortColumns        sortOrder       startRecord   pageSize       days
         let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + location + "/" + radius + "/" + sortColumns + "/" + sortOrder + "/" + "0" + "/" + pageSize + "/" + days + "/"
         debugPrint("urlRequestString: \(urlRequestString)")
         
         ///v1/jobsearch/{userId}/{keyword}/{location}/{radius}/{sortColumns}/{sortOrder}/{startRecord}/{pageSize}/{days}
-        
-        if let annotations = self.mapViewOutlet?.annotations {
-            for _annotation in annotations {
-                if let annotation = _annotation as? MKAnnotation
-                {
-                    self.mapViewOutlet.removeAnnotation(annotation)
-                }
-            }
-        }
         
         let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
         
@@ -230,7 +223,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let locationLatLngInput = CLLocation(latitude: jsonLatitude, longitude: jsonLongitude)
 
                 
-                self.mapLocationSet(location: locationLatLngInput)
             }
             
         }
@@ -289,12 +281,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         let jsonLatitude = jsonLocation["lat"].doubleValue
                         let jsonLongitude = jsonLocation["lng"].doubleValue
                         
-                        
-                        let displayMarker = DisplayAnnotation(title: jobTitle,
-                                                              locationName: company,
-                                                              coordinate: CLLocationCoordinate2D(latitude: jsonLatitude, longitude: jsonLongitude))
-                        
-                        self.mapViewOutlet.addAnnotation(displayMarker)
                     }
                     
                 }
@@ -341,8 +327,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let lng = location.coordinate.longitude as Double
             
             let locationLatLong = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            
-            mapLocationSet(location: locationLatLong)
             
             let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + String(lat) + "," + String(lng) + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
             

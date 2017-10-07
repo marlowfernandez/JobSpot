@@ -157,3 +157,36 @@ class YNFilterView: YNDropDownView {
         
     }
 }
+
+
+class YNSavedSearchesView: YNDropDownView {
+    
+    struct SaveSearchValues {
+        static var nothing = String()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.white
+        self.initViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        self.initViews()
+    }
+    
+    override func dropDownViewOpened() {
+        print("dropDownViewOpened")
+    }
+    
+    override func dropDownViewClosed() {
+        print("dropDownViewClosed")
+    }
+    
+    func initViews() {
+        
+        
+    }
+}

@@ -68,8 +68,8 @@
                     <connections>
                         <outlet property="emailAddress" destination="RJV-gj-alk" id="pSH-fB-mNs"/>
                         <outlet property="inputPassword" destination="K2k-ow-2Qa" id="PrY-02-fFG"/>
-                        <segue destination="LPO-TC-0fS" kind="presentation" identifier="mainToCreateAcc" id="AJo-fd-eQY"/>
-                        <segue destination="f9r-Vy-h5s" kind="presentation" identifier="mainToHome" id="gvW-Wd-lr1"/>
+                        <segue destination="LPO-TC-0fS" kind="show" identifier="mainToCreateAcc" id="AJo-fd-eQY"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="mainToHome" id="gvW-Wd-lr1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -136,8 +136,8 @@
                     <connections>
                         <outlet property="emailAddress" destination="qBz-cL-VrI" id="IuV-Ca-kf0"/>
                         <outlet property="inputPassword" destination="63j-Mh-bky" id="8ty-qc-KQR"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="createAccToLogin" id="q8Q-ig-5zr"/>
-                        <segue destination="f9r-Vy-h5s" kind="presentation" identifier="createAccToHome" id="VRh-GE-KSu"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="createAccToLogin" id="q8Q-ig-5zr"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="createAccToHome" id="VRh-GE-KSu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZK-Z9-aQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -298,19 +298,19 @@
                         <outlet property="locationTextField" destination="OJH-ct-ttn" id="WpA-Er-0ki"/>
                         <outlet property="mapViewOutlet" destination="TS3-8T-Y8B" id="0ws-cC-iOv"/>
                         <outlet property="savedSearchesOutlet" destination="xAH-6Q-TFa" id="3cT-mF-G1o"/>
-                        <segue destination="zeY-Dq-EyD" kind="presentation" identifier="homeToProfile" id="2EG-7D-vq1"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="homeToLogin" id="mrU-jZ-LFK"/>
-                        <segue destination="xNV-3r-tSI" kind="presentation" identifier="homeToList" id="dmw-fS-12I"/>
+                        <segue destination="zeY-Dq-EyD" kind="show" identifier="homeToProfile" id="2EG-7D-vq1"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="homeToLogin" id="mrU-jZ-LFK"/>
+                        <segue destination="xNV-3r-tSI" kind="show" identifier="homeToList" id="dmw-fS-12I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgE-RD-bPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1608.6956521739132" y="37.5"/>
         </scene>
-        <!--Home ControllerLV-->
+        <!--List View Controller-->
         <scene sceneID="Gkm-Nv-gIk">
             <objects>
-                <viewController id="xNV-3r-tSI" customClass="HomeControllerLV" customModule="JobSpot_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xNV-3r-tSI" customClass="ListViewController" customModule="JobSpot_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tn4-kp-MK2"/>
                         <viewControllerLayoutGuide type="bottom" id="vsT-ze-LT8"/>
@@ -320,7 +320,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbI-57-Dye">
-                                <rect key="frame" x="0.0" y="194" width="414" height="479"/>
+                                <rect key="frame" x="0.0" y="206" width="414" height="467"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -350,8 +350,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="mvU-em-Ndk" id="g8J-df-gkL"/>
-                                    <outlet property="delegate" destination="mvU-em-Ndk" id="5MO-ck-bjT"/>
+                                    <outlet property="dataSource" destination="xNV-3r-tSI" id="eVn-b5-35e"/>
+                                    <outlet property="delegate" destination="xNV-3r-tSI" id="a2y-kl-Zgw"/>
                                 </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ptl-Il-yQs">
@@ -362,11 +362,135 @@
                                     <navigationItem title="Jobs - List" id="JgF-uE-tGa"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtc-tf-KeM">
+                                <rect key="frame" x="331" y="681" width="63" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Profile">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="profileButtonAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="6d4-D0-bqi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpQ-lo-tec">
+                                <rect key="frame" x="123" y="681" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Saved">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="savedButtonAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="LoG-I2-bKo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rp4-z2-qsv">
+                                <rect key="frame" x="225" y="681" width="72" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Applied">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="appliedJobsButtonAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="YuY-7P-jhJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8C-rC-kiZ">
+                                <rect key="frame" x="20" y="681" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="homePageAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Fn4-zK-vfV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RL-e8-4PC">
+                                <rect key="frame" x="10" y="159" width="198" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Map">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="mapButtonAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="J7H-Vj-Kfz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jS1-RX-65I">
+                                <rect key="frame" x="207" y="159" width="198" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="List">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Job Title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-eK-u2h">
+                                <rect key="frame" x="95" y="126" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrI-sJ-HlW">
+                                <rect key="frame" x="365" y="93" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButtonAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Pyo-eg-87v"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City, State or Zip Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIb-QC-u0z">
+                                <rect key="frame" x="53" y="93" width="309" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytd-F8-dNs">
+                                <rect key="frame" x="10" y="92" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Loc">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="currLocationAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Ffu-15-ncS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaD-hy-Cw5">
+                                <rect key="frame" x="189" y="64" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Saved Searches">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="savedSearchesAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="Hln-6B-g8B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Buk-MI-wD5">
+                                <rect key="frame" x="95" y="64" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Filter">
+                                    <color key="titleColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterAction:" destination="xNV-3r-tSI" eventType="touchUpInside" id="OPM-l0-fLi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="f9r-Vy-h5s" kind="presentation" identifier="listToHome" id="hzW-pD-IhX"/>
+                        <outlet property="filterButtonOutlet" destination="Buk-MI-wD5" id="gDG-SG-Hk5"/>
+                        <outlet property="jobTitleTextField" destination="xdM-eK-u2h" id="o3j-lg-LL4"/>
+                        <outlet property="locOutletLabel" destination="Ytd-F8-dNs" id="nFO-Qv-K5j"/>
+                        <outlet property="locationTextField" destination="bIb-QC-u0z" id="n11-jt-P7k"/>
+                        <outlet property="savedSearchesOutlet" destination="BaD-hy-Cw5" id="qBN-5i-8nB"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="listToHome" id="hzW-pD-IhX"/>
+                        <segue destination="zeY-Dq-EyD" kind="show" identifier="listToProfile" id="L4m-AS-6JC"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="listToLogin" id="WQH-nU-clU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPc-fT-ojL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -403,19 +527,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logout" id="Irk-76-Yr8"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Irk-76-Yr8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3MG-nm-T8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2523" y="694"/>
+            <point key="canvasLocation" x="2522" y="828"/>
         </scene>
     </scenes>
     <resources>
         <image name="JobSpot Logo" width="451" height="195"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hzW-pD-IhX"/>
-        <segue reference="mrU-jZ-LFK"/>
+        <segue reference="L4m-AS-6JC"/>
+        <segue reference="gvW-Wd-lr1"/>
+        <segue reference="Irk-76-Yr8"/>
     </inferredMetricsTieBreakers>
 </document>

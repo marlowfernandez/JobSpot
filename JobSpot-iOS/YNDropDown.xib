@@ -41,7 +41,7 @@
                     </connections>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs posted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcq-66-Aok">
-                    <rect key="frame" x="20" y="128" width="145" height="16"/>
+                    <rect key="frame" x="20" y="126" width="145" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="NSA-wg-3mj"/>
                         <constraint firstAttribute="width" constant="145" id="lgd-le-mbK"/>
@@ -51,7 +51,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T1L-vM-o0V">
-                    <rect key="frame" x="20" y="163" width="335" height="28"/>
+                    <rect key="frame" x="20" y="161" width="335" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="kPN-sG-QRy"/>
                     </constraints>
@@ -121,7 +121,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort jobs by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTI-2U-vHF">
-                    <rect key="frame" x="20" y="230" width="145" height="16"/>
+                    <rect key="frame" x="20" y="227" width="145" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="6Yd-AO-yC7"/>
                         <constraint firstAttribute="width" constant="145" id="zfk-rX-ZHO"/>
@@ -131,7 +131,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ki5-1u-4GO">
-                    <rect key="frame" x="20" y="265" width="335" height="28"/>
+                    <rect key="frame" x="20" y="262" width="335" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="Xqr-Yi-Pnj"/>
                     </constraints>
@@ -154,7 +154,7 @@
                 <constraint firstItem="ZuI-3r-hWl" firstAttribute="leading" secondItem="NRk-Rn-SyG" secondAttribute="trailing" id="8y4-8i-H2M"/>
                 <constraint firstItem="kTI-2U-vHF" firstAttribute="leading" secondItem="T1L-vM-o0V" secondAttribute="leading" id="97S-OG-Iha"/>
                 <constraint firstItem="krV-Qi-Nf3" firstAttribute="leading" secondItem="0DY-yR-x3o" secondAttribute="leading" id="A00-fv-2hH"/>
-                <constraint firstItem="mPQ-Oz-ern" firstAttribute="top" secondItem="Ki5-1u-4GO" secondAttribute="bottom" constant="17" id="BTX-OW-QNS"/>
+                <constraint firstItem="mPQ-Oz-ern" firstAttribute="top" secondItem="Ki5-1u-4GO" secondAttribute="bottom" constant="20" id="BTX-OW-QNS"/>
                 <constraint firstAttribute="trailing" secondItem="0DY-yR-x3o" secondAttribute="trailing" id="Cvs-l5-nHM"/>
                 <constraint firstItem="DSP-oT-UyX" firstAttribute="top" secondItem="P8Y-vg-b5j" secondAttribute="bottom" constant="23" id="DRu-W1-fA4"/>
                 <constraint firstAttribute="trailing" secondItem="P8Y-vg-b5j" secondAttribute="trailing" constant="20" id="GEC-sN-xqC"/>
@@ -163,7 +163,7 @@
                 <constraint firstItem="AGc-Z3-qeI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Nzo-mf-BRk"/>
                 <constraint firstItem="NRk-Rn-SyG" firstAttribute="top" secondItem="DSP-oT-UyX" secondAttribute="bottom" constant="203" id="ODY-T0-JqU"/>
                 <constraint firstItem="AGc-Z3-qeI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="RNA-Bz-gee"/>
-                <constraint firstItem="krV-Qi-Nf3" firstAttribute="top" secondItem="T1L-vM-o0V" secondAttribute="bottom" constant="19" id="RxH-SJ-xNA"/>
+                <constraint firstItem="krV-Qi-Nf3" firstAttribute="top" secondItem="T1L-vM-o0V" secondAttribute="bottom" constant="21" id="RxH-SJ-xNA"/>
                 <constraint firstItem="Ki5-1u-4GO" firstAttribute="top" secondItem="kTI-2U-vHF" secondAttribute="bottom" constant="19" id="Vmv-Ba-el3"/>
                 <constraint firstItem="0DY-yR-x3o" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Wfy-ko-h5B"/>
                 <constraint firstItem="mPQ-Oz-ern" firstAttribute="top" secondItem="DSP-oT-UyX" secondAttribute="bottom" constant="203" id="ZO1-aK-bNk"/>
@@ -175,7 +175,7 @@
                 <constraint firstItem="lcq-66-Aok" firstAttribute="leading" secondItem="T1L-vM-o0V" secondAttribute="leading" id="hlD-n7-eKh"/>
                 <constraint firstItem="P8Y-vg-b5j" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="j1S-Xj-ZZJ"/>
                 <constraint firstItem="NRk-Rn-SyG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="k3J-8M-LvB"/>
-                <constraint firstItem="lcq-66-Aok" firstAttribute="top" secondItem="DSP-oT-UyX" secondAttribute="bottom" constant="22" id="nsp-Ti-EG0"/>
+                <constraint firstItem="lcq-66-Aok" firstAttribute="top" secondItem="DSP-oT-UyX" secondAttribute="bottom" constant="20" id="nsp-Ti-EG0"/>
                 <constraint firstItem="Ki5-1u-4GO" firstAttribute="trailing" secondItem="T1L-vM-o0V" secondAttribute="trailing" id="sXW-7s-IWV"/>
                 <constraint firstAttribute="trailing" secondItem="DSP-oT-UyX" secondAttribute="trailing" id="tzB-yR-T1U"/>
                 <constraint firstItem="lcq-66-Aok" firstAttribute="leading" secondItem="P8Y-vg-b5j" secondAttribute="leading" id="uhc-7P-RXJ"/>
@@ -193,7 +193,7 @@
             </connections>
             <point key="canvasLocation" x="65.5" y="-167.5"/>
         </view>
-        <view contentMode="scaleToFill" id="Hmp-hB-W7v">
+        <view contentMode="scaleToFill" id="Hmp-hB-W7v" customClass="YNSavedSearchesView" customModule="JobSpot_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="332"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
