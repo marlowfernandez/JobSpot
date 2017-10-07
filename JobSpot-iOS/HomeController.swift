@@ -33,6 +33,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var filterDropDown: UIView!
     @IBOutlet weak var savedSearchesOutlet: UIButton!
     @IBOutlet weak var filterButtonOutlet: UIButton!
+    
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",
         "Content-Type": "application/json"
@@ -52,13 +53,19 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
             let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)
-            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter"])
+            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter","Saved Search"])
             self.view.addSubview(view)
         }
         
     
     }
     
+    public func receiveRadius() -> String {
+        
+        
+        return ""
+    }
+
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.homeToProfile, sender: nil)
@@ -71,7 +78,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
-            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: "60", sortColumns: "accquisitiondate", sortOrder: "desc", pageSize: "200", days: "60")
+            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "200", days: YNFilterView.FilterValues.daysEntered)
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
             emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

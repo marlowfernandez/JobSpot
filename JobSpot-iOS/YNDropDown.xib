@@ -10,7 +10,7 @@
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZBFilterMemeView" customModule="JobSpot_iOS" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YNFilterView" customModule="JobSpot_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="359"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -36,6 +36,9 @@
                         <segment title="40mi."/>
                     </segments>
                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="showJobsAction:" destination="iN0-l3-epB" eventType="valueChanged" id="5x5-uF-zZG"/>
+                    </connections>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs posted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcq-66-Aok">
                     <rect key="frame" x="20" y="128" width="145" height="16"/>
@@ -58,6 +61,9 @@
                         <segment title="30 days"/>
                     </segments>
                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="changeDaysAction:" destination="iN0-l3-epB" eventType="valueChanged" id="isg-wJ-3LI"/>
+                    </connections>
                 </segmentedControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-oT-UyX">
                     <rect key="frame" x="0.0" y="105" width="375" height="1"/>
@@ -89,6 +95,9 @@
                     <state key="normal" title="Cancel">
                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="cancelButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="aGD-xh-CCg"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPQ-Oz-ern">
                     <rect key="frame" x="187.5" y="309" width="187.5" height="50"/>
@@ -99,6 +108,9 @@
                     <state key="normal" title="Ok">
                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="submitButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ynb-eH-aXw"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuI-3r-hWl">
                     <rect key="frame" x="187.5" y="321" width="0.0" height="26"/>
@@ -108,7 +120,7 @@
                         <constraint firstAttribute="height" constant="26" id="hhX-xF-GhE"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs posted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTI-2U-vHF">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort jobs by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTI-2U-vHF">
                     <rect key="frame" x="20" y="230" width="145" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="6Yd-AO-yC7"/>
@@ -124,11 +136,14 @@
                         <constraint firstAttribute="height" constant="27" id="Xqr-Yi-Pnj"/>
                     </constraints>
                     <segments>
-                        <segment title="7 days"/>
-                        <segment title="14 days"/>
-                        <segment title="30 days"/>
+                        <segment title="Date Posted"/>
+                        <segment title="Location"/>
+                        <segment title="Relevance"/>
                     </segments>
                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="sortJobsAction:" destination="iN0-l3-epB" eventType="valueChanged" id="SOK-fb-r5v"/>
+                    </connections>
                 </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -171,7 +186,19 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="jobDaysSegmentOutlet" destination="T1L-vM-o0V" id="lye-9J-GHG"/>
+                <outlet property="radiusSegmentOutlet" destination="P8Y-vg-b5j" id="9RD-eZ-vfY"/>
+                <outlet property="sortJobsSegmentOutlet" destination="Ki5-1u-4GO" id="X3N-B9-93t"/>
+            </connections>
             <point key="canvasLocation" x="65.5" y="-167.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="Hmp-hB-W7v">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="332"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="65.5" y="266"/>
         </view>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>
