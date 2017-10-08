@@ -20,6 +20,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let homeToProfile = "homeToProfile"
     let homeToLogin = "homeToLogin"
     let homeToList = "homeToList"
+    let homeToSavedSearch = "homeToSavedSearch"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     var typedLocation = false
@@ -53,6 +54,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
         
+        YNSavedSearchesView.SaveSearchValues.selected = "map"
+        
         YNFilterView.FilterValues.radiusString = "20"
         YNFilterView.FilterValues.daysEntered = "30"
         YNFilterView.FilterValues.jobSort = "accquisitiondate"
@@ -72,9 +75,17 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         return ""
     }
-
+    
+    public func mapChangeViewToSavedSearches() {
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
+        }
+        
+    }
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
+        //self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
         self.performSegue(withIdentifier: self.homeToProfile, sender: nil)
     }
     
@@ -139,7 +150,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @IBAction func savedSearchesAction(_ sender: UIButton) {
-        debugPrint("savedSearchesAction")
+        self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
     }
     
     

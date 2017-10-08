@@ -20,6 +20,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let listToHome = "listToHome"
     let listToProfile = "listToProfile"
     let listToLogin = "listToLogin"
+    let listToSavedSearch = "listToSavedSearch"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     var typedLocation = false
@@ -41,13 +42,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var noItems = ["No items to display"]
     
-    var fruits = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
-                  "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
-                  "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
-                  "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
-                  "Pear", "Pineapple", "Raspberry", "Strawberry"]
-    
-    
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",
         "Content-Type": "application/json"
@@ -61,6 +55,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cLLocationManager.distanceFilter = 500
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
+        
+        YNSavedSearchesView.SaveSearchValues.selected = "list"
         
         YNFilterView.FilterValues.radiusString = "20"
         YNFilterView.FilterValues.daysEntered = "30"
@@ -118,7 +114,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func mapButtonAction(_ sender: UIButton) {
-        debugPrint("mapButtonAction clicked")
+        self.performSegue(withIdentifier: self.listToHome, sender: nil)
+    }
+    
+    public func listChangeViewToSavedSearches() {
+        self.performSegue(withIdentifier: self.listToSavedSearch, sender: nil)
     }
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
@@ -127,9 +127,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
-            
-            
-            
             getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "100", days: YNFilterView.FilterValues.daysEntered)
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
@@ -184,7 +181,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func savedSearchesAction(_ sender: UIButton) {
-        debugPrint("savedSearchesAction")
+        self.performSegue(withIdentifier: self.listToSavedSearch, sender: nil)
     }
     
     

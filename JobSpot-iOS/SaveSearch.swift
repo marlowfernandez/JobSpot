@@ -17,6 +17,12 @@ struct SaveSearch {
     static var days = String()
     static var dateTime = String()
     
+    var keyword2 = String()
+    var radius2 = String()
+    var location2 = String()
+    var days2 = String()
+    var dateTime2 = String()
+    
     init(keywords: String, radius: String, location: String, days: String, dateTime: String) {
         
         SaveSearch.keywords = keywords
@@ -25,6 +31,14 @@ struct SaveSearch {
         SaveSearch.days = days
         SaveSearch.dateTime = dateTime
         
+    }
+    
+    init(keywords2: String, radius2: String, location2: String, days2: String, dateTime2: String) {
+        self.keyword2 = keywords2
+        self.radius2 = radius2
+        self.location2 = location2
+        self.days2 = days2
+        self.dateTime2 = dateTime2
     }
     
     func toAnyObject() -> [String:Any] {

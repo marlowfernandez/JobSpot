@@ -161,8 +161,11 @@ class YNFilterView: YNDropDownView {
 
 class YNSavedSearchesView: YNDropDownView {
     
+    @IBOutlet weak var viewSavedSearchedOutlet: UIButton!
+    let listToProfile = "listToProfile"
+    
     struct SaveSearchValues {
-        static var nothing = String()
+        static var selected = String()
     }
     
     override init(frame: CGRect) {
@@ -183,6 +186,35 @@ class YNSavedSearchesView: YNDropDownView {
     
     override func dropDownViewClosed() {
         print("dropDownViewClosed")
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: UIButton) {
+        
+        
+        //        self.changeMenu(title: "Changed", at: 1)
+        //        self.changeMenu(title: "Changed", status: .selected, at: 0)
+        self.alwaysSelected(at: 1)
+        //        self.alwaysSelected(at: 2)
+        //        self.alwaysSelected(at: 3)
+        self.hideMenu()
+    }
+    
+//    @IBAction func goToSavedSearches(_ sender: UIButton) {
+//        if SaveSearchValues.selected == "map" {
+//            debugPrint("map is in view, changing view to savedsearched")
+//            self.hideMenu()
+//            HomeController().mapChangeViewToSavedSearches()
+//            
+//        } else if SaveSearchValues.selected == "list" {
+//            debugPrint("list is in view, changing view to savedsearched")
+//            self.hideMenu()
+//            ListViewController().listChangeViewToSavedSearches()
+//        }
+//    }
+    
+    @IBAction func submitButtonAction(_ sender: UIButton) {
+        self.normalSelected(at: 1)
+        self.hideMenu()
     }
     
     func initViews() {

@@ -14,6 +14,7 @@ class ProfileController: UIViewController {
     var handle: FIRAuthStateDidChangeListenerHandle?
     
     let logout = "logout"
+    let profileToHome = "profileToHome"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,8 @@ class ProfileController: UIViewController {
             }
         }
         
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,5 +58,10 @@ class ProfileController: UIViewController {
         debugPrint("viewWillDisappear")
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
+    
+    @IBAction func profileToHome(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.profileToHome, sender: nil)
+    }
+    
 }
 

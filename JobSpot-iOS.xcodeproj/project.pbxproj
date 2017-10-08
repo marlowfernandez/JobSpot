@@ -19,6 +19,7 @@
 		401A049F1F8890A20061AA79 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A049E1F8890A20061AA79 /* ListViewController.swift */; };
 		401A04A21F89678F0061AA79 /* DisplayStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A11F89678F0061AA79 /* DisplayStruct.swift */; };
 		401A04A41F897FA50061AA79 /* SaveSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A31F897FA50061AA79 /* SaveSearch.swift */; };
+		401A04A61F89B6540061AA79 /* SavedSearchesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A51F89B6540061AA79 /* SavedSearchesController.swift */; };
 		401CD2FB1F81672A009370CE /* ApiConfigTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */; };
 		40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F851F7ED87A007E6EC0 /* CreateAccount.swift */; };
 		40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F871F7EF581007E6EC0 /* HomeController.swift */; };
@@ -43,6 +44,7 @@
 		401A049E1F8890A20061AA79 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		401A04A11F89678F0061AA79 /* DisplayStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayStruct.swift; sourceTree = "<group>"; };
 		401A04A31F897FA50061AA79 /* SaveSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveSearch.swift; sourceTree = "<group>"; };
+		401A04A51F89B6540061AA79 /* SavedSearchesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSearchesController.swift; sourceTree = "<group>"; };
 		401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfigTesting.swift; sourceTree = "<group>"; };
 		40499F851F7ED87A007E6EC0 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		40499F871F7EF581007E6EC0 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -85,23 +87,24 @@
 		40179B251F7B25E9003E0021 /* JobSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				408291541F7B34280070FC0C /* GoogleService-Info.plist */,
 				401A04A01F8967750061AA79 /* Structures */,
 				40499F831F7B3E6D007E6EC0 /* SwiftFiles */,
 				40499F841F7B4055007E6EC0 /* Storyboards */,
-				401A04991F8862E60061AA79 /* Views */,
+				401A04991F8862E60061AA79 /* Custom Views */,
+				401A04A71F8A6AD70061AA79 /* NotUsed */,
 				40179B2D1F7B25E9003E0021 /* Assets.xcassets */,
 				40179B321F7B25E9003E0021 /* Info.plist */,
+				408291541F7B34280070FC0C /* GoogleService-Info.plist */,
 			);
 			path = "JobSpot-iOS";
 			sourceTree = "<group>";
 		};
-		401A04991F8862E60061AA79 /* Views */ = {
+		401A04991F8862E60061AA79 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				401A049A1F8862F90061AA79 /* YNDropDown.xib */,
 			);
-			name = Views;
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		401A04A01F8967750061AA79 /* Structures */ = {
@@ -113,19 +116,43 @@
 			name = Structures;
 			sourceTree = "<group>";
 		};
-		40499F831F7B3E6D007E6EC0 /* SwiftFiles */ = {
+		401A04A71F8A6AD70061AA79 /* NotUsed */ = {
 			isa = PBXGroup;
 			children = (
-				40179B261F7B25E9003E0021 /* AppDelegate.swift */,
+				40A6D9961F808EE2004CCE9E /* ApiConfigNotUsed.swift */,
+				401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */,
+			);
+			name = NotUsed;
+			sourceTree = "<group>";
+		};
+		401A04A81F8A6B880061AA79 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				40179B281F7B25E9003E0021 /* ViewController.swift */,
 				40499F851F7ED87A007E6EC0 /* CreateAccount.swift */,
 				40499F871F7EF581007E6EC0 /* HomeController.swift */,
 				401A049E1F8890A20061AA79 /* ListViewController.swift */,
 				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
-				40A6D9961F808EE2004CCE9E /* ApiConfigNotUsed.swift */,
-				401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */,
+				401A04A51F89B6540061AA79 /* SavedSearchesController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		401A04AB1F8A6BB90061AA79 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				40179B261F7B25E9003E0021 /* AppDelegate.swift */,
 				400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */,
 				401A049C1F886BD00061AA79 /* YNDropDownClasses.swift */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		40499F831F7B3E6D007E6EC0 /* SwiftFiles */ = {
+			isa = PBXGroup;
+			children = (
+				401A04A81F8A6B880061AA79 /* Controllers */,
+				401A04AB1F8A6BB90061AA79 /* Other */,
 			);
 			name = SwiftFiles;
 			sourceTree = "<group>";
@@ -289,6 +316,7 @@
 				401A04A41F897FA50061AA79 /* SaveSearch.swift in Sources */,
 				401CD2FB1F81672A009370CE /* ApiConfigTesting.swift in Sources */,
 				401A049F1F8890A20061AA79 /* ListViewController.swift in Sources */,
+				401A04A61F89B6540061AA79 /* SavedSearchesController.swift in Sources */,
 				400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */,
 				40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */,
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
