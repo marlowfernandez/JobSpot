@@ -21,6 +21,8 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     let savedsearchesToHome = "savedsearchesToHome"
     let savedsearchesToProfile = "savedsearchesToProfile"
     
+    @IBOutlet weak var tableViewOutlet: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -55,11 +57,10 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
                 let structItem = SaveSearch(snapshot: item as! FIRDataSnapshot)
                 print("structItem: \(structItem)")
                 self.savedSearchesItem.append(structItem)
-                print("savedSearchedItem List: \(self.savedSearchesItem)")
             }
             //self.items = newItems
-            //self.tableView.reloadData()
-            //debugPrint("ITEMS: \(self.items)")
+            self.tableViewOutlet.reloadData()
+            print("savedSearchedItem List: \(self.savedSearchesItem)")
         })
     }
     

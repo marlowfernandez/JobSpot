@@ -550,6 +550,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0NF-TZ-pi8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -617,6 +618,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableViewOutlet" destination="qip-tt-Ulm" id="cim-6I-Gns"/>
                         <segue destination="f9r-Vy-h5s" kind="presentation" identifier="savedsearchesToHome" id="eQN-Zz-lv7"/>
                         <segue destination="zeY-Dq-EyD" kind="presentation" identifier="savedsearchesToProfile" id="7sh-m1-yQG"/>
                     </connections>
