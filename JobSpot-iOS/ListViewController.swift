@@ -35,6 +35,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var savedSearchesOutlet: UIButton!
     @IBOutlet weak var filterButtonOutlet: UIButton!
     @IBOutlet weak var tableViewOutlet: UITableView!
+    var passUserLocationBool : Bool = true
     
     
     var jobItems: [DisplayStruct] = []
@@ -61,6 +62,30 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         YNFilterView.FilterValues.radiusString = "20"
         YNFilterView.FilterValues.daysEntered = "30"
         YNFilterView.FilterValues.jobSort = "accquisitiondate"
+        
+        print("SaveSearch days from LIST: \(SaveSearch.days)")
+        print("SaveSearch keywords from LIST: \(SaveSearch.keywords)")
+        print("SaveSearch location from LIST: \(SaveSearch.location)")
+        print("SaveSearch radius from LIST: \(SaveSearch.radius)")
+        
+        if !(SaveSearch.location.isEmpty || SaveSearch.location == "") {
+            passUserLocationBool = false
+            locationTextField.text = SaveSearch.location
+        }
+        
+        if !(SaveSearch.keywords.isEmpty || SaveSearch.keywords == "") {
+            jobTitleTextField.text = SaveSearch.keywords
+        }
+        
+        if !(SaveSearch.days.isEmpty || SaveSearch.days == "") {
+            YNFilterView.FilterValues.daysEntered = SaveSearch.days
+            print("YNFilterView from SaveSearch days: \(YNFilterView.FilterValues.daysEntered)")
+        }
+        
+        if !(SaveSearch.radius.isEmpty || SaveSearch.radius == "") {
+            YNFilterView.FilterValues.radiusString = SaveSearch.radius
+            print("YNFilterView from SaveSearch radius: \(YNFilterView.FilterValues.radiusString)")
+        }
         
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
@@ -188,6 +213,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func currLocationAction(_ sender: UIButton) {
         debugPrint("currLocationAction")
         
+        passUserLocationBool = true
+        print("passUserLocationBool: \(passUserLocationBool)")
         checkUserLocationStatus()
         
     }
@@ -454,8 +481,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                 self.postalCodeLocation = components["long_name"].stringValue
                                 debugPrint("postalCode: \(self.postalCodeLocation)")
                                 
-                                if self.postalCodeLocation != " " {
+                                if (!self.postalCodeLocation.isEmpty) && (!self.passUserLocationBool == false){
                                     self.locationTextField.text = self.postalCodeLocation
+                                    self.passUserLocationBool = false
                                 }
                             }
                         }

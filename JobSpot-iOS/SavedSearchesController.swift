@@ -80,7 +80,7 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellSavedSearch", for: indexPath)
-        
+        cell.selectionStyle = .none
         //cell.textLabel?.text = fruits[indexPath.row]
         
         if savedSearchesItem.count > 0 {
@@ -106,6 +106,65 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
             savedItem.ref?.removeValue()
             self.tableViewOutlet.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        let savedItem = savedSearchesItem[(indexPath?.row)!]
+        
+        print("selected saved item: \(savedItem)")
+        
+        let alertController = UIAlertController(title: "Saved Searches", message: "Would you like to use this search again?", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Search Again", style: .default, handler: {
+            alert -> Void in
+            
+            SaveSearch.days = savedItem.days2
+            SaveSearch.keywords = savedItem.keyword2
+            SaveSearch.location = savedItem.location2
+            SaveSearch.radius = savedItem.radius2
+            
+            print("SaveSearch days: \(SaveSearch.days)")
+            print("SaveSearch keywords: \(SaveSearch.keywords)")
+            print("SaveSearch location: \(SaveSearch.location)")
+            print("SaveSearch radius: \(SaveSearch.radius)")
+            
+            self.performSegue(withIdentifier: self.savedsearchesToHome, sender: nil)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            alert -> Void in
+            
+        }))
+        
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            textField.text = "Days: " + savedItem.days2
+            textField.textAlignment = .left
+            textField.isUserInteractionEnabled = false
+        })
+        
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            textField.text = "Keyword: " + savedItem.keyword2
+            textField.textAlignment = .left
+            textField.isUserInteractionEnabled = false
+        })
+        
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            textField.text = "Location: " + savedItem.location2
+            textField.textAlignment = .left
+            textField.isUserInteractionEnabled = false
+        })
+        
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            textField.text = "Radius: " + savedItem.radius2
+            textField.textAlignment = .left
+            textField.isUserInteractionEnabled = false
+        })
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
