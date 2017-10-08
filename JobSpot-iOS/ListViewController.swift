@@ -37,6 +37,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     var jobItems: [DisplayStruct] = []
+    var searchSaveItems: [SaveSearch] = []
     
     var noItems = ["No items to display"]
     
@@ -126,6 +127,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
+            
+            
+            
             getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "100", days: YNFilterView.FilterValues.daysEntered)
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
@@ -133,6 +137,50 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.present(emptyFields, animated: true, completion: nil)
         }
 
+    }
+    
+    private func saveSearchToFireBase(location: String, keyword: String, radius: String, days: String) {
+        var saveSearchList = self.searchSaveItems
+        
+        saveSearchList.removeAll()
+        
+        let dateTime = Date().timeIntervalSince1970 * 1000
+        debugPrint("dateTime: \(dateTime)")
+        let dateTimeStringNoDec = String(format: "%.0f", dateTime)
+        debugPrint("dateTimeStringNoDec: \(dateTimeStringNoDec)")
+        
+        let saveSearchItem = SaveSearch(keywords: keyword, radius: radius, location: location, days: days, dateTime: dateTimeStringNoDec)
+        print("saveSearchItem: \(saveSearchItem)")
+        
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        print("userID: \(String(describing: userID))")
+        
+        let usersRef = rootRef.child("users")
+        
+        print("usersRef: \(usersRef)")
+        
+        let idRef = usersRef.child(userID!)
+        
+        print("ifRef: \(idRef)")
+        
+        let listRef = idRef.child("savedsearches")
+        
+        print("listRef: \(listRef)")
+        
+        //let itemsRef = listRef.childByAutoId()
+        //itemsRef.setValue(structItems.toAnyObject())
+        
+        let dateTimeStr = SaveSearch.dateTime
+        
+        let addChildStr = listRef.child(dateTimeStr)
+        print("addChildStr: \(addChildStr)")
+        
+        addChildStr.setValue(saveSearchItem.toAnyObject())
+        
+        saveSearchList.append(saveSearchItem)
+        debugPrint("saveSearchList: \(saveSearchList)")
     }
     
     @IBAction func savedSearchesAction(_ sender: UIButton) {
@@ -179,24 +227,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         rootRef = FIRDatabase.database().reference()
         
-        print("rootRef: \(rootRef)")
-        
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        
-        print("userID: \(String(describing: userID))")
-        
-        let usersRef = rootRef.child("users")
-        
-        print("usersRef: \(usersRef)")
-        
-        let idRef = usersRef.child(userID!)
-        
-        print("ifRef: \(idRef)")
-        
-        let listRef = idRef.child("savedsearches")
-        
-        print("listRef: \(listRef)")
-        
     }
     
     
@@ -224,8 +254,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
+        let locationFix = location.replacingOccurrences(of: " ", with: "+")
+        let locationFix2 = locationFix.replacingOccurrences(of: ",", with: "")
+        
         //                                                                      user id         keyword         location        radius          sortColumns        sortOrder       startRecord   pageSize       days
-        let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + location + "/" + radius + "/" + sortColumns + "/" + sortOrder + "/" + "0" + "/" + pageSize + "/" + days + "/"
+        let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + locationFix2 + "/" + radius + "/" + sortColumns + "/" + sortOrder + "/" + "0" + "/" + pageSize + "/" + days + "/"
         debugPrint("urlRequestString: \(urlRequestString)")
         
         ///v1/jobsearch/{userId}/{keyword}/{location}/{radius}/{sortColumns}/{sortOrder}/{startRecord}/{pageSize}/{days}
@@ -269,67 +302,83 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let jsonObj = json["Jobs"]
             let jsonArrayVal = jsonObj.array
             
-            //debugPrint("COUNTER FOR ARRAY: \(String(describing: jsonArrayVal?.count))")
-            
-            for item in jsonArrayVal! {
-                
-                //let jobID = item["JvId"].stringValue
-                //print("JobID: \(jobID)")
-                
-                let jobTitle = item["JobTitle"].stringValue
-                print("JobTitle: \(jobTitle)")
-                
-                let company = item["Company"].stringValue
-                print("Company: \(company)")
-                
-                let structItem = DisplayStruct(jobName: jobTitle, company: company)
-                self.jobItems.append(structItem)
-                
-                debugPrint("jobItems: \(self.jobItems)")
-                
-                debugPrint("jobItems Count: \(self.jobItems.count)")
-                
-                //let accquisitionDate = item["AccquisitionDate"].stringValue
-                //print("AccquisitionDate: \(accquisitionDate)")
-                
-                //let url = item["URL"].stringValue
-                //print("URL: \(url)")
-                
-                let location = item["Location"].stringValue
-                //print("Location: \(location)")
-                
-                //let fc = item["Fc"].stringValue
-                //print("Fc: \(fc)")
-                
-                let newCompany = company.replacingOccurrences(of: " ", with: "+")
-                let newLocation = location.replacingOccurrences(of: " ", with: "+")
-                
-//                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
-//                
-//                debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
-//                
-//                Alamofire.request(geoCodeString, method: .post).responseJSON { response in
-//                    
-//                    let jsonResponseGeo = response.data
-//                    let jsonGeo = JSON(data: jsonResponseGeo!)
-//                    let jsonObjGeo = jsonGeo["results"].arrayValue
-//                    for item in jsonObjGeo {
-//                        let jsonGeometry = item["geometry"]
-//                        
-//                        let jsonLocation = jsonGeometry["location"]
-//                        
-//                        let jsonLatitude = jsonLocation["lat"].doubleValue
-//                        let jsonLongitude = jsonLocation["lng"].doubleValue
-//                        
-//                    }
-//                    
-//                }
-                
+            if let _jsonArrayVal = jsonArrayVal {
+                if _jsonArrayVal.isEmpty == false {
+                    //debugPrint("COUNTER FOR ARRAY: \(String(describing: jsonArrayVal?.count))")
+                    print("JSON ARRAY AVAILABLE")
+                    
+                    //implement save search
+                    self.saveSearchToFireBase(location: location, keyword: jobTitle, radius: radius, days: days)
+                    
+                    for item in jsonArrayVal! {
+                        
+                        //let jobID = item["JvId"].stringValue
+                        //print("JobID: \(jobID)")
+                        
+                        let jobTitle = item["JobTitle"].stringValue
+                        print("JobTitle: \(jobTitle)")
+                        
+                        let company = item["Company"].stringValue
+                        print("Company: \(company)")
+                        
+                        let structItem = DisplayStruct(jobName: jobTitle, company: company)
+                        self.jobItems.append(structItem)
+                        
+                        debugPrint("jobItems: \(self.jobItems)")
+                        
+                        debugPrint("jobItems Count: \(self.jobItems.count)")
+                        
+                        //let accquisitionDate = item["AccquisitionDate"].stringValue
+                        //print("AccquisitionDate: \(accquisitionDate)")
+                        
+                        //let url = item["URL"].stringValue
+                        //print("URL: \(url)")
+                        
+                        let location = item["Location"].stringValue
+                        //print("Location: \(location)")
+                        
+                        //let fc = item["Fc"].stringValue
+                        //print("Fc: \(fc)")
+                        
+                        let newCompany = company.replacingOccurrences(of: " ", with: "+")
+                        let newLocation = location.replacingOccurrences(of: " ", with: "+")
+                        
+                        //                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+                        //
+                        //                debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
+                        //
+                        //                Alamofire.request(geoCodeString, method: .post).responseJSON { response in
+                        //
+                        //                    let jsonResponseGeo = response.data
+                        //                    let jsonGeo = JSON(data: jsonResponseGeo!)
+                        //                    let jsonObjGeo = jsonGeo["results"].arrayValue
+                        //                    for item in jsonObjGeo {
+                        //                        let jsonGeometry = item["geometry"]
+                        //                        
+                        //                        let jsonLocation = jsonGeometry["location"]
+                        //                        
+                        //                        let jsonLatitude = jsonLocation["lat"].doubleValue
+                        //                        let jsonLongitude = jsonLocation["lng"].doubleValue
+                        //                        
+                        //                    }
+                        //                    
+                        //                }
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.tableViewOutlet.reloadData()
+                    }
+                } else {
+                    print("JSON ARRAY NOT AVAILABLE")
+                    
+                    let error = UIAlertController(title: "Error", message: "Error in API", preferredStyle: UIAlertControllerStyle.alert)
+                    error.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(error, animated: true, completion: nil)
+                }
             }
             
-            DispatchQueue.main.async {
-                self.tableViewOutlet.reloadData()
-            }
+            
             
         }
         
