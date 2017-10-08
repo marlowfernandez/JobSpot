@@ -49,6 +49,18 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
         let listRef = idRef.child("savedsearches")
         
         debugPrint("listRef: \(listRef)")
+        
+        listRef.observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                let structItem = SaveSearch(snapshot: item as! FIRDataSnapshot)
+                print("structItem: \(structItem)")
+                self.savedSearchesItem.append(structItem)
+                print("savedSearchedItem List: \(self.savedSearchesItem)")
+            }
+            //self.items = newItems
+            //self.tableView.reloadData()
+            //debugPrint("ITEMS: \(self.items)")
+        })
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

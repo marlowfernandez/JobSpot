@@ -41,6 +41,20 @@ struct SaveSearch {
         self.dateTime2 = dateTime2
     }
     
+    init(snapshot: FIRDataSnapshot) {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        dateTime2 = snapshotValue["dateTime"] as! String
+        print("dateTime2: \(dateTime2)")
+        days2 = snapshotValue["days"] as! String
+        print("days2: \(days2)")
+        keyword2 = snapshotValue["keywords"] as! String
+        print("keyword2: \(keyword2)")
+        location2 = snapshotValue["location"] as! String
+        print("location2: \(location2)")
+        radius2 = snapshotValue["radius"] as! String
+        print("radius2: \(radius2)")
+    }
+    
     func toAnyObject() -> [String:Any] {
         return [
             "dateTime": SaveSearch.dateTime,
