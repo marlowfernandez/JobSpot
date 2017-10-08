@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -15,6 +20,16 @@
 			<false/>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>IOSLinkedInAPIFix.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LinkedinSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,12 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>501A4AA273B151FA0E185C7B24494251</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5703E0FB5E262AE9BE4888A9BEF20F77</key>
+		<key>55B948E988D41CE1A264686E507F5D1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +67,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9B861E42E8FC16D79D11BDFC5E2A9849</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A87B9E423BDC6E36261221CADF929941</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B4121D3B507ACAC290C37AF691D07F53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FB18AE17F89D420F98027A4A7F883A64</key>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4600C2B56F138AA49B29955366E6AEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import LinkedinSwift
 
 class ProfileController: UIViewController {
     
@@ -19,6 +20,8 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         debugPrint("viewDidLoad")
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,6 +56,33 @@ class ProfileController: UIViewController {
         
     }
     
+    @IBAction func signInLinkedIn(_ sender: UIButton) {
+        
+//        let linkedinHelper = LinkedinSwiftHelper(configuration:
+//            
+//            LinkedinSwiftConfiguration(clientId: "", clientSecret: "", state: "", permissions: ["",""])
+//        )
+//        
+        LISDKSessionManager.createSession(withAuth: [LISDK_BASIC_PROFILE_PERMISSION], state: nil, showGoToAppStoreDialog: true, successBlock: {(success) in
+                let session = LISDKSessionManager.sharedInstance().session
+            
+                let url = "https://api.linkedin.com/v1/people/~"
+                debugPrint("url linkedin: \(url)")
+            
+                if(LISDKSessionManager.hasValidSession()){
+                    LISDKAPIHelper.sharedInstance().getRequest(url, success: { (response) in
+                        debugPrint("response API linkedin: \(response?.data! as Any)")
+                    }, error: { (error) in
+                        debugPrint("error respon API Linkedin: \(error!)")
+                    })
+                }
+            }
+        ) { (error) in
+            debugPrint("error: \(String(describing: error))")
+        }
+    }
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         debugPrint("viewWillDisappear")
@@ -62,6 +92,8 @@ class ProfileController: UIViewController {
     @IBAction func profileToHome(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.profileToHome, sender: nil)
     }
+    
+    
     
 }
 

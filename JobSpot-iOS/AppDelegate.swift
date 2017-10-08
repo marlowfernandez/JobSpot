@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import LinkedinSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +26,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+//    @nonobjc func application(application: UIApplication,
+//                     openURL url: URL,
+//                     sourceApplication: String?,
+//                     annotation: Any) -> Bool {
+//        
+//        // Linkedin sdk handle redirect
+//        if LinkedinSwiftHelper.shouldHandle(url) {
+//            return LinkedinSwiftHelper.application(application,
+//                                                   open: url,
+//                                                   sourceApplication: sourceApplication,
+//                                                   annotation: annotation
+//            )
+//        }
+//        
+//        return false
+//    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if LISDKCallbackHandler.shouldHandle(url){
+            
+            return LISDKCallbackHandler.application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: nil)
+            
+        }
+        
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
