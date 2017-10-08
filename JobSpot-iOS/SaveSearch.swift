@@ -23,6 +23,8 @@ struct SaveSearch {
     var days2 = String()
     var dateTime2 = String()
     
+    var ref: FIRDatabaseReference?
+    
     init(keywords: String, radius: String, location: String, days: String, dateTime: String) {
         
         SaveSearch.keywords = keywords
@@ -33,12 +35,13 @@ struct SaveSearch {
         
     }
     
-    init(keywords2: String, radius2: String, location2: String, days2: String, dateTime2: String) {
+    init(keywords2: String, radius2: String, location2: String, days2: String, dateTime2: String, refVal: FIRDatabaseReference) {
         self.keyword2 = keywords2
         self.radius2 = radius2
         self.location2 = location2
         self.days2 = days2
         self.dateTime2 = dateTime2
+        self.ref = refVal
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -53,6 +56,8 @@ struct SaveSearch {
         print("location2: \(location2)")
         radius2 = snapshotValue["radius"] as! String
         print("radius2: \(radius2)")
+        ref = snapshot.ref
+        print("ref: \(String(describing: ref))")
     }
     
     func toAnyObject() -> [String:Any] {

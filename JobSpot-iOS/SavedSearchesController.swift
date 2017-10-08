@@ -53,6 +53,7 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
         debugPrint("listRef: \(listRef)")
         
         listRef.observe(.value, with: { snapshot in
+            self.savedSearchesItem.removeAll()
             for item in snapshot.children {
                 let structItem = SaveSearch(snapshot: item as! FIRDataSnapshot)
                 print("structItem: \(structItem)")
@@ -93,6 +94,18 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let savedItem = savedSearchesItem[indexPath.row]
+            savedItem.ref?.removeValue()
+            self.tableViewOutlet.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
