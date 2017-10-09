@@ -21,6 +21,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let homeToLogin = "homeToLogin"
     let homeToList = "homeToList"
     let homeToSavedSearch = "homeToSavedSearch"
+    let homeToDisplay = "homeToDisplay"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     var typedLocation = false

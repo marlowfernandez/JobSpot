@@ -10,13 +10,35 @@ import Foundation
 
 struct DisplayStruct {
     
-    var jobTitle = String()
-    var companyName = String()
+    static var companyNameGlobal = String()
+    static var datePostedGlobal = String()
+    static var jobCityStateGlobal = String()
+    static var jobIDGlobal = String()
+    static var jobLatGlobal = String()
+    static var jobLngGlobal = String()
+    static var jobTitleGlobal = String()
+    static var jobURLGlobal = String()
     
-    init(jobName: String, company: String) {
+    var companyName = String()
+    var datePosted = String()
+    var jobCityState = String()
+    var jobID = String()
+    var jobLat = String()
+    var jobLng = String()
+    var jobTitle = String()
+    var jobURL = String()
+    
+    init(company: String, datePosted: String, jobCityState: String, jobID: String, jobLat: String, jobLng: String, jobTitle: String, jobURL: String) {
         
-        self.jobTitle = jobName
+        
         self.companyName = company
+        self.datePosted = datePosted
+        self.jobCityState = jobCityState
+        self.jobID = jobID
+        self.jobLat = jobLat
+        self.jobLng = jobLng
+        self.jobTitle = jobTitle
+        self.jobURL = jobURL
         
     }
 }

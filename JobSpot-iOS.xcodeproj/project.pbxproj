@@ -27,6 +27,7 @@
 		408291551F7B34280070FC0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 408291541F7B34280070FC0C /* GoogleService-Info.plist */; };
 		40A6D9971F808EE2004CCE9E /* ApiConfigNotUsed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6D9961F808EE2004CCE9E /* ApiConfigNotUsed.swift */; };
 		40BBE7201F8ADC2C00A14336 /* ProfileStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */; };
+		40BBE7221F8B21E200A14336 /* DisplayJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBE7211F8B21E200A14336 /* DisplayJobController.swift */; };
 		40C58EC81F8AA2FF00F216D7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		408291541F7B34280070FC0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		40A6D9961F808EE2004CCE9E /* ApiConfigNotUsed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfigNotUsed.swift; sourceTree = "<group>"; };
 		40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStruct.swift; sourceTree = "<group>"; };
+		40BBE7211F8B21E200A14336 /* DisplayJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayJobController.swift; sourceTree = "<group>"; };
 		40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		40C58EC91F8AA95B00F216D7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		D27025ACAE22468321F205B2 /* Pods-JobSpot-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSpot-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobSpot-iOS/Pods-JobSpot-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				401A049E1F8890A20061AA79 /* ListViewController.swift */,
 				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
 				401A04A51F89B6540061AA79 /* SavedSearchesController.swift */,
+				40BBE7211F8B21E200A14336 /* DisplayJobController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */,
 				40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */,
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
+				40BBE7221F8B21E200A14336 /* DisplayJobController.swift in Sources */,
 				40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */,
 				40BBE7201F8ADC2C00A14336 /* ProfileStruct.swift in Sources */,
 				40179B271F7B25E9003E0021 /* AppDelegate.swift in Sources */,

@@ -381,6 +381,7 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeToLogin" id="mrU-jZ-LFK"/>
                         <segue destination="xNV-3r-tSI" kind="show" identifier="homeToList" id="dmw-fS-12I"/>
                         <segue destination="cdz-dO-Yzd" kind="presentation" identifier="homeToSavedSearch" id="9iB-fh-n0i"/>
+                        <segue destination="u3N-es-elT" kind="presentation" identifier="homeToDisplay" id="64N-R5-Z8g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgE-RD-bPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -626,6 +627,7 @@
                         <segue destination="zeY-Dq-EyD" kind="show" identifier="listToProfile" id="L4m-AS-6JC"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="listToLogin" id="WQH-nU-clU"/>
                         <segue destination="cdz-dO-Yzd" kind="presentation" identifier="listToSavedSearch" id="I5j-T5-00w"/>
+                        <segue destination="u3N-es-elT" kind="presentation" identifier="listToDisplay" id="Vmc-83-637"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPc-fT-ojL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1017,15 +1019,223 @@
             </objects>
             <point key="canvasLocation" x="2521.739130434783" y="827.44565217391312"/>
         </scene>
+        <!--Display Job Controller-->
+        <scene sceneID="aQk-lE-LO5">
+            <objects>
+                <viewController id="u3N-es-elT" customClass="DisplayJobController" customModule="JobSpot_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Flh-JA-be8"/>
+                        <viewControllerLayoutGuide type="bottom" id="THO-Re-pit"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yCR-Io-dN1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yd1-W2-wpq">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="JobSpot" id="dvi-LU-4JA"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUI-xi-D99">
+                                <rect key="frame" x="334" y="672" width="60" height="44"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Profile">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToProfileAction:" destination="u3N-es-elT" eventType="touchUpInside" id="DFk-zu-E78"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdT-ag-dxT">
+                                <rect key="frame" x="123" y="672" width="66" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="Kq8-zx-RJM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Saved">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lj-G6-EbB">
+                                <rect key="frame" x="212" y="672" width="72" height="44"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Applied">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNe-nc-efv">
+                                <rect key="frame" x="20" y="672" width="66" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wWm-7n-Qmm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="19"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToHomeAction:" destination="u3N-es-elT" eventType="touchUpInside" id="7AQ-g0-6ZF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-MD-M0f">
+                                <rect key="frame" x="20" y="133" width="124" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="slE-Ef-yTv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afc-Rf-5Qe">
+                                <rect key="frame" x="20" y="206" width="98" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="JP5-7t-CAW"/>
+                                    <constraint firstAttribute="height" constant="21" id="TwL-FK-Lwu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job City State:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H7-SA-kMG">
+                                <rect key="frame" x="20" y="278" width="111" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Q5N-Xh-RzM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Posted:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CwV-Pf-LZx">
+                                <rect key="frame" x="20" y="348" width="111" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RFx-FU-nvg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="company name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dV-Sh-NQk">
+                                <rect key="frame" x="20" y="168" width="273" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hAr-6u-iTO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="job title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3H-J0-Qfu">
+                                <rect key="frame" x="20" y="235" width="273" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GAA-ak-f99"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="job city state" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngY-8O-naS">
+                                <rect key="frame" x="20" y="307" width="273" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="uat-Rp-XGL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date posted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT8-ua-XDm">
+                                <rect key="frame" x="20" y="386" width="273" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0Vj-rC-Kow"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wZ-3p-Wcn">
+                                <rect key="frame" x="164" y="512" width="86" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="uab-cu-mfE"/>
+                                </constraints>
+                                <state key="normal" title="Save Job">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveJobAction:" destination="u3N-es-elT" eventType="touchUpInside" id="CCf-5m-jVu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mdT-ag-dxT" firstAttribute="top" secondItem="0Lj-G6-EbB" secondAttribute="top" id="2Ko-dz-A5b"/>
+                            <constraint firstItem="afc-Rf-5Qe" firstAttribute="leading" secondItem="Q3H-J0-Qfu" secondAttribute="leading" id="3B0-Lr-264"/>
+                            <constraint firstItem="Q3H-J0-Qfu" firstAttribute="trailing" secondItem="ngY-8O-naS" secondAttribute="trailing" id="3Y0-SP-bgV"/>
+                            <constraint firstItem="aFX-MD-M0f" firstAttribute="top" secondItem="Yd1-W2-wpq" secondAttribute="bottom" constant="69" id="8Cf-tJ-2um"/>
+                            <constraint firstItem="CwV-Pf-LZx" firstAttribute="top" secondItem="ngY-8O-naS" secondAttribute="bottom" constant="20" id="9PO-TD-rMZ"/>
+                            <constraint firstItem="0Lj-G6-EbB" firstAttribute="top" secondItem="vUI-xi-D99" secondAttribute="top" id="AVr-RH-NBJ"/>
+                            <constraint firstItem="mdT-ag-dxT" firstAttribute="centerX" secondItem="sT8-ua-XDm" secondAttribute="centerX" id="EXh-Jv-eNz"/>
+                            <constraint firstItem="CwV-Pf-LZx" firstAttribute="leading" secondItem="sT8-ua-XDm" secondAttribute="leading" id="HLs-Wc-Uen"/>
+                            <constraint firstItem="2dV-Sh-NQk" firstAttribute="top" secondItem="aFX-MD-M0f" secondAttribute="bottom" constant="14" id="IgI-Ek-wra"/>
+                            <constraint firstItem="Q3H-J0-Qfu" firstAttribute="top" secondItem="afc-Rf-5Qe" secondAttribute="bottom" constant="8" symbolic="YES" id="MGl-gs-dR6"/>
+                            <constraint firstItem="BNe-nc-efv" firstAttribute="leading" secondItem="sT8-ua-XDm" secondAttribute="leading" id="MtU-AS-utd"/>
+                            <constraint firstAttribute="trailing" secondItem="Yd1-W2-wpq" secondAttribute="trailing" id="PCI-dx-Es6"/>
+                            <constraint firstItem="0Lj-G6-EbB" firstAttribute="baseline" secondItem="vUI-xi-D99" secondAttribute="firstBaseline" id="Rix-DS-HtN"/>
+                            <constraint firstItem="mdT-ag-dxT" firstAttribute="baseline" secondItem="0Lj-G6-EbB" secondAttribute="baseline" id="Tzj-tY-XW7"/>
+                            <constraint firstItem="2dV-Sh-NQk" firstAttribute="leading" secondItem="afc-Rf-5Qe" secondAttribute="leading" id="Vhg-53-89b"/>
+                            <constraint firstItem="6H7-SA-kMG" firstAttribute="trailing" secondItem="CwV-Pf-LZx" secondAttribute="trailing" id="W6D-Ug-o4M"/>
+                            <constraint firstItem="sT8-ua-XDm" firstAttribute="top" secondItem="CwV-Pf-LZx" secondAttribute="bottom" constant="17" id="XgG-4l-Wd7"/>
+                            <constraint firstItem="2dV-Sh-NQk" firstAttribute="trailing" secondItem="Q3H-J0-Qfu" secondAttribute="trailing" id="bUn-Jo-27J"/>
+                            <constraint firstItem="8wZ-3p-Wcn" firstAttribute="centerX" secondItem="Yd1-W2-wpq" secondAttribute="centerX" id="bVH-do-nFh"/>
+                            <constraint firstItem="Q3H-J0-Qfu" firstAttribute="leading" secondItem="6H7-SA-kMG" secondAttribute="leading" id="bsR-R7-B0U"/>
+                            <constraint firstItem="0Lj-G6-EbB" firstAttribute="baseline" secondItem="mdT-ag-dxT" secondAttribute="firstBaseline" id="bwI-uw-F9g"/>
+                            <constraint firstItem="BNe-nc-efv" firstAttribute="leading" secondItem="yCR-Io-dN1" secondAttribute="leadingMargin" id="dit-0e-ojd"/>
+                            <constraint firstItem="BNe-nc-efv" firstAttribute="baseline" secondItem="mdT-ag-dxT" secondAttribute="baseline" id="e7O-sY-QFe"/>
+                            <constraint firstItem="6H7-SA-kMG" firstAttribute="top" secondItem="Q3H-J0-Qfu" secondAttribute="bottom" constant="22" id="eJH-9M-hcC"/>
+                            <constraint firstItem="Yd1-W2-wpq" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" id="env-0G-AQZ"/>
+                            <constraint firstItem="ngY-8O-naS" firstAttribute="leading" secondItem="CwV-Pf-LZx" secondAttribute="leading" id="gaD-jq-jK9"/>
+                            <constraint firstItem="mdT-ag-dxT" firstAttribute="baseline" secondItem="BNe-nc-efv" secondAttribute="firstBaseline" id="hK4-Uw-v2w"/>
+                            <constraint firstItem="vUI-xi-D99" firstAttribute="trailing" secondItem="yCR-Io-dN1" secondAttribute="trailingMargin" id="hmM-Uz-cex"/>
+                            <constraint firstItem="0Lj-G6-EbB" firstAttribute="baseline" secondItem="vUI-xi-D99" secondAttribute="baseline" id="icZ-SD-aSL"/>
+                            <constraint firstAttribute="bottom" secondItem="BNe-nc-efv" secondAttribute="bottom" constant="20" symbolic="YES" id="jH3-wv-fYR"/>
+                            <constraint firstItem="afc-Rf-5Qe" firstAttribute="top" secondItem="2dV-Sh-NQk" secondAttribute="bottom" constant="17" id="kb7-ur-N5k"/>
+                            <constraint firstItem="6H7-SA-kMG" firstAttribute="leading" secondItem="ngY-8O-naS" secondAttribute="leading" id="mDl-3b-JHV"/>
+                            <constraint firstItem="aFX-MD-M0f" firstAttribute="leading" secondItem="2dV-Sh-NQk" secondAttribute="leading" id="oE1-W1-CNj"/>
+                            <constraint firstItem="ngY-8O-naS" firstAttribute="top" secondItem="6H7-SA-kMG" secondAttribute="bottom" constant="8" symbolic="YES" id="qxB-ex-ZsC"/>
+                            <constraint firstItem="0Lj-G6-EbB" firstAttribute="leading" secondItem="mdT-ag-dxT" secondAttribute="trailing" constant="23" id="rhE-Pa-bzs"/>
+                            <constraint firstItem="BNe-nc-efv" firstAttribute="top" secondItem="mdT-ag-dxT" secondAttribute="top" id="sFq-CS-6SY"/>
+                            <constraint firstAttribute="bottom" secondItem="8wZ-3p-Wcn" secondAttribute="bottom" constant="194" id="uSb-re-SIi"/>
+                            <constraint firstItem="Yd1-W2-wpq" firstAttribute="leading" secondItem="yCR-Io-dN1" secondAttribute="leading" id="x48-Jv-rL9"/>
+                            <constraint firstItem="mdT-ag-dxT" firstAttribute="leading" secondItem="BNe-nc-efv" secondAttribute="trailing" constant="37" id="xDI-fm-2ZG"/>
+                            <constraint firstItem="ngY-8O-naS" firstAttribute="trailing" secondItem="sT8-ua-XDm" secondAttribute="trailing" id="yxo-Go-M2O"/>
+                            <constraint firstItem="mdT-ag-dxT" firstAttribute="baseline" secondItem="0Lj-G6-EbB" secondAttribute="firstBaseline" id="zuj-OS-lW4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="companyNameOutlet" destination="2dV-Sh-NQk" id="K9y-X9-odp"/>
+                        <outlet property="datePostedOutlet" destination="sT8-ua-XDm" id="XsH-Sn-z9Z"/>
+                        <outlet property="jobCityStateOutlet" destination="ngY-8O-naS" id="RHo-3l-v23"/>
+                        <outlet property="jobTitleOutlet" destination="Q3H-J0-Qfu" id="Zjr-wf-cF5"/>
+                        <segue destination="f9r-Vy-h5s" kind="presentation" identifier="displayToHome" id="1eo-wV-XLJ"/>
+                        <segue destination="zeY-Dq-EyD" kind="presentation" identifier="displayToProfile" id="yQv-KI-yOm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXh-Lw-LNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3324.6376811594205" y="826.63043478260875"/>
+        </scene>
     </scenes>
     <resources>
         <image name="JobSpot Logo" width="451" height="195"/>
         <image name="signin-linkedin" width="292" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Irk-76-Yr8"/>
-        <segue reference="L4m-AS-6JC"/>
-        <segue reference="MXl-F9-fhI"/>
-        <segue reference="I5j-T5-00w"/>
+        <segue reference="mrU-jZ-LFK"/>
+        <segue reference="1eo-wV-XLJ"/>
+        <segue reference="64N-R5-Z8g"/>
+        <segue reference="yQv-KI-yOm"/>
+        <segue reference="9iB-fh-n0i"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,6 +20,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let listToHome = "listToHome"
     let listToProfile = "listToProfile"
     let listToLogin = "listToLogin"
+    let listToDisplay = "listToDisplay"
     let listToSavedSearch = "listToSavedSearch"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
@@ -36,6 +37,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var filterButtonOutlet: UIButton!
     @IBOutlet weak var tableViewOutlet: UITableView!
     var passUserLocationBool : Bool = true
+    
+    var lat : Double = 0
+    var lng : Double = 0
     
     
     var jobItems: [DisplayStruct] = []
@@ -110,10 +114,27 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        let jobItem = jobItems[(indexPath?.row)!]
+        
+        DisplayStruct.companyNameGlobal = jobItem.companyName
+        DisplayStruct.datePostedGlobal = jobItem.datePosted
+        DisplayStruct.jobCityStateGlobal = jobItem.jobCityState
+        DisplayStruct.jobIDGlobal = jobItem.jobID
+        DisplayStruct.jobLatGlobal = jobItem.jobLat
+        DisplayStruct.jobLngGlobal = jobItem.jobLng
+        DisplayStruct.jobTitleGlobal = jobItem.jobTitle
+        DisplayStruct.jobURLGlobal = jobItem.jobURL
+        
+        self.performSegue(withIdentifier: self.listToDisplay, sender: nil)
+        
+        print("selected Job: \(jobItem)")
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-        
-        //cell.textLabel?.text = fruits[indexPath.row]
+        cell.selectionStyle = .none
         
         if jobItems.count > 0 {
             let jobData = jobItems[indexPath.row]
@@ -287,35 +308,35 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         ///v1/jobsearch/{userId}/{keyword}/{location}/{radius}/{sortColumns}/{sortOrder}/{startRecord}/{pageSize}/{days}
         
-        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+//        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+//        
+//        debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
         
-        //debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
-        
-        Alamofire.request(strGeoCodeLocInput, method: .post).responseJSON { response in
-            
-            //debugPrint("Alamofire response 1: \(strGeoCodeLocInput)")
-            
-            let jsonResponseGeo = response.data
-            let jsonGeo = JSON(data: jsonResponseGeo!)
-            let jsonObjGeo = jsonGeo["results"].arrayValue
-            for item in jsonObjGeo {
-                let jsonGeometry = item["geometry"]
-                
-                let jsonLocation = jsonGeometry["location"]
-                
-                let jsonLatitude = jsonLocation["lat"].doubleValue
-                let jsonLongitude = jsonLocation["lng"].doubleValue
-                
-                
-                //debugPrint("Location Lat: \(jsonLatitude)")
-                //debugPrint("Location Lng: \(jsonLongitude)")
-                
-                let locationLatLngInput = CLLocation(latitude: jsonLatitude, longitude: jsonLongitude)
-
-                
-            }
-            
-        }
+//        Alamofire.request(strGeoCodeLocInput, method: .post).responseJSON { response in
+//            
+//            //debugPrint("Alamofire response 1: \(strGeoCodeLocInput)")
+//            
+//            let jsonResponseGeo = response.data
+//            let jsonGeo = JSON(data: jsonResponseGeo!)
+//            let jsonObjGeo = jsonGeo["results"].arrayValue
+//            for item in jsonObjGeo {
+//                let jsonGeometry = item["geometry"]
+//                
+//                let jsonLocation = jsonGeometry["location"]
+//                
+//                let jsonLatitude = jsonLocation["lat"].doubleValue
+//                let jsonLongitude = jsonLocation["lng"].doubleValue
+//                
+//                
+//                //debugPrint("Location Lat: \(jsonLatitude)")
+//                //debugPrint("Location Lng: \(jsonLongitude)")
+//                
+//                let locationLatLngInput = CLLocation(latitude: jsonLatitude, longitude: jsonLongitude)
+//
+//                
+//            }
+//            
+//        }
     
 
         
@@ -323,8 +344,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //debugPrint("Alamofire response 2: \(response)")
             let jsonResponse = response.data
             let json = JSON(data: jsonResponse!)
+            debugPrint("json: \(json)")
             let jsonObj = json["Jobs"]
+            debugPrint("jsonObj: \(jsonObj)")
             let jsonArrayVal = jsonObj.array
+            debugPrint("jsonArrayVal: \(jsonArrayVal!)")
             
             if let _jsonArrayVal = jsonArrayVal {
                 if _jsonArrayVal.isEmpty == false {
@@ -335,9 +359,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.saveSearchToFireBase(location: location, keyword: jobTitle, radius: radius, days: days)
                     
                     for item in jsonArrayVal! {
+                        print("item: \(item)")
                         
-                        //let jobID = item["JvId"].stringValue
-                        //print("JobID: \(jobID)")
+                        let jobID = item["JvId"].stringValue
+                        print("JobID: \(jobID)")
                         
                         let jobTitle = item["JobTitle"].stringValue
                         print("JobTitle: \(jobTitle)")
@@ -345,27 +370,77 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         let company = item["Company"].stringValue
                         print("Company: \(company)")
                         
-                        let structItem = DisplayStruct(jobName: jobTitle, company: company)
-                        self.jobItems.append(structItem)
+                        let accquisitionDate = item["AccquisitionDate"].stringValue
+                        print("AccquisitionDate: \(accquisitionDate)")
+                        
+                        let jobURL = item["URL"].stringValue
+                        print("jobURL: \(jobURL)")
                         
                         debugPrint("jobItems: \(self.jobItems)")
-                        
                         debugPrint("jobItems Count: \(self.jobItems.count)")
                         
-                        //let accquisitionDate = item["AccquisitionDate"].stringValue
-                        //print("AccquisitionDate: \(accquisitionDate)")
-                        
-                        //let url = item["URL"].stringValue
-                        //print("URL: \(url)")
-                        
                         let location = item["Location"].stringValue
-                        //print("Location: \(location)")
-                        
-                        //let fc = item["Fc"].stringValue
-                        //print("Fc: \(fc)")
+                        print("Location: \(location)")
                         
                         let newCompany = company.replacingOccurrences(of: " ", with: "+")
+                        let newCompany2 = newCompany.replacingOccurrences(of: ",", with: "")
                         let newLocation = location.replacingOccurrences(of: " ", with: "+")
+                        let newLocation2 = newLocation.replacingOccurrences(of: ",", with: "")
+                        
+                        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany2 + newLocation2 + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+                        
+                        debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
+                        
+                        Alamofire.request(strGeoCodeLocInput, method: .post).responseJSON { response in
+                            
+                            //debugPrint("Alamofire response 1: \(strGeoCodeLocInput)")
+                            
+                            let jsonResponseGeo = response.data
+                            let jsonGeo = JSON(data: jsonResponseGeo!)
+                            let jsonObjGeo = jsonGeo["results"].arrayValue
+                            for item in jsonObjGeo {
+                                let jsonGeometry = item["geometry"]
+                                
+                                let jsonLocation = jsonGeometry["location"]
+                                
+                                let jsonLatitude = jsonLocation["lat"].doubleValue
+                                let jsonLongitude = jsonLocation["lng"].doubleValue
+                                
+                                
+                                //debugPrint("Location Lat: \(jsonLatitude)")
+                                //debugPrint("Location Lng: \(jsonLongitude)")
+                                
+                                let locationLatLngInput = CLLocation(latitude: jsonLatitude, longitude: jsonLongitude)
+                                print("locationLatLngInput: \(locationLatLngInput)")
+                                
+                                let latInfo = locationLatLngInput.coordinate.latitude
+                                let lngInfo = locationLatLngInput.coordinate.longitude
+                                
+                                self.lat = latInfo
+                                self.lng = lngInfo
+                                
+                                let latString:String = String(format:"%.7f", self.lat)
+                                let lngString:String = String(format:"%.7f", self.lng)
+                                
+                                DispatchQueue.main.async {
+                                    DisplayStruct.jobLatGlobal = latString
+                                    DisplayStruct.jobLngGlobal = lngString
+                                }
+                                
+                                print("latString: \(DisplayStruct.jobLatGlobal)")
+                                print("lngString: \(DisplayStruct.jobLngGlobal)")
+                            }
+                            
+                        }
+                        
+                        print("latString2: \(DisplayStruct.jobLatGlobal)")
+                        print("lngString2: \(DisplayStruct.jobLngGlobal)")
+                        
+                        let structItem = DisplayStruct(company: company, datePosted: accquisitionDate, jobCityState: location, jobID: jobID, jobLat: DisplayStruct.jobLatGlobal, jobLng: DisplayStruct.jobLngGlobal, jobTitle: jobTitle, jobURL: jobURL)
+                        self.jobItems.append(structItem)
+                        
+                        
+                        
                         
                         //                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
                         //
@@ -402,7 +477,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             
-            
+            print("jobItems: \(self.jobItems)")
             
         }
         
