@@ -440,7 +440,12 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             DisplayStruct.jobURLGlobal = annotate.url
             print(DisplayStruct.jobURLGlobal)
             
+            //self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
