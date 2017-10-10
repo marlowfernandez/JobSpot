@@ -56,7 +56,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
         
-        YNSavedSearchesView.SaveSearchValues.selected = "map"
+        //YNSavedSearchesView.SaveSearchValues.selected = "map"
         
         YNFilterView.FilterValues.radiusString = "20"
         YNFilterView.FilterValues.daysEntered = "30"
@@ -91,7 +91,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
             let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)
-            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter","Saved Search"])
+            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter"])
             self.view.addSubview(view)
         }
         
@@ -280,9 +280,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
         
-        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + locationFix2 + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
         
-        //debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
+        debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
         
         Alamofire.request(strGeoCodeLocInput, method: .post).responseJSON { response in
             
@@ -412,6 +412,17 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             return vewMKPinAnnoytation
         }
         return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//        if let annotate = view.annotation as? DisplayAnnotation {
+//            
+//            DisplayStruct.companyNameGlobal = annotate.title
+//            DisplayStruct.jobTitleGlobal = annotate.title
+//            DisplayStruct.jobCityStateGlobal =
+//            DisplayStruct.datePostedGlobal =
+//            print(DisplayStruct.self)
+//        }
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

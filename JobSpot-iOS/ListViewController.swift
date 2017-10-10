@@ -61,7 +61,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //cLLocationManager.stopUpdatingLocation()
         //cLLocationManager.delegate = nil
         
-        YNSavedSearchesView.SaveSearchValues.selected = "list"
+        //YNSavedSearchesView.SaveSearchValues.selected = "list"
         
         YNFilterView.FilterValues.radiusString = "20"
         YNFilterView.FilterValues.daysEntered = "30"
@@ -94,7 +94,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
             let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)
-            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter","Saved Search"])
+            let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter"])
             self.view.addSubview(view)
         }
     
@@ -306,40 +306,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + locationFix2 + "/" + radius + "/" + sortColumns + "/" + sortOrder + "/" + "0" + "/" + pageSize + "/" + days + "/"
         debugPrint("urlRequestString: \(urlRequestString)")
         
-        ///v1/jobsearch/{userId}/{keyword}/{location}/{radius}/{sortColumns}/{sortOrder}/{startRecord}/{pageSize}/{days}
-        
-//        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
-//        
-//        debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
-        
-//        Alamofire.request(strGeoCodeLocInput, method: .post).responseJSON { response in
-//            
-//            //debugPrint("Alamofire response 1: \(strGeoCodeLocInput)")
-//            
-//            let jsonResponseGeo = response.data
-//            let jsonGeo = JSON(data: jsonResponseGeo!)
-//            let jsonObjGeo = jsonGeo["results"].arrayValue
-//            for item in jsonObjGeo {
-//                let jsonGeometry = item["geometry"]
-//                
-//                let jsonLocation = jsonGeometry["location"]
-//                
-//                let jsonLatitude = jsonLocation["lat"].doubleValue
-//                let jsonLongitude = jsonLocation["lng"].doubleValue
-//                
-//                
-//                //debugPrint("Location Lat: \(jsonLatitude)")
-//                //debugPrint("Location Lng: \(jsonLongitude)")
-//                
-//                let locationLatLngInput = CLLocation(latitude: jsonLatitude, longitude: jsonLongitude)
-//
-//                
-//            }
-//            
-//        }
-    
-
-        
         Alamofire.request(urlRequestString, headers: headers).responseJSON { response in
             //debugPrint("Alamofire response 2: \(response)")
             let jsonResponse = response.data
@@ -347,6 +313,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             debugPrint("json: \(json)")
             let jsonObj = json["Jobs"]
             debugPrint("jsonObj: \(jsonObj)")
+            
+            //check if jsonArrayVal is null for data
             let jsonArrayVal = jsonObj.array
             debugPrint("jsonArrayVal: \(jsonArrayVal!)")
             
@@ -438,30 +406,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         let structItem = DisplayStruct(company: company, datePosted: accquisitionDate, jobCityState: location, jobID: jobID, jobLat: DisplayStruct.jobLatGlobal, jobLng: DisplayStruct.jobLngGlobal, jobTitle: jobTitle, jobURL: jobURL)
                         self.jobItems.append(structItem)
-                        
-                        
-                        
-                        
-                        //                let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
-                        //
-                        //                debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
-                        //
-                        //                Alamofire.request(geoCodeString, method: .post).responseJSON { response in
-                        //
-                        //                    let jsonResponseGeo = response.data
-                        //                    let jsonGeo = JSON(data: jsonResponseGeo!)
-                        //                    let jsonObjGeo = jsonGeo["results"].arrayValue
-                        //                    for item in jsonObjGeo {
-                        //                        let jsonGeometry = item["geometry"]
-                        //                        
-                        //                        let jsonLocation = jsonGeometry["location"]
-                        //                        
-                        //                        let jsonLatitude = jsonLocation["lat"].doubleValue
-                        //                        let jsonLongitude = jsonLocation["lng"].doubleValue
-                        //                        
-                        //                    }
-                        //                    
-                        //                }
                         
                     }
                     

@@ -6,30 +6,55 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YNFilterView" customModule="JobSpot_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="3CP-95-gKG" customClass="YNFilterView" customModule="JobSpot_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="359"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs within:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGc-Z3-qeI">
-                    <rect key="frame" x="20" y="20" width="145" height="16"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MT9-pp-TkL">
+                    <rect key="frame" x="0.0" y="308" width="188" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="16" id="lX2-vY-ajq"/>
-                        <constraint firstAttribute="width" constant="145" id="pC7-QG-pOT"/>
+                        <constraint firstAttribute="width" constant="188" id="70x-jE-jHm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButtonAction:" destination="3CP-95-gKG" eventType="touchUpInside" id="wR0-gk-6lQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqr-Xq-KxX">
+                    <rect key="frame" x="187" y="308" width="188" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="188" id="62S-1N-9CY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Ok">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="submitButtonAction:" destination="3CP-95-gKG" eventType="touchUpInside" id="neQ-qt-KVc"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs within:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u9-6j-OrM">
+                    <rect key="frame" x="53" y="20" width="145" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="LYj-fp-3QD"/>
+                        <constraint firstAttribute="width" constant="145" id="RqW-gm-hb7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="P8Y-vg-b5j">
-                    <rect key="frame" x="20" y="55" width="335" height="28"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qaq-6L-7oC">
+                    <rect key="frame" x="53" y="55" width="269" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="27" id="e8V-vx-hbD"/>
+                        <constraint firstAttribute="height" constant="27" id="bcK-3d-ydn"/>
                     </constraints>
                     <segments>
                         <segment title="10mi."/>
@@ -39,23 +64,22 @@
                     </segments>
                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="showJobsAction:" destination="iN0-l3-epB" eventType="valueChanged" id="5x5-uF-zZG"/>
+                        <action selector="showJobsAction:" destination="3CP-95-gKG" eventType="valueChanged" id="u0l-FP-8Yb"/>
                     </connections>
                 </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs posted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcq-66-Aok">
-                    <rect key="frame" x="20" y="126" width="145" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show jobs posted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fK0-zq-w7o">
+                    <rect key="frame" x="53" y="126" width="145" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="16" id="NSA-wg-3mj"/>
-                        <constraint firstAttribute="width" constant="145" id="lgd-le-mbK"/>
+                        <constraint firstAttribute="height" constant="16" id="129-5e-xgt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T1L-vM-o0V">
-                    <rect key="frame" x="20" y="161" width="335" height="28"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QAc-Ul-bsP">
+                    <rect key="frame" x="53" y="161" width="269" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="27" id="kPN-sG-QRy"/>
+                        <constraint firstAttribute="height" constant="27" id="xoP-Dz-SYe"/>
                     </constraints>
                     <segments>
                         <segment title="7 days"/>
@@ -64,37 +88,22 @@
                     </segments>
                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="changeDaysAction:" destination="iN0-l3-epB" eventType="valueChanged" id="isg-wJ-3LI"/>
+                        <action selector="changeDaysAction:" destination="3CP-95-gKG" eventType="valueChanged" id="oAI-3d-8cN"/>
                     </connections>
                 </segmentedControl>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-oT-UyX">
-                    <rect key="frame" x="0.0" y="105" width="375" height="1"/>
-                    <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort jobs by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g62-Pj-dXr">
+                    <rect key="frame" x="53" y="227" width="145" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="2ho-xf-SEU"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="krV-Qi-Nf3">
-                    <rect key="frame" x="0.0" y="209" width="375" height="1"/>
-                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="1EK-nq-yIg"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sort jobs by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTI-2U-vHF">
-                    <rect key="frame" x="20" y="227" width="145" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="16" id="6Yd-AO-yC7"/>
-                        <constraint firstAttribute="width" constant="145" id="zfk-rX-ZHO"/>
+                        <constraint firstAttribute="height" constant="16" id="B7o-Ha-ZM2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ki5-1u-4GO">
-                    <rect key="frame" x="20" y="262" width="335" height="28"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="baf-cD-MQ4">
+                    <rect key="frame" x="53" y="262" width="269" height="28"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="27" id="Xqr-Yi-Pnj"/>
+                        <constraint firstAttribute="height" constant="27" id="K3r-jw-CYF"/>
                     </constraints>
                     <segments>
                         <segment title="Date Posted"/>
@@ -103,104 +112,45 @@
                     </segments>
                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="sortJobsAction:" destination="iN0-l3-epB" eventType="valueChanged" id="SOK-fb-r5v"/>
+                        <action selector="sortJobsAction:" destination="3CP-95-gKG" eventType="valueChanged" id="bYU-Z2-JL1"/>
                     </connections>
                 </segmentedControl>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="T1L-vM-o0V" firstAttribute="trailing" secondItem="P8Y-vg-b5j" secondAttribute="trailing" id="1lP-Bo-4Qg"/>
-                <constraint firstItem="DSP-oT-UyX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5kh-Vs-J6c"/>
-                <constraint firstItem="kTI-2U-vHF" firstAttribute="leading" secondItem="T1L-vM-o0V" secondAttribute="leading" id="97S-OG-Iha"/>
-                <constraint firstItem="DSP-oT-UyX" firstAttribute="top" secondItem="P8Y-vg-b5j" secondAttribute="bottom" constant="23" id="DRu-W1-fA4"/>
-                <constraint firstAttribute="trailing" secondItem="P8Y-vg-b5j" secondAttribute="trailing" constant="20" id="GEC-sN-xqC"/>
-                <constraint firstItem="T1L-vM-o0V" firstAttribute="top" secondItem="lcq-66-Aok" secondAttribute="bottom" constant="19" id="HBr-Vh-nuU"/>
-                <constraint firstItem="AGc-Z3-qeI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Nzo-mf-BRk"/>
-                <constraint firstItem="AGc-Z3-qeI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="RNA-Bz-gee"/>
-                <constraint firstItem="krV-Qi-Nf3" firstAttribute="top" secondItem="T1L-vM-o0V" secondAttribute="bottom" constant="21" id="RxH-SJ-xNA"/>
-                <constraint firstItem="Ki5-1u-4GO" firstAttribute="top" secondItem="kTI-2U-vHF" secondAttribute="bottom" constant="19" id="Vmv-Ba-el3"/>
-                <constraint firstItem="P8Y-vg-b5j" firstAttribute="top" secondItem="AGc-Z3-qeI" secondAttribute="bottom" constant="19" id="dya-zM-WFL"/>
-                <constraint firstItem="lcq-66-Aok" firstAttribute="leading" secondItem="T1L-vM-o0V" secondAttribute="leading" id="hlD-n7-eKh"/>
-                <constraint firstItem="P8Y-vg-b5j" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="j1S-Xj-ZZJ"/>
-                <constraint firstItem="lcq-66-Aok" firstAttribute="top" secondItem="DSP-oT-UyX" secondAttribute="bottom" constant="20" id="nsp-Ti-EG0"/>
-                <constraint firstItem="Ki5-1u-4GO" firstAttribute="trailing" secondItem="T1L-vM-o0V" secondAttribute="trailing" id="sXW-7s-IWV"/>
-                <constraint firstAttribute="trailing" secondItem="DSP-oT-UyX" secondAttribute="trailing" id="tzB-yR-T1U"/>
-                <constraint firstItem="lcq-66-Aok" firstAttribute="leading" secondItem="P8Y-vg-b5j" secondAttribute="leading" id="uhc-7P-RXJ"/>
-                <constraint firstItem="kTI-2U-vHF" firstAttribute="leading" secondItem="Ki5-1u-4GO" secondAttribute="leading" id="uz6-li-zez"/>
+                <constraint firstItem="fK0-zq-w7o" firstAttribute="trailing" secondItem="g62-Pj-dXr" secondAttribute="trailing" id="0I8-tU-aAB"/>
+                <constraint firstItem="7u9-6j-OrM" firstAttribute="trailing" secondItem="fK0-zq-w7o" secondAttribute="trailing" id="5mW-iq-KE9"/>
+                <constraint firstItem="7u9-6j-OrM" firstAttribute="top" secondItem="3CP-95-gKG" secondAttribute="top" constant="20" id="9VC-sr-D2n"/>
+                <constraint firstItem="fK0-zq-w7o" firstAttribute="leading" secondItem="QAc-Ul-bsP" secondAttribute="leading" id="CQb-ZW-pkR"/>
+                <constraint firstItem="baf-cD-MQ4" firstAttribute="top" secondItem="g62-Pj-dXr" secondAttribute="bottom" constant="19" id="EQG-zg-APR"/>
+                <constraint firstItem="MT9-pp-TkL" firstAttribute="centerY" secondItem="wqr-Xq-KxX" secondAttribute="centerY" id="Hdq-T8-mxh"/>
+                <constraint firstItem="QAc-Ul-bsP" firstAttribute="top" secondItem="fK0-zq-w7o" secondAttribute="bottom" constant="19" id="LP7-Is-dhC"/>
+                <constraint firstItem="7u9-6j-OrM" firstAttribute="leading" secondItem="qaq-6L-7oC" secondAttribute="leading" id="Y1z-Pw-uPJ"/>
+                <constraint firstItem="g62-Pj-dXr" firstAttribute="top" secondItem="QAc-Ul-bsP" secondAttribute="bottom" constant="39" id="YpL-se-ogC"/>
+                <constraint firstAttribute="trailing" secondItem="wqr-Xq-KxX" secondAttribute="trailing" id="ZHE-3w-cZC"/>
+                <constraint firstItem="g62-Pj-dXr" firstAttribute="leading" secondItem="baf-cD-MQ4" secondAttribute="leading" id="cra-y9-tfV"/>
+                <constraint firstItem="QAc-Ul-bsP" firstAttribute="leading" secondItem="g62-Pj-dXr" secondAttribute="leading" id="ixQ-S2-DEc"/>
+                <constraint firstItem="qaq-6L-7oC" firstAttribute="trailing" secondItem="QAc-Ul-bsP" secondAttribute="trailing" id="lSl-ct-41G"/>
+                <constraint firstItem="QAc-Ul-bsP" firstAttribute="trailing" secondItem="baf-cD-MQ4" secondAttribute="trailing" id="oSf-Uv-YKV"/>
+                <constraint firstItem="qaq-6L-7oC" firstAttribute="leading" secondItem="fK0-zq-w7o" secondAttribute="leading" id="p1k-Rj-4Hh"/>
+                <constraint firstItem="MT9-pp-TkL" firstAttribute="top" secondItem="wqr-Xq-KxX" secondAttribute="top" id="qUr-BW-xlU"/>
+                <constraint firstItem="fK0-zq-w7o" firstAttribute="top" secondItem="qaq-6L-7oC" secondAttribute="bottom" constant="44" id="qfZ-Jy-8f0"/>
+                <constraint firstItem="qaq-6L-7oC" firstAttribute="centerX" secondItem="3CP-95-gKG" secondAttribute="centerX" id="rKZ-u0-irF"/>
+                <constraint firstItem="MT9-pp-TkL" firstAttribute="top" secondItem="baf-cD-MQ4" secondAttribute="bottom" constant="19" id="ueE-FS-U2y"/>
+                <constraint firstItem="MT9-pp-TkL" firstAttribute="leading" secondItem="3CP-95-gKG" secondAttribute="leading" id="wlW-mX-VBd"/>
+                <constraint firstAttribute="bottom" secondItem="wqr-Xq-KxX" secondAttribute="bottom" id="yhs-mK-8X1"/>
+                <constraint firstItem="qaq-6L-7oC" firstAttribute="top" secondItem="7u9-6j-OrM" secondAttribute="bottom" constant="19" id="zo1-U8-YTc"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="jobDaysSegmentOutlet" destination="T1L-vM-o0V" id="lye-9J-GHG"/>
-                <outlet property="radiusSegmentOutlet" destination="P8Y-vg-b5j" id="9RD-eZ-vfY"/>
-                <outlet property="sortJobsSegmentOutlet" destination="Ki5-1u-4GO" id="X3N-B9-93t"/>
+                <outlet property="jobDaysSegmentOutlet" destination="QAc-Ul-bsP" id="JMw-UT-kZz"/>
+                <outlet property="radiusSegmentOutlet" destination="qaq-6L-7oC" id="5pP-hF-1s0"/>
+                <outlet property="sortJobsSegmentOutlet" destination="baf-cD-MQ4" id="LHW-RO-HIT"/>
             </connections>
-            <point key="canvasLocation" x="65.5" y="-167.5"/>
+            <point key="canvasLocation" x="156.5" y="-234.5"/>
         </view>
-        <view contentMode="scaleToFill" id="Hmp-hB-W7v" customClass="YNSavedSearchesView" customModule="JobSpot_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0DY-yR-x3o">
-                    <rect key="frame" x="0.0" y="51" width="375" height="1"/>
-                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRk-Rn-SyG">
-                    <rect key="frame" x="0.0" y="51" width="188" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="188" id="Tnc-2C-FCV"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                    <state key="normal" title="Cancel">
-                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="cancelButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="aGD-xh-CCg"/>
-                        <action selector="cancelButtonAction:" destination="Hmp-hB-W7v" eventType="touchUpInside" id="v1d-Y8-8HW"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPQ-Oz-ern">
-                    <rect key="frame" x="187" y="51" width="188" height="50"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                    <state key="normal" title="Ok">
-                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="submitButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ynb-eH-aXw"/>
-                        <action selector="submitButtonAction:" destination="Hmp-hB-W7v" eventType="touchUpInside" id="cd5-c2-rBS"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuI-3r-hWl">
-                    <rect key="frame" x="187" y="63" width="0.0" height="26"/>
-                    <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="ZuI-3r-hWl" firstAttribute="top" secondItem="Hmp-hB-W7v" secondAttribute="top" constant="63" id="1sU-AF-Llv"/>
-                <constraint firstItem="NRk-Rn-SyG" firstAttribute="centerY" secondItem="ZuI-3r-hWl" secondAttribute="centerY" id="2wg-Xt-dU3"/>
-                <constraint firstAttribute="trailing" secondItem="0DY-yR-x3o" secondAttribute="trailing" id="3cb-1N-2F6"/>
-                <constraint firstItem="0DY-yR-x3o" firstAttribute="trailing" secondItem="mPQ-Oz-ern" secondAttribute="trailing" id="4bL-im-l0y"/>
-                <constraint firstAttribute="bottom" secondItem="ZuI-3r-hWl" secondAttribute="bottom" constant="12" id="67e-Xl-JR3"/>
-                <constraint firstItem="NRk-Rn-SyG" firstAttribute="leading" secondItem="Hmp-hB-W7v" secondAttribute="leading" id="6Wa-yl-bBK"/>
-                <constraint firstItem="NRk-Rn-SyG" firstAttribute="top" secondItem="mPQ-Oz-ern" secondAttribute="top" id="6hF-Hf-a47"/>
-                <constraint firstItem="mPQ-Oz-ern" firstAttribute="baseline" secondItem="NRk-Rn-SyG" secondAttribute="firstBaseline" id="Ig9-CD-3sj"/>
-                <constraint firstAttribute="bottom" secondItem="NRk-Rn-SyG" secondAttribute="bottom" id="JYD-Si-aZI"/>
-                <constraint firstItem="mPQ-Oz-ern" firstAttribute="leading" secondItem="ZuI-3r-hWl" secondAttribute="leading" id="Rm4-5w-8UN"/>
-                <constraint firstItem="0DY-yR-x3o" firstAttribute="top" secondItem="mPQ-Oz-ern" secondAttribute="top" id="TMU-5Y-ynq"/>
-                <constraint firstItem="0DY-yR-x3o" firstAttribute="centerX" secondItem="ZuI-3r-hWl" secondAttribute="centerX" id="afd-7W-XO6"/>
-                <constraint firstAttribute="bottom" secondItem="0DY-yR-x3o" secondAttribute="bottom" constant="49" id="eYi-vZ-Ubs"/>
-                <constraint firstItem="NRk-Rn-SyG" firstAttribute="leading" secondItem="0DY-yR-x3o" secondAttribute="leading" id="uDq-I1-MQp"/>
-                <constraint firstItem="NRk-Rn-SyG" firstAttribute="baseline" secondItem="mPQ-Oz-ern" secondAttribute="firstBaseline" id="wB0-VX-yKE"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="65.5" y="150.5"/>
-        </view>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>
 </document>
