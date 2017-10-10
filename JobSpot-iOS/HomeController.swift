@@ -331,26 +331,23 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     
                     for item in jsonArrayVal! {
                         
-                        //let jobID = item["JvId"].stringValue
-                        //print("JobID: \(jobID)")
+                        let jobID = item["JvId"].stringValue
+                        print("JobID: \(jobID)")
                         
                         let jobTitle = item["JobTitle"].stringValue
-                        //print("JobTitle: \(jobTitle)")
+                        print("JobTitle: \(jobTitle)")
                         
                         let company = item["Company"].stringValue
-                        //print("Company: \(company)")
+                        print("Company: \(company)")
                         
-                        //let accquisitionDate = item["AccquisitionDate"].stringValue
-                        //print("AccquisitionDate: \(accquisitionDate)")
+                        let accquisitionDate = item["AccquisitionDate"].stringValue
+                        print("AccquisitionDate: \(accquisitionDate)")
                         
-                        //let url = item["URL"].stringValue
-                        //print("URL: \(url)")
+                        let url = item["URL"].stringValue
+                        print("URL: \(url)")
                         
                         let location = item["Location"].stringValue
-                        //print("Location: \(location)")
-                        
-                        //let fc = item["Fc"].stringValue
-                        //print("Fc: \(fc)")
+                        print("Location: \(location)")
                         
                         let newCompany = company.replacingOccurrences(of: " ", with: "+")
                         let newLocation = location.replacingOccurrences(of: " ", with: "+")
@@ -374,8 +371,13 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                                 
                                 
                                 let displayMarker = DisplayAnnotation(title: jobTitle,
-                                                                      locationName: company,
-                                                                      coordinate: CLLocationCoordinate2D(latitude: jsonLatitude, longitude: jsonLongitude))
+                                                                      companyName: company,
+                                                                      coordinate: CLLocationCoordinate2D(latitude: jsonLatitude, longitude: jsonLongitude),
+                                                                      cityState: location,
+                                                                      datePosted: accquisitionDate,
+                                                                      lat: jsonLatitude,
+                                                                      lng: jsonLongitude,
+                                                                      url: url)
                                 
                                 self.mapViewOutlet.addAnnotation(displayMarker)
                             }
@@ -415,14 +417,30 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        if let annotate = view.annotation as? DisplayAnnotation {
-//            
-//            DisplayStruct.companyNameGlobal = annotate.title
-//            DisplayStruct.jobTitleGlobal = annotate.title
-//            DisplayStruct.jobCityStateGlobal =
-//            DisplayStruct.datePostedGlobal =
-//            print(DisplayStruct.self)
-//        }
+        if let annotate = view.annotation as? DisplayAnnotation {
+            
+            DisplayStruct.companyNameGlobal = annotate.companyName
+            print(DisplayStruct.companyNameGlobal)
+            
+            DisplayStruct.jobTitleGlobal = annotate.title!
+            print(DisplayStruct.jobTitleGlobal)
+            
+            DisplayStruct.jobCityStateGlobal = annotate.cityState
+            print(DisplayStruct.jobCityStateGlobal)
+            
+            DisplayStruct.datePostedGlobal = annotate.datePosted
+            print(DisplayStruct.datePostedGlobal)
+            
+            DisplayStruct.jobLatGlobal = String(format:"%.7f", annotate.lat)
+            print(DisplayStruct.jobLatGlobal)
+            
+            DisplayStruct.jobLngGlobal = String(format:"%.7f", annotate.lng)
+            print(DisplayStruct.jobLngGlobal)
+            
+            DisplayStruct.jobURLGlobal = annotate.url
+            print(DisplayStruct.jobURLGlobal)
+            
+        }
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

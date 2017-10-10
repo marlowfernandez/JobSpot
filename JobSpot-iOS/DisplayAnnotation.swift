@@ -11,18 +11,29 @@ import MapKit
 
 class DisplayAnnotation: NSObject, MKAnnotation {
     let title: String?
-    let locationName: String
+    let companyName: String
     let coordinate: CLLocationCoordinate2D
+    let cityState: String
+    let datePosted: String
+    let lat: Double
+    let lng: Double
+    let url: String
     
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
+    init(title: String, companyName: String, coordinate: CLLocationCoordinate2D, cityState: String, datePosted: String,
+         lat: Double, lng: Double, url: String) {
         self.title = title
-        self.locationName = locationName
+        self.companyName = companyName
         self.coordinate = coordinate
+        self.cityState = cityState
+        self.datePosted = datePosted
+        self.lat = lat
+        self.lng = lng
+        self.url = url
         
         super.init()
     }
     
     var subtitle: String? {
-        return locationName
+        return companyName
     }
 }
