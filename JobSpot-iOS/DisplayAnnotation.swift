@@ -15,17 +15,19 @@ class DisplayAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let cityState: String
     let datePosted: String
+    let id: String
     let lat: Double
     let lng: Double
     let url: String
     
     init(title: String, companyName: String, coordinate: CLLocationCoordinate2D, cityState: String, datePosted: String,
-         lat: Double, lng: Double, url: String) {
+         id: String, lat: Double, lng: Double, url: String) {
         self.title = title
         self.companyName = companyName
         self.coordinate = coordinate
         self.cityState = cityState
         self.datePosted = datePosted
+        self.id = id
         self.lat = lat
         self.lng = lng
         self.url = url

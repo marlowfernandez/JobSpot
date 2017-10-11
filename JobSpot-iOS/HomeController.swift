@@ -375,6 +375,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                                                                       coordinate: CLLocationCoordinate2D(latitude: jsonLatitude, longitude: jsonLongitude),
                                                                       cityState: location,
                                                                       datePosted: accquisitionDate,
+                                                                      id: jobID,
                                                                       lat: jsonLatitude,
                                                                       lng: jsonLongitude,
                                                                       url: url)
@@ -420,32 +421,67 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if let annotate = view.annotation as? DisplayAnnotation {
             
             DisplayStruct.companyNameGlobal = annotate.companyName
-            print(DisplayStruct.companyNameGlobal)
+            //print(DisplayStruct.companyNameGlobal)
             
             DisplayStruct.jobTitleGlobal = annotate.title!
-            print(DisplayStruct.jobTitleGlobal)
+            //print(DisplayStruct.jobTitleGlobal)
             
             DisplayStruct.jobCityStateGlobal = annotate.cityState
-            print(DisplayStruct.jobCityStateGlobal)
+            //print(DisplayStruct.jobCityStateGlobal)
             
             DisplayStruct.datePostedGlobal = annotate.datePosted
-            print(DisplayStruct.datePostedGlobal)
+            //print(DisplayStruct.datePostedGlobal)
             
-            DisplayStruct.jobLatGlobal = String(format:"%.7f", annotate.lat)
-            print(DisplayStruct.jobLatGlobal)
+            DisplayStruct.jobLatGlobal = annotate.lat
+            //print(DisplayStruct.jobLatGlobal)
             
-            DisplayStruct.jobLngGlobal = String(format:"%.7f", annotate.lng)
-            print(DisplayStruct.jobLngGlobal)
+            DisplayStruct.jobIDGlobal = annotate.id
+            //print(DisplayStruct.jobIDGlobal)
+            
+            //String(format:"%.7f", annotate.lng)
+            
+            DisplayStruct.jobLngGlobal = annotate.lng
+            //print(DisplayStruct.jobLngGlobal)
             
             DisplayStruct.jobURLGlobal = annotate.url
-            print(DisplayStruct.jobURLGlobal)
+            //print(DisplayStruct.jobURLGlobal)
             
-            //self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
         }
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
+        if let annotate = view.annotation as? DisplayAnnotation {
+            
+            DisplayStruct.companyNameGlobal = annotate.companyName
+            //print(DisplayStruct.companyNameGlobal)
+            
+            DisplayStruct.jobTitleGlobal = annotate.title!
+            //print(DisplayStruct.jobTitleGlobal)
+            
+            DisplayStruct.jobCityStateGlobal = annotate.cityState
+            //print(DisplayStruct.jobCityStateGlobal)
+            
+            DisplayStruct.datePostedGlobal = annotate.datePosted
+            //print(DisplayStruct.datePostedGlobal)
+            
+            DisplayStruct.jobLatGlobal = annotate.lat
+            //print(DisplayStruct.jobLatGlobal)
+            
+            DisplayStruct.jobIDGlobal = annotate.id
+            //print(DisplayStruct.jobIDGlobal)
+            
+            //String(format:"%.7f", annotate.lng)
+            
+            DisplayStruct.jobLngGlobal = annotate.lng
+            //print(DisplayStruct.jobLngGlobal)
+            
+            DisplayStruct.jobURLGlobal = annotate.url
+            //print(DisplayStruct.jobURLGlobal)
+            
+            self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
+        }
+        
+        
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

@@ -14,8 +14,8 @@ struct DisplayStruct {
     static var datePostedGlobal = String()
     static var jobCityStateGlobal = String()
     static var jobIDGlobal = String()
-    static var jobLatGlobal = String()
-    static var jobLngGlobal = String()
+    static var jobLatGlobal = Double()
+    static var jobLngGlobal = Double()
     static var jobTitleGlobal = String()
     static var jobURLGlobal = String()
     
@@ -23,12 +23,12 @@ struct DisplayStruct {
     var datePosted = String()
     var jobCityState = String()
     var jobID = String()
-    var jobLat = String()
-    var jobLng = String()
+    var jobLat = Double()
+    var jobLng = Double()
     var jobTitle = String()
     var jobURL = String()
     
-    init(company: String, datePosted: String, jobCityState: String, jobID: String, jobLat: String, jobLng: String, jobTitle: String, jobURL: String) {
+    init(company: String, datePosted: String, jobCityState: String, jobID: String, jobLat: Double, jobLng: Double, jobTitle: String, jobURL: String) {
         
         
         self.companyName = company

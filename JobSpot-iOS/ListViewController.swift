@@ -387,13 +387,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                 self.lat = latInfo
                                 self.lng = lngInfo
                                 
-                                let latString:String = String(format:"%.7f", self.lat)
-                                let lngString:String = String(format:"%.7f", self.lng)
+                                //let latString:String = String(format:"%.7f", self.lat)
+                                //let lngString:String = String(format:"%.7f", self.lng)
                                 
-                                DispatchQueue.main.async {
-                                    DisplayStruct.jobLatGlobal = latString
-                                    DisplayStruct.jobLngGlobal = lngString
-                                }
+                                //DispatchQueue.main.async {
+                                DisplayStruct.jobLatGlobal = self.lat
+                                DisplayStruct.jobLngGlobal = self.lng
+                                //}
                                 
                                 print("latString: \(DisplayStruct.jobLatGlobal)")
                                 print("lngString: \(DisplayStruct.jobLngGlobal)")

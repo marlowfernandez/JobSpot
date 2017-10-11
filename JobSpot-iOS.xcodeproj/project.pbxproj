@@ -20,6 +20,7 @@
 		401A04A21F89678F0061AA79 /* DisplayStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A11F89678F0061AA79 /* DisplayStruct.swift */; };
 		401A04A41F897FA50061AA79 /* SaveSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A31F897FA50061AA79 /* SaveSearch.swift */; };
 		401A04A61F89B6540061AA79 /* SavedSearchesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A51F89B6540061AA79 /* SavedSearchesController.swift */; };
+		401C27FB1F8D82EF00444FFE /* SaveJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C27FA1F8D82EF00444FFE /* SaveJob.swift */; };
 		401CD2FB1F81672A009370CE /* ApiConfigTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */; };
 		40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F851F7ED87A007E6EC0 /* CreateAccount.swift */; };
 		40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F871F7EF581007E6EC0 /* HomeController.swift */; };
@@ -48,6 +49,7 @@
 		401A04A11F89678F0061AA79 /* DisplayStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayStruct.swift; sourceTree = "<group>"; };
 		401A04A31F897FA50061AA79 /* SaveSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveSearch.swift; sourceTree = "<group>"; };
 		401A04A51F89B6540061AA79 /* SavedSearchesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSearchesController.swift; sourceTree = "<group>"; };
+		401C27FA1F8D82EF00444FFE /* SaveJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveJob.swift; sourceTree = "<group>"; };
 		401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfigTesting.swift; sourceTree = "<group>"; };
 		40499F851F7ED87A007E6EC0 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		40499F871F7EF581007E6EC0 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -121,8 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				401A04A11F89678F0061AA79 /* DisplayStruct.swift */,
-				401A04A31F897FA50061AA79 /* SaveSearch.swift */,
 				40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */,
+				401A04A31F897FA50061AA79 /* SaveSearch.swift */,
+				401C27FA1F8D82EF00444FFE /* SaveJob.swift */,
 			);
 			name = Structures;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				40A6D9971F808EE2004CCE9E /* ApiConfigNotUsed.swift in Sources */,
 				401A04A21F89678F0061AA79 /* DisplayStruct.swift in Sources */,
+				401C27FB1F8D82EF00444FFE /* SaveJob.swift in Sources */,
 				401A049D1F886BD00061AA79 /* YNDropDownClasses.swift in Sources */,
 				40499F8A1F7EFF44007E6EC0 /* ProfileController.swift in Sources */,
 				401A04A41F897FA50061AA79 /* SaveSearch.swift in Sources */,
