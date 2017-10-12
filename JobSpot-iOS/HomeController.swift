@@ -22,6 +22,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let homeToList = "homeToList"
     let homeToSavedSearch = "homeToSavedSearch"
     let homeToDisplay = "homeToDisplay"
+    let homeToSavedJobs = "homeToSavedJobs"
+    let homeToAppliedJobs = "homeToAppliedJobs"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     var typedLocation = false
@@ -260,6 +262,16 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func listActionButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.homeToList, sender: nil)
     }
+    
+    @IBAction func savedJobsActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.homeToSavedJobs, sender: nil)
+    }
+    
+    @IBAction func appliedJobsActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.homeToAppliedJobs, sender: nil)
+    }
+    
+    
     
     func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
         let locationFix = location.replacingOccurrences(of: " ", with: "+")

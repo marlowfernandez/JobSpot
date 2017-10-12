@@ -20,6 +20,8 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     
     let savedsearchesToHome = "savedsearchesToHome"
     let savedsearchesToProfile = "savedsearchesToProfile"
+    let savedsearchesToSavedJobs = "savedsearchesToSavedJobs"
+    let savedsearchesToAppliedJobs = "savedsearchesToAppliedJobs"
     
     @IBOutlet weak var tableViewOutlet: UITableView!
     
@@ -176,10 +178,12 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func appliedAction(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.savedsearchesToAppliedJobs, sender: nil)
         
     }
     
     @IBAction func savedAction(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.savedsearchesToSavedJobs, sender: nil)
         
     }
     

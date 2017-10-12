@@ -21,6 +21,8 @@
 		401A04A41F897FA50061AA79 /* SaveSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A31F897FA50061AA79 /* SaveSearch.swift */; };
 		401A04A61F89B6540061AA79 /* SavedSearchesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A04A51F89B6540061AA79 /* SavedSearchesController.swift */; };
 		401C27FB1F8D82EF00444FFE /* SaveJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C27FA1F8D82EF00444FFE /* SaveJob.swift */; };
+		401C27FD1F8EE89700444FFE /* SavedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C27FC1F8EE89700444FFE /* SavedJobs.swift */; };
+		401C27FF1F8EE8A300444FFE /* AppliedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C27FE1F8EE8A300444FFE /* AppliedJobs.swift */; };
 		401CD2FB1F81672A009370CE /* ApiConfigTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */; };
 		40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F851F7ED87A007E6EC0 /* CreateAccount.swift */; };
 		40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40499F871F7EF581007E6EC0 /* HomeController.swift */; };
@@ -50,6 +52,8 @@
 		401A04A31F897FA50061AA79 /* SaveSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveSearch.swift; sourceTree = "<group>"; };
 		401A04A51F89B6540061AA79 /* SavedSearchesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSearchesController.swift; sourceTree = "<group>"; };
 		401C27FA1F8D82EF00444FFE /* SaveJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveJob.swift; sourceTree = "<group>"; };
+		401C27FC1F8EE89700444FFE /* SavedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedJobs.swift; sourceTree = "<group>"; };
+		401C27FE1F8EE8A300444FFE /* AppliedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppliedJobs.swift; sourceTree = "<group>"; };
 		401CD2FA1F81672A009370CE /* ApiConfigTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfigTesting.swift; sourceTree = "<group>"; };
 		40499F851F7ED87A007E6EC0 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		40499F871F7EF581007E6EC0 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -149,6 +153,8 @@
 				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
 				401A04A51F89B6540061AA79 /* SavedSearchesController.swift */,
 				40BBE7211F8B21E200A14336 /* DisplayJobController.swift */,
+				401C27FC1F8EE89700444FFE /* SavedJobs.swift */,
+				401C27FE1F8EE8A300444FFE /* AppliedJobs.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -336,6 +342,8 @@
 				400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */,
 				40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */,
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
+				401C27FD1F8EE89700444FFE /* SavedJobs.swift in Sources */,
+				401C27FF1F8EE8A300444FFE /* AppliedJobs.swift in Sources */,
 				40BBE7221F8B21E200A14336 /* DisplayJobController.swift in Sources */,
 				40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */,
 				40BBE7201F8ADC2C00A14336 /* ProfileStruct.swift in Sources */,

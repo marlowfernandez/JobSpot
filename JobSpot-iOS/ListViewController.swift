@@ -22,6 +22,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let listToLogin = "listToLogin"
     let listToDisplay = "listToDisplay"
     let listToSavedSearch = "listToSavedSearch"
+    let listToSavedJobs = "listToSavedJobs"
+    let listToAppliedJobs = "listToAppliedJobs"
     let radius: CLLocationDistance = 15000
     //let locationLatLong = CLLocation(latitude: 28.1749353, longitude: -82.355302)
     var typedLocation = false
@@ -161,6 +163,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func mapButtonAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.listToHome, sender: nil)
+    }
+    
+    @IBAction func savedActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.listToSavedJobs, sender: nil)
+    }
+    
+    @IBAction func appliedActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.listToAppliedJobs, sender: nil)
     }
     
     public func listChangeViewToSavedSearches() {

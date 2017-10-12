@@ -17,6 +17,8 @@ class DisplayJobController: UIViewController {
     
     let displayToHome = "displayToHome"
     let displayToProfile = "displayToHome"
+    let displayToSavedJobs = "displayToSavedJobs"
+    let displayToAppliedJobs = "displayToAppliedJobs"
     @IBOutlet weak var companyNameOutlet: UILabel!
     @IBOutlet weak var jobTitleOutlet: UILabel!
     @IBOutlet weak var jobCityStateOutlet: UILabel!
@@ -39,26 +41,6 @@ class DisplayJobController: UIViewController {
         jobCityStateOutlet.text = DisplayStruct.jobCityStateGlobal
         datePostedOutlet.text = DisplayStruct.datePostedGlobal
         
-        
-//        SaveJob.companyNameGlobal = DisplayStruct.companyNameGlobal
-//        SaveJob.datePostedGlobal = DisplayStruct.datePostedGlobal
-//        SaveJob.jobCityStateGlobal = DisplayStruct.jobCityStateGlobal
-//        SaveJob.jobIDGlobal = DisplayStruct.jobIDGlobal
-//        SaveJob.jobLatGlobal = DisplayStruct.jobLatGlobal
-//        SaveJob.jobLngGlobal = DisplayStruct.jobLngGlobal
-//        SaveJob.jobTitleGlobal = DisplayStruct.jobTitleGlobal
-//        SaveJob.jobURLGlobal = DisplayStruct.jobURLGlobal
-        
-//        self.companyName = DisplayStruct.companyNameGlobal
-//        self.datePostedGlobal = DisplayStruct.datePostedGlobal
-//        self.jobCityStateGlobal = DisplayStruct.jobCityStateGlobal
-//        self.jobIDGlobal = DisplayStruct.jobIDGlobal
-//        self.jobLatGlobal = DisplayStruct.jobLatGlobal
-//        self.jobLngGlobal = DisplayStruct.jobLngGlobal
-//        self.jobTitleGlobal = DisplayStruct.jobTitleGlobal
-//        self.jobURLGlobal = DisplayStruct.jobURLGlobal
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +48,6 @@ class DisplayJobController: UIViewController {
     }
 
     @IBAction func saveJobAction(_ sender: UIButton) {
-        
         
         
         let companyNameGlobal = DisplayStruct.companyNameGlobal
@@ -116,31 +97,10 @@ class DisplayJobController: UIViewController {
         print("addChildStr: \(addChildStr)")
         
         addChildStr.setValue(saveJobItem.toAnyObject())
-        
-        
-//        self.companyName = DisplayStruct.companyNameGlobal
-//        self.datePostedGlobal = DisplayStruct.datePostedGlobal
-//        self.jobCityStateGlobal = DisplayStruct.jobCityStateGlobal
-//        self.jobIDGlobal = DisplayStruct.jobIDGlobal
-//        self.jobLatGlobal = DisplayStruct.jobLatGlobal
-//        self.jobLngGlobal = DisplayStruct.jobLngGlobal
-//        self.jobTitleGlobal = DisplayStruct.jobTitleGlobal
-//        self.jobURLGlobal = DisplayStruct.jobURLGlobal
-        
-//        debugPrint(DisplayStruct.companyNameGlobal)
-//        debugPrint(DisplayStruct.datePostedGlobal)
-//        debugPrint(DisplayStruct.jobCityStateGlobal)
-//        debugPrint(DisplayStruct.jobIDGlobal)
-//        debugPrint(DisplayStruct.jobLatGlobal)
-//        debugPrint(DisplayStruct.jobLngGlobal)
-//        debugPrint(DisplayStruct.jobTitleGlobal)
-//        debugPrint(DisplayStruct.jobURLGlobal)
-       
-        //saveJobToFireBase(companyName: DisplayStruct.companyNameGlobal, datePosted: DisplayStruct.datePostedGlobal, jobCityState: DisplayStruct.jobCityStateGlobal, jobID: DisplayStruct.jobIDGlobal, jobLat: DisplayStruct.jobLatGlobal, jobLng: DisplayStruct.jobLngGlobal, jobTitle: DisplayStruct.jobTitleGlobal, jobURL: DisplayStruct.jobURLGlobal)
-        
-//        saveJobToFireBase(companyName: companyName, datePosted: datePostedGlobal, jobCityState: jobCityStateGlobal, jobID: jobIDGlobal, jobLat: jobLatGlobal, jobLng: jobLngGlobal, jobTitle: jobTitleGlobal, jobURL: jobURLGlobal)
     }
     
+    
+    //NOT USED AT THE MOMENT
     private func saveJobToFireBase(companyName: String, datePosted: String, jobCityState: String, jobID: String, jobLat: Double, jobLng: Double, jobTitle: String, jobURL: String) {
         
         debugPrint("Save Job to FireBase \(companyName)")
@@ -177,14 +137,9 @@ class DisplayJobController: UIViewController {
         
         print("ifRef: \(idRef)")
         
-        let listRef = idRef.child("savedjob")
+        let listRef = idRef.child("savedjobs")
         
         print("listRef: \(listRef)")
-        
-        //let addChildStr = listRef.child(jobID)
-        //print("addChildStr: \(addChildStr)")
-        
-        //addChildStr.setValue(saveJobItem.toAnyObject())
     }
     
     @IBAction func goToHomeAction(_ sender: UIButton) {
@@ -193,6 +148,14 @@ class DisplayJobController: UIViewController {
     
     @IBAction func goToProfileAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.displayToProfile, sender: nil)
+    }
+    
+    @IBAction func savedActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.displayToSavedJobs, sender: nil)
+    }
+    
+    @IBAction func appliedActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.displayToAppliedJobs, sender: nil)
     }
     
 }

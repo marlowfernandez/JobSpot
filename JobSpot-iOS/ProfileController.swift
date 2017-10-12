@@ -18,6 +18,8 @@ class ProfileController: UIViewController {
     
     let logout = "logout"
     let profileToHome = "profileToHome"
+    let profileToAppliedJobs = "profileToAppliedJobs"
+    let profileToSavedJobs = "profileToSavedJobs"
     var fullName : String = " "
     var email : String = " "
     var headline : String = " "
@@ -225,6 +227,17 @@ class ProfileController: UIViewController {
     
     @IBAction func profileToHome(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.profileToHome, sender: nil)
+    }
+    
+    @IBAction func savedActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.profileToSavedJobs, sender: nil)
+    }
+    
+    @IBAction func appliedActionButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.profileToAppliedJobs, sender: nil)
+    }
+    
+    @IBAction func profileActionButton(_ sender: UIButton) {
     }
     
     
