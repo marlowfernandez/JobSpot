@@ -118,20 +118,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
-        let jobItem = jobItems[(indexPath?.row)!]
         
-        DisplayStruct.companyNameGlobal = jobItem.companyName
-        DisplayStruct.datePostedGlobal = jobItem.datePosted
-        DisplayStruct.jobCityStateGlobal = jobItem.jobCityState
-        DisplayStruct.jobIDGlobal = jobItem.jobID
-        DisplayStruct.jobLatGlobal = jobItem.jobLat
-        DisplayStruct.jobLngGlobal = jobItem.jobLng
-        DisplayStruct.jobTitleGlobal = jobItem.jobTitle
-        DisplayStruct.jobURLGlobal = jobItem.jobURL
+        if jobItems.count > 0 {
+            let jobItem = jobItems[(indexPath?.row)!]
+            
+            DisplayStruct.companyNameGlobal = jobItem.companyName
+            DisplayStruct.datePostedGlobal = jobItem.datePosted
+            DisplayStruct.jobCityStateGlobal = jobItem.jobCityState
+            DisplayStruct.jobIDGlobal = jobItem.jobID
+            DisplayStruct.jobLatGlobal = jobItem.jobLat
+            DisplayStruct.jobLngGlobal = jobItem.jobLng
+            DisplayStruct.jobTitleGlobal = jobItem.jobTitle
+            DisplayStruct.jobURLGlobal = jobItem.jobURL
+            
+            self.performSegue(withIdentifier: self.listToDisplay, sender: nil)
+            
+            print("selected Job: \(jobItem)")
+        }
         
-        self.performSegue(withIdentifier: self.listToDisplay, sender: nil)
-        
-        print("selected Job: \(jobItem)")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

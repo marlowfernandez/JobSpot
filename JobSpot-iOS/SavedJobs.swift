@@ -97,66 +97,70 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
-        let savedJobItem = savedjobsItems[(indexPath?.row)!]
-
-        print("selected saved item: \(savedJobItem)")
-
-        let alertController = UIAlertController(title: "Saved Jobs", message: "Would you like to view this job?", preferredStyle: .alert)
-
-        alertController.addAction(UIAlertAction(title: "View Job", style: .default, handler: {
-            alert -> Void in
+        
+        if savedjobsItems.count > 0 {
+            let savedJobItem = savedjobsItems[(indexPath?.row)!]
             
-            DisplayStruct.companyNameGlobal = savedJobItem.companyNameGlobal
-            DisplayStruct.datePostedGlobal = savedJobItem.datePostedGlobal
-            DisplayStruct.jobCityStateGlobal = savedJobItem.jobCityStateGlobal
-            DisplayStruct.jobIDGlobal = savedJobItem.jobIDGlobal
-            DisplayStruct.jobLatGlobal = savedJobItem.jobLatGlobal
-            DisplayStruct.jobLngGlobal = savedJobItem.jobLngGlobal
-            DisplayStruct.jobTitleGlobal = savedJobItem.jobTitleGlobal
-            DisplayStruct.jobURLGlobal = savedJobItem.jobURLGlobal
-
-            print("SavedJobs companyNameGlobal: \(DisplayStruct.companyNameGlobal)")
-            print("SavedJobs datePostedGlobal: \(DisplayStruct.datePostedGlobal)")
-            print("SavedJobs jobCityStateGlobal: \(DisplayStruct.jobCityStateGlobal)")
-            print("SavedJobs jobIDGlobal: \(DisplayStruct.jobIDGlobal)")
-            print("SavedJobs jobLatGlobal: \(DisplayStruct.jobLatGlobal)")
-            print("SavedJobs jobLngGlobal: \(DisplayStruct.jobLngGlobal)")
-            print("SavedJobs jobTitleGlobal: \(DisplayStruct.jobTitleGlobal)")
-            print("SavedJobs jobURLGlobal: \(DisplayStruct.jobURLGlobal)")
-
-            self.performSegue(withIdentifier: self.savedjobsToDisplay, sender: nil)
-        }))
-
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            alert -> Void in
+            print("selected saved item: \(savedJobItem)")
             
-        }))
-
-        alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.text = "Company Name: " + savedJobItem.companyNameGlobal
-            textField.textAlignment = .left
-            textField.isUserInteractionEnabled = false
-        })
+            let alertController = UIAlertController(title: "Saved Jobs", message: "Would you like to view this job?", preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: "View Job", style: .default, handler: {
+                alert -> Void in
+                
+                DisplayStruct.companyNameGlobal = savedJobItem.companyNameGlobal
+                DisplayStruct.datePostedGlobal = savedJobItem.datePostedGlobal
+                DisplayStruct.jobCityStateGlobal = savedJobItem.jobCityStateGlobal
+                DisplayStruct.jobIDGlobal = savedJobItem.jobIDGlobal
+                DisplayStruct.jobLatGlobal = savedJobItem.jobLatGlobal
+                DisplayStruct.jobLngGlobal = savedJobItem.jobLngGlobal
+                DisplayStruct.jobTitleGlobal = savedJobItem.jobTitleGlobal
+                DisplayStruct.jobURLGlobal = savedJobItem.jobURLGlobal
+                
+                print("SavedJobs companyNameGlobal: \(DisplayStruct.companyNameGlobal)")
+                print("SavedJobs datePostedGlobal: \(DisplayStruct.datePostedGlobal)")
+                print("SavedJobs jobCityStateGlobal: \(DisplayStruct.jobCityStateGlobal)")
+                print("SavedJobs jobIDGlobal: \(DisplayStruct.jobIDGlobal)")
+                print("SavedJobs jobLatGlobal: \(DisplayStruct.jobLatGlobal)")
+                print("SavedJobs jobLngGlobal: \(DisplayStruct.jobLngGlobal)")
+                print("SavedJobs jobTitleGlobal: \(DisplayStruct.jobTitleGlobal)")
+                print("SavedJobs jobURLGlobal: \(DisplayStruct.jobURLGlobal)")
+                
+                self.performSegue(withIdentifier: self.savedjobsToDisplay, sender: nil)
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                alert -> Void in
+                
+            }))
+            
+            alertController.addTextField(configurationHandler: { (textField) -> Void in
+                textField.text = "Company Name: " + savedJobItem.companyNameGlobal
+                textField.textAlignment = .left
+                textField.isUserInteractionEnabled = false
+            })
+            
+            alertController.addTextField(configurationHandler: { (textField) -> Void in
+                textField.text = "Title: " + savedJobItem.jobTitleGlobal
+                textField.textAlignment = .left
+                textField.isUserInteractionEnabled = false
+            })
+            
+            alertController.addTextField(configurationHandler: { (textField) -> Void in
+                textField.text = "Location: " + savedJobItem.jobCityStateGlobal
+                textField.textAlignment = .left
+                textField.isUserInteractionEnabled = false
+            })
+            
+            alertController.addTextField(configurationHandler: { (textField) -> Void in
+                textField.text = "Date Posted: " + savedJobItem.datePostedGlobal
+                textField.textAlignment = .left
+                textField.isUserInteractionEnabled = false
+            })
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
         
-        alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.text = "Title: " + savedJobItem.jobTitleGlobal
-            textField.textAlignment = .left
-            textField.isUserInteractionEnabled = false
-        })
-        
-        alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.text = "Location: " + savedJobItem.jobCityStateGlobal
-            textField.textAlignment = .left
-            textField.isUserInteractionEnabled = false
-        })
-        
-        alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.text = "Date Posted: " + savedJobItem.datePostedGlobal
-            textField.textAlignment = .left
-            textField.isUserInteractionEnabled = false
-        })
-
-        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func homeActionButton(_ sender: UIButton) {

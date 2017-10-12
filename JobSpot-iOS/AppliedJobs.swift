@@ -16,6 +16,7 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     let appliedToProfile = "appliedToProfile"
     let appliedToSavedJobs = "appliedToSavedJobs"
     var noItems = ["No items to display"]
+    var appliedJobsItem : [SaveJob] = []
     var rootRef: FIRDatabaseReference!
     @IBOutlet weak var tableViewOutlet: UITableView!
     
@@ -24,17 +25,21 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-        //        if savedSearchesItem.count > 0 {
-        //            return savedSearchesItem.count
-        //        } else {
-        //            return noItems.count
-        //        }
+        return noItems.count
+//        if appliedJobsItem.count > 0 {
+//            return appliedJobsItem.count
+//        } else {
+//            return noItems.count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellAppliedJobs", for: indexPath)
         cell.selectionStyle = .none
+        
+        let noData = noItems[indexPath.row]
+        cell.textLabel?.text = noData
+        cell.detailTextLabel?.text = " "
         
         //        if jobItems.count > 0 {
         //            let jobData = jobItems[indexPath.row]
