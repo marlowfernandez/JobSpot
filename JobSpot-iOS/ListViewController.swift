@@ -47,7 +47,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var jobItems: [DisplayStruct] = []
     var searchSaveItems: [SaveSearch] = []
     
-    var noItems = ["No items to display"]
+    var noItems = ["No jobs to display"]
     
     let headers: HTTPHeaders = [
         "Authorization": "Bearer imXBBrutJKGqrj6NHkLNPA41F8H/dbvQDiYjpaLrQWmYzJb+PNAZ7dg8D6Gv7onpkZl1mccgSRygH+xiE7AZrQ==",

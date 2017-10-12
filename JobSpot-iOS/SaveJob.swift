@@ -19,6 +19,7 @@ struct SaveJob {
     var jobLngGlobal = Double()
     var jobTitleGlobal = String()
     var jobURLGlobal = String()
+    var applyDateGlobal = String()
     
     var companyName = String()
     var datePosted = String()
@@ -31,7 +32,7 @@ struct SaveJob {
     
     var ref: FIRDatabaseReference?
     
-    init(companyNameSave: String, datePostedSave: String, jobCityStateSave: String, jobIDSave: String, jobLatSave: Double, jobLngSave: Double, jobTitleSave: String, jobURLSave: String) {
+    init(companyNameSave: String, datePostedSave: String, jobCityStateSave: String, jobIDSave: String, jobLatSave: Double, jobLngSave: Double, jobTitleSave: String, jobURLSave: String, applyDateSave: String) {
         
         companyNameGlobal = companyNameSave
         datePostedGlobal = datePostedSave
@@ -41,6 +42,7 @@ struct SaveJob {
         jobLngGlobal = jobLngSave
         jobTitleGlobal = jobTitleSave
         jobURLGlobal = jobURLSave
+        applyDateGlobal = applyDateSave
         
     }
     
@@ -58,29 +60,35 @@ struct SaveJob {
     
     init(snapshot: FIRDataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        companyName = snapshotValue["companyName"] as! String
-        print("companyName: \(companyName)")
         
-        datePosted = snapshotValue["datePosted"] as! String
-        print("datePosted: \(datePosted)")
+        if snapshotValue["applyDate"] != nil {
+            applyDateGlobal = snapshotValue["applyDate"] as! String
+            print("applyDate: \(applyDateGlobal)")
+        }
         
-        jobCityState = snapshotValue["jobCityState"] as! String
-        print("jobCityState: \(jobCityState)")
+        companyNameGlobal = snapshotValue["companyName"] as! String
+        print("companyName: \(companyNameGlobal)")
         
-        jobID = snapshotValue["jobID"] as! String
-        print("jobID: \(jobID)")
+        datePostedGlobal = snapshotValue["datePosted"] as! String
+        print("datePosted: \(datePostedGlobal)")
         
-        jobLat = snapshotValue["jobLat"] as! Double
-        print("jobLat: \(jobLat)")
+        jobCityStateGlobal = snapshotValue["jobCityState"] as! String
+        print("jobCityState: \(jobCityStateGlobal)")
         
-        jobLng = snapshotValue["jobLng"] as! Double
-        print("jobLng: \(jobLng)")
+        jobIDGlobal = snapshotValue["jobID"] as! String
+        print("jobID: \(jobIDGlobal)")
         
-        jobTitle = snapshotValue["jobTitle"] as! String
-        print("jobTitle: \(jobTitle)")
+        jobLatGlobal = snapshotValue["jobLat"] as! Double
+        print("jobLat: \(jobLatGlobal)")
         
-        jobURL = snapshotValue["jobURL"] as! String
-        print("jobURL: \(jobURL)")
+        jobLngGlobal = snapshotValue["jobLng"] as! Double
+        print("jobLng: \(jobLngGlobal)")
+        
+        jobTitleGlobal = snapshotValue["jobTitle"] as! String
+        print("jobTitle: \(jobTitleGlobal)")
+        
+        jobURLGlobal = snapshotValue["jobURL"] as! String
+        print("jobURL: \(jobURLGlobal)")
         
         ref = snapshot.ref
         print("ref: \(String(describing: ref))")
@@ -88,6 +96,7 @@ struct SaveJob {
     
     func toAnyObject() -> [String:Any] {
         return [
+            "appleDate": applyDateGlobal,
             "companyName": companyNameGlobal,
             "datePosted": datePostedGlobal,
             "jobCityState": jobCityStateGlobal,

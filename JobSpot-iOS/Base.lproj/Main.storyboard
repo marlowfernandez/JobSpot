@@ -1397,9 +1397,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableViewOutlet" destination="LBP-5g-qPU" id="450-o8-8GZ"/>
                         <segue destination="aDT-bX-bho" kind="show" identifier="savedjobsToAppliedJobs" id="oMs-nm-WxA"/>
                         <segue destination="f9r-Vy-h5s" kind="show" identifier="savedjobsToHome" id="Cgh-rq-8SX"/>
                         <segue destination="u3N-es-elT" kind="show" identifier="savedjobsToDisplay" id="aSe-cl-1WY"/>
+                        <segue destination="zeY-Dq-EyD" kind="show" identifier="savedjobsToProfile" id="HTc-39-lnh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1n-sF-xbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1538,9 +1540,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableViewOutlet" destination="WGl-wM-8Sb" id="gkD-F5-tMd"/>
                         <segue destination="L4u-tW-6Xe" kind="show" identifier="appliedToSavedJobs" id="sKa-Hn-AY0"/>
                         <segue destination="f9r-Vy-h5s" kind="show" identifier="appliedToHome" id="ydG-jT-b5w"/>
                         <segue destination="zeY-Dq-EyD" kind="show" identifier="appliedToProfile" id="M2f-54-UB9"/>
+                        <segue destination="u3N-es-elT" kind="show" identifier="appliedToDisplay" id="RkT-XW-cAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d79-gR-CSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1554,10 +1558,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="M2f-54-UB9"/>
-        <segue reference="DjS-ED-krX"/>
-        <segue reference="aSe-cl-1WY"/>
+        <segue reference="oMs-nm-WxA"/>
         <segue reference="sKa-Hn-AY0"/>
         <segue reference="ydG-jT-b5w"/>
+        <segue reference="RkT-XW-cAg"/>
         <segue reference="I5j-T5-00w"/>
         <segue reference="Irk-76-Yr8"/>
     </inferredMetricsTieBreakers>

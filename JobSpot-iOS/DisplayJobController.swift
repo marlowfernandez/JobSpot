@@ -74,7 +74,9 @@ class DisplayJobController: UIViewController {
         let jobURLGlobal = DisplayStruct.jobURLGlobal
         debugPrint("jobURLGlobal \(jobURLGlobal)")
         
-        let saveJobItem = SaveJob(companyNameSave: companyNameGlobal, datePostedSave: datePostedGlobal, jobCityStateSave: jobCityStateGlobal, jobIDSave: jobIDGlobal, jobLatSave: jobLatGlobal, jobLngSave: jobLngGlobal, jobTitleSave: jobTitleGlobal, jobURLSave: jobURLGlobal)
+        let applyDateGlobal = ""
+        
+        let saveJobItem = SaveJob(companyNameSave: companyNameGlobal, datePostedSave: datePostedGlobal, jobCityStateSave: jobCityStateGlobal, jobIDSave: jobIDGlobal, jobLatSave: jobLatGlobal, jobLngSave: jobLngGlobal, jobTitleSave: jobTitleGlobal, jobURLSave: jobURLGlobal, applyDateSave: applyDateGlobal)
         print("saveJobItem companyNAme: \(saveJobItem)")
         
         let userID = FIRAuth.auth()?.currentUser?.uid
@@ -112,8 +114,8 @@ class DisplayJobController: UIViewController {
         debugPrint("Save Job to FireBase \(jobTitle)")
         debugPrint("Save Job to FireBase \(jobURL)")
         
-        let saveJobItem = SaveJob(companyNameSave: companyName, datePostedSave: datePosted, jobCityStateSave: jobCityState, jobIDSave: jobID, jobLatSave: jobLat, jobLngSave: jobLng, jobTitleSave: jobTitle, jobURLSave: jobURL)
-        print("saveJobItem: \(saveJobItem)")
+//        let saveJobItem = SaveJob(companyNameSave: companyName, datePostedSave: datePosted, jobCityStateSave: jobCityState, jobIDSave: jobID, jobLatSave: jobLat, jobLngSave: jobLng, jobTitleSave: jobTitle, jobURLSave: jobURL, appleDateSave: " ")
+//        print("saveJobItem: \(saveJobItem)")
         
         debugPrint(DisplayStruct.companyNameGlobal)
         debugPrint(DisplayStruct.datePostedGlobal)

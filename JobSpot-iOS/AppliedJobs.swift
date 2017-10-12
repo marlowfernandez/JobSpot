@@ -15,6 +15,9 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     let appliedToHome = "appliedToHome"
     let appliedToProfile = "appliedToProfile"
     let appliedToSavedJobs = "appliedToSavedJobs"
+    var noItems = ["No items to display"]
+    var rootRef: FIRDatabaseReference!
+    @IBOutlet weak var tableViewOutlet: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
