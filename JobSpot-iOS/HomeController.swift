@@ -50,6 +50,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dismissKeyboardTapped()
+        
         mapViewOutlet.delegate = self
         
         cLLocationManager.delegate = self
@@ -576,5 +578,3 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
 }
-
-

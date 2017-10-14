@@ -24,6 +24,7 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dismissKeyboardTapped()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,7 +179,5 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func profileActionButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.savedjobsToProfile, sender: nil)
     }
-    
-    
     
 }

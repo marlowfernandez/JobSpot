@@ -19,7 +19,8 @@ class CreateAccount: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("viewDidLoad")
+        
+        self.dismissKeyboardTapped()
     }
     
     override func didReceiveMemoryWarning() {

@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.dismissKeyboardTapped()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,5 +85,17 @@ class ViewController: UIViewController {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
+}
+
+extension UIViewController {
+    func dismissKeyboardTapped() {
+        let tapBG: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tapBG.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapBG)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 

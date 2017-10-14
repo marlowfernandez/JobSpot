@@ -57,6 +57,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dismissKeyboardTapped()
+        
         cLLocationManager.delegate = self
         cLLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         cLLocationManager.distanceFilter = 500
@@ -538,5 +540,3 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
 }
-
-

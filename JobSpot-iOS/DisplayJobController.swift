@@ -36,6 +36,8 @@ class DisplayJobController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dismissKeyboardTapped()
+        
         companyNameOutlet.text = DisplayStruct.companyNameGlobal
         jobTitleOutlet.text = DisplayStruct.jobTitleGlobal
         jobCityStateOutlet.text = DisplayStruct.jobCityStateGlobal

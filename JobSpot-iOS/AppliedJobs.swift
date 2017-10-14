@@ -22,6 +22,8 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.dismissKeyboardTapped()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -134,7 +136,5 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     @IBAction func profileActionButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.appliedToProfile, sender: nil)
     }
-    
-    
     
 }

@@ -27,6 +27,8 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.dismissKeyboardTapped()
     }
     
     override func viewDidAppear(_ animated: Bool) {

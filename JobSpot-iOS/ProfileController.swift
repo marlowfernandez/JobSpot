@@ -36,7 +36,8 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("viewDidLoad")
+        
+        self.dismissKeyboardTapped()
         
         fullNameOutlet.text = " "
         headlineOutlet.text = " "
@@ -240,7 +241,4 @@ class ProfileController: UIViewController {
     @IBAction func profileActionButton(_ sender: UIButton) {
     }
     
-    
-    
 }
-
