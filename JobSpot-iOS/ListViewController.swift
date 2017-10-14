@@ -12,6 +12,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import YNDropDownMenu
+import GoogleMobileAds
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -39,6 +40,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var filterButtonOutlet: UIButton!
     @IBOutlet weak var tableViewOutlet: UITableView!
     var passUserLocationBool : Bool = true
+    @IBOutlet weak var bannerViewOutlet: GADBannerView!
     
     var lat : Double = 0
     var lng : Double = 0
@@ -58,6 +60,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         self.dismissKeyboardTapped()
+        
+        let request = GADRequest()
+        request.testDevices = [ kGADSimulatorID,   // All simulators
+            "e15b0e554146870aff4b7ef47282e61c" ];  // Sample device ID
+        
+        //bannerViewOutlet.adUnitID = "ca-app-pub-3940256099942544/6300978111" //test banner id
+        bannerViewOutlet.adUnitID = "ca-app-pub-6204503397505906/2185014830" //real banner id
+        bannerViewOutlet.rootViewController = self
+        bannerViewOutlet.load(request)
         
         cLLocationManager.delegate = self
         cLLocationManager.desiredAccuracy = kCLLocationAccuracyBest

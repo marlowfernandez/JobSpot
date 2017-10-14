@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import LinkedinSwift
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use Firebase library to configure APIs
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
+        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-6204503397505906~5385893242")
         
         return true
     }

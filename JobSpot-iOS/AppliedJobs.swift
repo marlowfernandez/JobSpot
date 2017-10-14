@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import GoogleMobileAds
 
 class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,11 +20,21 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     var appliedJobsItem : [SaveJob] = []
     var rootRef: FIRDatabaseReference!
     @IBOutlet weak var tableViewOutlet: UITableView!
+    @IBOutlet weak var bannerViewOutlet: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.dismissKeyboardTapped()
+        
+        let request = GADRequest()
+        request.testDevices = [ kGADSimulatorID,   // All simulators
+            "e15b0e554146870aff4b7ef47282e61c" ];  // Sample device ID
+        
+        //bannerViewOutlet.adUnitID = "ca-app-pub-3940256099942544/6300978111" //test banner id
+        bannerViewOutlet.adUnitID = "ca-app-pub-6204503397505906/2185014830" //real banner id
+        bannerViewOutlet.rootViewController = self
+        bannerViewOutlet.load(request)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -12,6 +12,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import YNDropDownMenu
+import GoogleMobileAds
 
 class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -38,6 +39,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var filterDropDown: UIView!
     @IBOutlet weak var savedSearchesOutlet: UIButton!
     @IBOutlet weak var filterButtonOutlet: UIButton!
+    @IBOutlet weak var bannerViewOutlet: GADBannerView!
+    
+    
     var passUserLocationBool : Bool = true
     
     var searchSaveItems: [SaveSearch] = []
@@ -51,6 +55,15 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         
         self.dismissKeyboardTapped()
+        
+        let request = GADRequest()
+        request.testDevices = [ kGADSimulatorID,   // All simulators
+            "e15b0e554146870aff4b7ef47282e61c" ];  // Sample device ID
+        
+        //bannerViewOutlet.adUnitID = "ca-app-pub-3940256099942544/6300978111" //test banner id
+        bannerViewOutlet.adUnitID = "ca-app-pub-6204503397505906/2185014830" //real banner id
+        bannerViewOutlet.rootViewController = self
+        bannerViewOutlet.load(request)
         
         mapViewOutlet.delegate = self
         

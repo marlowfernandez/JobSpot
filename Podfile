@@ -13,5 +13,6 @@ target 'JobSpot-iOS' do
   pod 'SwiftyJSON'
   pod 'YNDropDownMenu'
   pod 'LinkedinSwift'
+  pod 'Firebase/AdMob'
 
 end
