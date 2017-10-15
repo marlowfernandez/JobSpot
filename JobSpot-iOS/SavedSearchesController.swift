@@ -85,7 +85,6 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellSavedSearch", for: indexPath)
         cell.selectionStyle = .none
-        //cell.textLabel?.text = fruits[indexPath.row]
         
         if savedSearchesItem.count > 0 {
             let searchedData = savedSearchesItem[indexPath.row]
@@ -106,9 +105,18 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let savedItem = savedSearchesItem[indexPath.row]
-            savedItem.ref?.removeValue()
-            self.tableViewOutlet.reloadData()
+            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this search?", preferredStyle: .alert)
+            
+            let deleteAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                let savedItem = self.savedSearchesItem[indexPath.row]
+                savedItem.ref?.removeValue()
+                self.tableViewOutlet.reloadData()
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -135,6 +143,14 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
             print("SaveSearch radius: \(SaveSearch.radius)")
             
             self.performSegue(withIdentifier: self.savedsearchesToHome, sender: nil)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Delete", style: .default, handler: {
+            alert -> Void in
+            
+            let savedItem = self.savedSearchesItem[(indexPath?.row)!]
+            savedItem.ref?.removeValue()
+            self.tableViewOutlet.reloadData()
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {

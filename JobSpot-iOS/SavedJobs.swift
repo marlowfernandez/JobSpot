@@ -101,9 +101,19 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let savedItem = savedjobsItems[indexPath.row]
-            savedItem.ref?.removeValue()
-            self.tableViewOutlet.reloadData()
+            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this job?", preferredStyle: .alert)
+            
+            let deleteAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                let savedItem = self.savedjobsItems[indexPath.row]
+                savedItem.ref?.removeValue()
+                self.tableViewOutlet.reloadData()
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            
         }
     }
     
@@ -172,7 +182,6 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             self.present(alertController, animated: true, completion: nil)
         }
-        
     }
     
     @IBAction func homeActionButton(_ sender: UIButton) {

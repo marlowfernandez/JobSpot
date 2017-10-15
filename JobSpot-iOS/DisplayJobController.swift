@@ -52,57 +52,64 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
     }
 
     @IBAction func saveJobAction(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Save", message: "Are you sure you want to save this job?", preferredStyle: .alert)
         
+        let deleteAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            let companyNameGlobal = DisplayStruct.companyNameGlobal
+            debugPrint("companyName: \(companyNameGlobal)")
+            
+            let datePostedGlobal = DisplayStruct.datePostedGlobal
+            debugPrint("datePostedGlobal \(datePostedGlobal)")
+            
+            let jobCityStateGlobal = DisplayStruct.jobCityStateGlobal
+            debugPrint("jobCityStateGlobal \(jobCityStateGlobal)")
+            
+            let jobIDGlobal = DisplayStruct.jobIDGlobal
+            debugPrint("jobIDGlobal \(jobIDGlobal)")
+            
+            let jobLatGlobal = DisplayStruct.jobLatGlobal
+            debugPrint("jobLatGlobal \(jobLatGlobal)")
+            
+            let jobLngGlobal = DisplayStruct.jobLngGlobal
+            debugPrint("jobLngGlobal \(jobLngGlobal)")
+            
+            let jobTitleGlobal = DisplayStruct.jobTitleGlobal
+            debugPrint("jobTitleGlobal \(jobTitleGlobal)")
+            
+            let jobURLGlobal = DisplayStruct.jobURLGlobal
+            debugPrint("jobURLGlobal \(jobURLGlobal)")
+            
+            let applyDateGlobal = ""
+            
+            let saveJobItem = SaveJob(companyNameSave: companyNameGlobal, datePostedSave: datePostedGlobal, jobCityStateSave: jobCityStateGlobal, jobIDSave: jobIDGlobal, jobLatSave: jobLatGlobal, jobLngSave: jobLngGlobal, jobTitleSave: jobTitleGlobal, jobURLSave: jobURLGlobal, applyDateSave: applyDateGlobal)
+            print("saveJobItem companyNAme: \(saveJobItem)")
+            
+            let userID = FIRAuth.auth()?.currentUser?.uid
+            
+            print("userID: \(String(describing: userID))")
+            
+            let usersRef = self.rootRef.child("users")
+            
+            print("usersRef: \(usersRef)")
+            
+            let idRef = usersRef.child(userID!)
+            
+            print("ifRef: \(idRef)")
+            
+            let listRef = idRef.child("savedjobs")
+            
+            print("listRef: \(listRef)")
+            
+            let addChildStr = listRef.child(jobIDGlobal)
+            print("addChildStr: \(addChildStr)")
+            
+            addChildStr.setValue(saveJobItem.toAnyObject())
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        let companyNameGlobal = DisplayStruct.companyNameGlobal
-        debugPrint("companyName: \(companyName)")
-        
-        let datePostedGlobal = DisplayStruct.datePostedGlobal
-        debugPrint("datePostedGlobal \(datePostedGlobal)")
-        
-        let jobCityStateGlobal = DisplayStruct.jobCityStateGlobal
-        debugPrint("jobCityStateGlobal \(jobCityStateGlobal)")
-        
-        let jobIDGlobal = DisplayStruct.jobIDGlobal
-        debugPrint("jobIDGlobal \(jobIDGlobal)")
-        
-        let jobLatGlobal = DisplayStruct.jobLatGlobal
-        debugPrint("jobLatGlobal \(jobLatGlobal)")
-        
-        let jobLngGlobal = DisplayStruct.jobLngGlobal
-        debugPrint("jobLngGlobal \(jobLngGlobal)")
-        
-        let jobTitleGlobal = DisplayStruct.jobTitleGlobal
-        debugPrint("jobTitleGlobal \(jobTitleGlobal)")
-        
-        let jobURLGlobal = DisplayStruct.jobURLGlobal
-        debugPrint("jobURLGlobal \(jobURLGlobal)")
-        
-        let applyDateGlobal = ""
-        
-        let saveJobItem = SaveJob(companyNameSave: companyNameGlobal, datePostedSave: datePostedGlobal, jobCityStateSave: jobCityStateGlobal, jobIDSave: jobIDGlobal, jobLatSave: jobLatGlobal, jobLngSave: jobLngGlobal, jobTitleSave: jobTitleGlobal, jobURLSave: jobURLGlobal, applyDateSave: applyDateGlobal)
-        print("saveJobItem companyNAme: \(saveJobItem)")
-        
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        
-        print("userID: \(String(describing: userID))")
-        
-        let usersRef = rootRef.child("users")
-        
-        print("usersRef: \(usersRef)")
-        
-        let idRef = usersRef.child(userID!)
-        
-        print("ifRef: \(idRef)")
-        
-        let listRef = idRef.child("savedjobs")
-        
-        print("listRef: \(listRef)")
-        
-        let addChildStr = listRef.child(jobIDGlobal)
-        print("addChildStr: \(addChildStr)")
-        
-        addChildStr.setValue(saveJobItem.toAnyObject())
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -200,8 +207,6 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
         alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection()
         alert.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
         self.present(alert, animated: true, completion:  nil)
-        
-        
     }
     
     func showErrorSocialMedia(service: String){
@@ -211,7 +216,6 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-    
     
     @IBAction func goToHomeAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: self.displayToHome, sender: nil)
