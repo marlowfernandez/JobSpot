@@ -54,6 +54,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         self.dismissKeyboardTapped()
         
         let request = GADRequest()
@@ -124,13 +126,12 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     public func mapChangeViewToSavedSearches() {
         let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {
-            self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
+//            self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
         }
         
     }
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
-        //self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
         self.performSegue(withIdentifier: self.homeToProfile, sender: nil)
     }
     

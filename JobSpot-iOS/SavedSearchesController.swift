@@ -186,26 +186,26 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Saved Searches"
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Saved Searches"
+//    }
     
-    @IBAction func profileAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedsearchesToProfile, sender: nil)
-    }
-    
-    @IBAction func appliedAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedsearchesToAppliedJobs, sender: nil)
-        
-    }
-    
-    @IBAction func savedAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedsearchesToSavedJobs, sender: nil)
-        
-    }
-    
-    @IBAction func searchAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedsearchesToHome, sender: nil)
-    }
+//    @IBAction func profileAction(_ sender: UIButton) {
+//        self.performSegue(withIdentifier: self.savedsearchesToProfile, sender: nil)
+//    }
+//    
+//    @IBAction func appliedAction(_ sender: UIButton) {
+//        self.performSegue(withIdentifier: self.savedsearchesToAppliedJobs, sender: nil)
+//        
+//    }
+//    
+//    @IBAction func savedAction(_ sender: UIButton) {
+//        self.performSegue(withIdentifier: self.savedsearchesToSavedJobs, sender: nil)
+//        
+//    }
+//    
+//    @IBAction func searchAction(_ sender: UIButton) {
+//        self.performSegue(withIdentifier: self.savedsearchesToHome, sender: nil)
+//    }
     
 }

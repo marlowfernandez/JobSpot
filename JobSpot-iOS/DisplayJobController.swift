@@ -48,6 +48,10 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        debugPrint("prepare Segue")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         rootRef = FIRDatabase.database().reference()
     }
@@ -216,26 +220,6 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
         
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func applyViewAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.displayToWebView, sender: nil)
-    }
-    
-    @IBAction func goToHomeAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.displayToHome, sender: nil)
-    }
-    
-    @IBAction func goToProfileAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.displayToProfile, sender: nil)
-    }
-    
-    @IBAction func savedActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.displayToSavedJobs, sender: nil)
-    }
-    
-    @IBAction func appliedActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.displayToAppliedJobs, sender: nil)
     }
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
