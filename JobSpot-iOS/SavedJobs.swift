@@ -184,20 +184,4 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    @IBAction func homeActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedjobsToHome, sender: nil)
-    }
-    
-    @IBAction func savedActionButton(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func appliedActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedjobsToApplied, sender: nil)
-    }
-    
-    @IBAction func profileActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.savedjobsToProfile, sender: nil)
-    }
-    
 }

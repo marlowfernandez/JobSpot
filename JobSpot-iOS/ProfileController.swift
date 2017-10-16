@@ -226,19 +226,4 @@ class ProfileController: UIViewController {
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
     }
     
-    @IBAction func profileToHome(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.profileToHome, sender: nil)
-    }
-    
-    @IBAction func savedActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.profileToSavedJobs, sender: nil)
-    }
-    
-    @IBAction func appliedActionButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.profileToAppliedJobs, sender: nil)
-    }
-    
-    @IBAction func profileActionButton(_ sender: UIButton) {
-    }
-    
 }

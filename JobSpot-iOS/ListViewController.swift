@@ -115,11 +115,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     }
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if jobItems.count > 0 {
@@ -165,13 +160,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.detailTextLabel?.text = " "
         }
         
-        //cell.imageView?.image = UIImage(named: fruitName)
+        //cell.imageView?.image = UIImage(named: )
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Jobs"
     }
     
     @IBAction func profileButtonAction(_ sender: UIButton) {
