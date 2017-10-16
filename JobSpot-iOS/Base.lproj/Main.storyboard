@@ -793,6 +793,113 @@
             </objects>
             <point key="canvasLocation" x="3405.7971014492755" y="37.5"/>
         </scene>
+        <!--Job View Controller-->
+        <scene sceneID="2em-iu-ivz">
+            <objects>
+                <viewController id="zN4-jK-i45" customClass="JobViewController" customModule="JobSpot_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G9X-UF-oCz"/>
+                        <viewControllerLayoutGuide type="bottom" id="7ch-WL-k1s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bad-6I-CQe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4T-Yi-WCD">
+                                <rect key="frame" x="0.0" y="147" width="414" height="589"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zN4-jK-i45" id="vEP-X1-UUS"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fN8-3i-ZQT">
+                                <rect key="frame" x="20" y="86" width="115" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="04I-pU-n94"/>
+                                    <constraint firstAttribute="height" constant="40" id="XC7-jr-O5S"/>
+                                </constraints>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareAction:" destination="zN4-jK-i45" eventType="touchUpInside" id="nGq-vw-G93"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNe-Xn-zJH">
+                                <rect key="frame" x="150" y="86" width="115" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="Fvm-fz-Qqf"/>
+                                    <constraint firstAttribute="height" constant="40" id="naD-kO-7ia"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveAction:" destination="zN4-jK-i45" eventType="touchUpInside" id="kio-jQ-PBJ"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVk-78-XFn">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="JobSpot" id="qxT-IG-QpZ"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8I-fo-xoE">
+                                <rect key="frame" x="279" y="86" width="115" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="MwZ-7Y-T4S"/>
+                                    <constraint firstAttribute="height" constant="40" id="ae6-JB-baD"/>
+                                </constraints>
+                                <state key="normal" title="Mark as Applied">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="appliedAction:" destination="zN4-jK-i45" eventType="touchUpInside" id="wQJ-Be-IsV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T4T-Yi-WCD" firstAttribute="top" secondItem="u8I-fo-xoE" secondAttribute="bottom" constant="21" id="2af-HW-0v6"/>
+                            <constraint firstItem="fN8-3i-ZQT" firstAttribute="leading" secondItem="bad-6I-CQe" secondAttribute="leadingMargin" id="5FB-zp-XP1"/>
+                            <constraint firstItem="fN8-3i-ZQT" firstAttribute="top" secondItem="KVk-78-XFn" secondAttribute="bottom" constant="22" id="5xM-0V-ehh"/>
+                            <constraint firstItem="fN8-3i-ZQT" firstAttribute="top" secondItem="JNe-Xn-zJH" secondAttribute="top" id="6b1-oG-zUM"/>
+                            <constraint firstItem="KVk-78-XFn" firstAttribute="top" secondItem="G9X-UF-oCz" secondAttribute="bottom" id="8RO-of-sDM"/>
+                            <constraint firstItem="JNe-Xn-zJH" firstAttribute="baseline" secondItem="u8I-fo-xoE" secondAttribute="firstBaseline" id="8bY-OU-SOK"/>
+                            <constraint firstItem="T4T-Yi-WCD" firstAttribute="leading" secondItem="KVk-78-XFn" secondAttribute="leading" id="Puk-sk-c9s"/>
+                            <constraint firstItem="JNe-Xn-zJH" firstAttribute="baseline" secondItem="u8I-fo-xoE" secondAttribute="baseline" id="TlQ-T4-apo"/>
+                            <constraint firstItem="JNe-Xn-zJH" firstAttribute="centerX" secondItem="KVk-78-XFn" secondAttribute="centerX" id="V1l-X7-A3i"/>
+                            <constraint firstAttribute="trailing" secondItem="KVk-78-XFn" secondAttribute="trailing" id="Z7Y-l7-7W1"/>
+                            <constraint firstItem="JNe-Xn-zJH" firstAttribute="leading" secondItem="fN8-3i-ZQT" secondAttribute="trailing" constant="15" id="boI-LJ-vgG"/>
+                            <constraint firstItem="u8I-fo-xoE" firstAttribute="trailing" secondItem="bad-6I-CQe" secondAttribute="trailingMargin" id="dza-gZ-vek"/>
+                            <constraint firstItem="T4T-Yi-WCD" firstAttribute="trailing" secondItem="KVk-78-XFn" secondAttribute="trailing" id="fU3-h4-hI4"/>
+                            <constraint firstItem="JNe-Xn-zJH" firstAttribute="baseline" secondItem="fN8-3i-ZQT" secondAttribute="firstBaseline" id="fxm-OA-2mp"/>
+                            <constraint firstItem="u8I-fo-xoE" firstAttribute="leading" secondItem="JNe-Xn-zJH" secondAttribute="trailing" constant="14" id="hNK-VR-sjf"/>
+                            <constraint firstItem="JNe-Xn-zJH" firstAttribute="top" secondItem="u8I-fo-xoE" secondAttribute="top" id="hkf-Vs-rf0"/>
+                            <constraint firstItem="u8I-fo-xoE" firstAttribute="baseline" secondItem="JNe-Xn-zJH" secondAttribute="firstBaseline" id="iCl-Pc-QAo"/>
+                            <constraint firstItem="fN8-3i-ZQT" firstAttribute="baseline" secondItem="JNe-Xn-zJH" secondAttribute="baseline" id="r2z-91-U9H"/>
+                            <constraint firstItem="KVk-78-XFn" firstAttribute="leading" secondItem="bad-6I-CQe" secondAttribute="leading" id="xNx-DI-BsC"/>
+                            <constraint firstItem="T4T-Yi-WCD" firstAttribute="bottom" secondItem="7ch-WL-k1s" secondAttribute="top" id="xcn-sA-pR3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="markAppliedOutlet" destination="u8I-fo-xoE" id="kBU-hh-UHG"/>
+                        <outlet property="saveButtonOutlet" destination="JNe-Xn-zJH" id="P5r-S0-d2j"/>
+                        <outlet property="shareButtonOutlet" destination="fN8-3i-ZQT" id="L9F-cL-8xE"/>
+                        <outlet property="webViewOutlet" destination="T4T-Yi-WCD" id="O82-UV-UL9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRN-kT-gMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3325" y="1569"/>
+        </scene>
         <!--Profile Controller-->
         <scene sceneID="t5q-e4-SM3">
             <objects>
@@ -1252,9 +1359,12 @@
                                     <constraint firstAttribute="height" constant="40" id="NJ8-fV-u9a"/>
                                     <constraint firstAttribute="width" constant="115" id="fwt-OW-maP"/>
                                 </constraints>
-                                <state key="normal" title="Apply">
+                                <state key="normal" title="View More">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="applyViewAction:" destination="u3N-es-elT" eventType="touchUpInside" id="3S5-L2-gVN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lj-G6-EbB">
                                 <rect key="frame" x="221" y="684" width="72" height="44"/>
@@ -1333,6 +1443,7 @@
                         <segue destination="zeY-Dq-EyD" kind="presentation" identifier="displayToProfile" id="yQv-KI-yOm"/>
                         <segue destination="L4u-tW-6Xe" kind="show" identifier="displayToSavedJobs" id="A2D-Pb-zoU"/>
                         <segue destination="aDT-bX-bho" kind="show" identifier="displayToAppliedJobs" id="DjS-ED-krX"/>
+                        <segue destination="zN4-jK-i45" kind="presentation" identifier="displayToWebView" id="dyc-nZ-n40"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXh-Lw-LNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1656,9 +1767,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1eo-wV-XLJ"/>
-        <segue reference="Vmc-83-637"/>
-        <segue reference="yQv-KI-yOm"/>
+        <segue reference="RkT-XW-cAg"/>
         <segue reference="DjS-ED-krX"/>
+        <segue reference="yQv-KI-yOm"/>
         <segue reference="A2D-Pb-zoU"/>
         <segue reference="WQH-nU-clU"/>
         <segue reference="I5j-T5-00w"/>

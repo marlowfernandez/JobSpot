@@ -95,7 +95,6 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
             cell.textLabel?.text = noData
             cell.detailTextLabel?.text = " "
         }
-        
         return cell
     }
     

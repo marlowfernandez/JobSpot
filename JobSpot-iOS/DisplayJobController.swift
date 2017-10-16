@@ -21,6 +21,7 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
     let displayToProfile = "displayToProfile"
     let displayToSavedJobs = "displayToSavedJobs"
     let displayToAppliedJobs = "displayToAppliedJobs"
+    let displayToWebView = "displayToWebView"
     @IBOutlet weak var companyNameOutlet: UILabel!
     @IBOutlet weak var jobTitleOutlet: UILabel!
     @IBOutlet weak var jobCityStateOutlet: UILabel!
@@ -215,6 +216,10 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
         
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func applyViewAction(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self.displayToWebView, sender: nil)
     }
     
     @IBAction func goToHomeAction(_ sender: UIButton) {
