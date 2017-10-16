@@ -1336,7 +1336,7 @@
                         <segue destination="L4u-tW-6Xe" kind="show" identifier="appliedToSavedJobs" id="sKa-Hn-AY0"/>
                         <segue destination="f9r-Vy-h5s" kind="show" identifier="appliedToHome" id="ydG-jT-b5w"/>
                         <segue destination="zeY-Dq-EyD" kind="show" identifier="appliedToProfile" id="M2f-54-UB9"/>
-                        <segue destination="u3N-es-elT" kind="show" identifier="appliedToDisplay" id="RkT-XW-cAg"/>
+                        <segue destination="u3N-es-elT" kind="show" identifier="appliedToDisplay" id="sWR-9V-gvC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d79-gR-CSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1349,12 +1349,12 @@
         <image name="signin-linkedin" width="292" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hzW-pD-IhX"/>
-        <segue reference="WQH-nU-clU"/>
-        <segue reference="Vmc-83-637"/>
-        <segue reference="IW3-2A-Cva"/>
+        <segue reference="ydG-jT-b5w"/>
         <segue reference="w6x-c5-Rep"/>
+        <segue reference="M2f-54-UB9"/>
+        <segue reference="sWR-9V-gvC"/>
+        <segue reference="sKa-Hn-AY0"/>
+        <segue reference="WQH-nU-clU"/>
         <segue reference="Kns-Ps-Mei"/>
-        <segue reference="L4m-AS-6JC"/>
     </inferredMetricsTieBreakers>
 </document>

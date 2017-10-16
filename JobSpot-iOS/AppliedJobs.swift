@@ -16,6 +16,7 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
     let appliedToHome = "appliedToHome"
     let appliedToProfile = "appliedToProfile"
     let appliedToSavedJobs = "appliedToSavedJobs"
+    let appliedToDisplay = "appliedToDisplay"
     var noItems = ["No items to display"]
     var appliedJobsItem : [SaveJob] = []
     var rootRef: FIRDatabaseReference!
@@ -149,7 +150,7 @@ class AppliedJobs: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 print("SavedJobs jobTitleGlobal: \(DisplayStruct.jobTitleGlobal)")
                 print("SavedJobs jobURLGlobal: \(DisplayStruct.jobURLGlobal)")
                 
-                //self.performSegue(withIdentifier: self.savedjobsToDisplay, sender: nil)
+                self.performSegue(withIdentifier: self.appliedToDisplay, sender: nil)
             }))
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
