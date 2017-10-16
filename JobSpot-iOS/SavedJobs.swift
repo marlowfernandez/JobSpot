@@ -26,6 +26,8 @@ class SavedJobs: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         self.dismissKeyboardTapped()
         
         let request = GADRequest()

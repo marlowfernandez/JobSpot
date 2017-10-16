@@ -61,6 +61,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.dismissKeyboardTapped()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         let request = GADRequest()
         request.testDevices = [ kGADSimulatorID,   // All simulators
             "e15b0e554146870aff4b7ef47282e61c" ];  // Sample device ID

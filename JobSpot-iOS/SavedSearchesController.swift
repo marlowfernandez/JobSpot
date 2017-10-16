@@ -28,12 +28,9 @@ class SavedSearchesController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         self.dismissKeyboardTapped()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
