@@ -58,14 +58,13 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.dismissKeyboardTapped()
         
-        let request = GADRequest()
-        request.testDevices = [ kGADSimulatorID,   // All simulators
-            "e15b0e554146870aff4b7ef47282e61c" ];  // Sample device ID
-        
-        //bannerViewOutlet.adUnitID = "ca-app-pub-3940256099942544/6300978111" //test banner id
-        bannerViewOutlet.adUnitID = "ca-app-pub-6204503397505906/2185014830" //real banner id
-        bannerViewOutlet.rootViewController = self
-        bannerViewOutlet.load(request)
+//        let request = GADRequest()
+//        request.testDevices = [ kGADSimulatorID,   // All simulators
+//            "e15b0e554146870aff4b7ef47282e61c" ];  // Sample device ID
+//        
+//        bannerViewOutlet.adUnitID = "ca-app-pub-6204503397505906/2185014830" //real banner id
+//        bannerViewOutlet.rootViewController = self
+//        bannerViewOutlet.load(request)
         
         mapViewOutlet.delegate = self
         
