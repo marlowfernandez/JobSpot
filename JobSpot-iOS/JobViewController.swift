@@ -127,7 +127,7 @@ class JobViewController: UIViewController, WKNavigationDelegate, MFMailComposeVi
             let jobURLGlobal = DisplayStruct.jobURLGlobal
             debugPrint("jobURLGlobal \(jobURLGlobal)")
             
-            let applyDateGlobal = ""
+            let applyDateGlobal = " "
             
             let saveJobItem = SaveJob(companyNameSave: companyNameGlobal, datePostedSave: datePostedGlobal, jobCityStateSave: jobCityStateGlobal, jobIDSave: jobIDGlobal, jobLatSave: jobLatGlobal, jobLngSave: jobLngGlobal, jobTitleSave: jobTitleGlobal, jobURLSave: jobURLGlobal, applyDateSave: applyDateGlobal)
             print("saveJobItem companyNAme: \(saveJobItem)")

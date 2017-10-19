@@ -96,7 +96,7 @@ struct SaveJob {
     
     func toAnyObject() -> [String:Any] {
         return [
-            "appleDate": applyDateGlobal,
+            "applyDate": applyDateGlobal,
             "companyName": companyNameGlobal,
             "datePosted": datePostedGlobal,
             "jobCityState": jobCityStateGlobal,
