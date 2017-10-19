@@ -375,7 +375,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         let newLocation = location.replacingOccurrences(of: " ", with: "+")
                         let newLocation2 = newLocation.replacingOccurrences(of: ",", with: "")
                         
-                        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany2 + newLocation2 + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+                        let strGeoCodeLocInput = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany2 + "+" + newLocation2 + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
                         
                         debugPrint("GeoCodeString URL getJobs: \(strGeoCodeLocInput)")
                         

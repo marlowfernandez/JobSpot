@@ -10,6 +10,9 @@
 		3F28146910C4B023A6092E94 /* Pods_JobSpot_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C8BD7E9C5F24A65C41403F /* Pods_JobSpot_iOS.framework */; };
 		400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */; };
 		40162AD31F9300E0007974CE /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40162AD21F9300E0007974CE /* JobViewController.swift */; };
+		40162AD61F97B9B7007974CE /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40162AD41F97B9B7007974CE /* Main-iPad.storyboard */; };
+		40162AD81F97BCA4007974CE /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40162AD71F97BCA4007974CE /* NavController.swift */; };
+		40162AE01F982BB6007974CE /* SearchController_iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40162ADF1F982BB6007974CE /* SearchController_iPad.swift */; };
 		40179B271F7B25E9003E0021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40179B261F7B25E9003E0021 /* AppDelegate.swift */; };
 		40179B291F7B25E9003E0021 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40179B281F7B25E9003E0021 /* ViewController.swift */; };
 		40179B2C1F7B25E9003E0021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40179B2A1F7B25E9003E0021 /* Main.storyboard */; };
@@ -40,6 +43,9 @@
 		27C8BD7E9C5F24A65C41403F /* Pods_JobSpot_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobSpot_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAnnotation.swift; sourceTree = "<group>"; };
 		40162AD21F9300E0007974CE /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
+		40162AD51F97B9B7007974CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
+		40162AD71F97BCA4007974CE /* NavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
+		40162ADF1F982BB6007974CE /* SearchController_iPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController_iPad.swift; sourceTree = "<group>"; };
 		40179B231F7B25E9003E0021 /* JobSpot-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JobSpot-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40179B261F7B25E9003E0021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40179B281F7B25E9003E0021 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +70,7 @@
 		40A6D9961F808EE2004CCE9E /* ApiConfigNotUsed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfigNotUsed.swift; sourceTree = "<group>"; };
 		40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStruct.swift; sourceTree = "<group>"; };
 		40BBE7211F8B21E200A14336 /* DisplayJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayJobController.swift; sourceTree = "<group>"; };
-		40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "linkedin-sdk.framework"; path = "JobSpot-iOS/linkedin-sdk.framework"; sourceTree = "<group>"; };
 		40C58EC91F8AA95B00F216D7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		D27025ACAE22468321F205B2 /* Pods-JobSpot-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSpot-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobSpot-iOS/Pods-JobSpot-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +88,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40162AD91F97BF07007974CE /* Controllers-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				40162ADF1F982BB6007974CE /* SearchController_iPad.swift */,
+			);
+			name = "Controllers-iPad";
+			sourceTree = "<group>";
+		};
+		40162ADA1F97BF10007974CE /* Controllers-Global */ = {
+			isa = PBXGroup;
+			children = (
+				40179B281F7B25E9003E0021 /* ViewController.swift */,
+				40499F851F7ED87A007E6EC0 /* CreateAccount.swift */,
+				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
+				401A04A51F89B6540061AA79 /* SavedSearchesController.swift */,
+				40BBE7211F8B21E200A14336 /* DisplayJobController.swift */,
+				401C27FC1F8EE89700444FFE /* SavedJobs.swift */,
+				401C27FE1F8EE8A300444FFE /* AppliedJobs.swift */,
+				40162AD21F9300E0007974CE /* JobViewController.swift */,
+				40162AD71F97BCA4007974CE /* NavController.swift */,
+			);
+			name = "Controllers-Global";
+			sourceTree = "<group>";
+		};
+		40162ADB1F97BF68007974CE /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				40179B261F7B25E9003E0021 /* AppDelegate.swift */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		40162ADC1F97BF73007974CE /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				40179B2A1F7B25E9003E0021 /* Main.storyboard */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		40162ADD1F97BFB0007974CE /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				40162AD41F97B9B7007974CE /* Main-iPad.storyboard */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		40179B1A1F7B25E9003E0021 = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +157,7 @@
 		40179B251F7B25E9003E0021 /* JobSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */,
-				401A04A01F8967750061AA79 /* Structures */,
+				401A04A01F8967750061AA79 /* Structures-Modal */,
 				40499F831F7B3E6D007E6EC0 /* SwiftFiles */,
 				40499F841F7B4055007E6EC0 /* Storyboards */,
 				401A04991F8862E60061AA79 /* Custom Views */,
@@ -125,15 +178,16 @@
 			name = "Custom Views";
 			sourceTree = "<group>";
 		};
-		401A04A01F8967750061AA79 /* Structures */ = {
+		401A04A01F8967750061AA79 /* Structures-Modal */ = {
 			isa = PBXGroup;
 			children = (
+				400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */,
 				401A04A11F89678F0061AA79 /* DisplayStruct.swift */,
 				40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */,
 				401A04A31F897FA50061AA79 /* SaveSearch.swift */,
 				401C27FA1F8D82EF00444FFE /* SaveJob.swift */,
 			);
-			name = Structures;
+			name = "Structures-Modal";
 			sourceTree = "<group>";
 		};
 		401A04A71F8A6AD70061AA79 /* NotUsed */ = {
@@ -145,28 +199,18 @@
 			name = NotUsed;
 			sourceTree = "<group>";
 		};
-		401A04A81F8A6B880061AA79 /* Controllers */ = {
+		401A04A81F8A6B880061AA79 /* Controllers-iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				40179B281F7B25E9003E0021 /* ViewController.swift */,
-				40499F851F7ED87A007E6EC0 /* CreateAccount.swift */,
 				40499F871F7EF581007E6EC0 /* HomeController.swift */,
 				401A049E1F8890A20061AA79 /* ListViewController.swift */,
-				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
-				401A04A51F89B6540061AA79 /* SavedSearchesController.swift */,
-				40BBE7211F8B21E200A14336 /* DisplayJobController.swift */,
-				401C27FC1F8EE89700444FFE /* SavedJobs.swift */,
-				401C27FE1F8EE8A300444FFE /* AppliedJobs.swift */,
-				40162AD21F9300E0007974CE /* JobViewController.swift */,
 			);
-			name = Controllers;
+			name = "Controllers-iPhone";
 			sourceTree = "<group>";
 		};
 		401A04AB1F8A6BB90061AA79 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				40179B261F7B25E9003E0021 /* AppDelegate.swift */,
-				400F9CA31F81AD0000572B04 /* DisplayAnnotation.swift */,
 				401A049C1F886BD00061AA79 /* YNDropDownClasses.swift */,
 			);
 			name = Other;
@@ -175,7 +219,10 @@
 		40499F831F7B3E6D007E6EC0 /* SwiftFiles */ = {
 			isa = PBXGroup;
 			children = (
-				401A04A81F8A6B880061AA79 /* Controllers */,
+				40162ADB1F97BF68007974CE /* Delegate */,
+				40162ADA1F97BF10007974CE /* Controllers-Global */,
+				40162AD91F97BF07007974CE /* Controllers-iPad */,
+				401A04A81F8A6B880061AA79 /* Controllers-iPhone */,
 				401A04AB1F8A6BB90061AA79 /* Other */,
 			);
 			name = SwiftFiles;
@@ -184,7 +231,8 @@
 		40499F841F7B4055007E6EC0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				40179B2A1F7B25E9003E0021 /* Main.storyboard */,
+				40162ADD1F97BFB0007974CE /* iPad */,
+				40162ADC1F97BF73007974CE /* iPhone */,
 				40179B2F1F7B25E9003E0021 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -202,6 +250,7 @@
 		A43C4F25C9DF6E70567B4073 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */,
 				27C8BD7E9C5F24A65C41403F /* Pods_JobSpot_iOS.framework */,
 			);
 			name = Frameworks;
@@ -275,6 +324,7 @@
 				408291551F7B34280070FC0C /* GoogleService-Info.plist in Resources */,
 				40179B2E1F7B25E9003E0021 /* Assets.xcassets in Resources */,
 				40179B2C1F7B25E9003E0021 /* Main.storyboard in Resources */,
+				40162AD61F97B9B7007974CE /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A6D9971F808EE2004CCE9E /* ApiConfigNotUsed.swift in Sources */,
+				40162AE01F982BB6007974CE /* SearchController_iPad.swift in Sources */,
 				401A04A21F89678F0061AA79 /* DisplayStruct.swift in Sources */,
 				401C27FB1F8D82EF00444FFE /* SaveJob.swift in Sources */,
 				401A049D1F886BD00061AA79 /* YNDropDownClasses.swift in Sources */,
@@ -348,6 +399,7 @@
 				401C27FD1F8EE89700444FFE /* SavedJobs.swift in Sources */,
 				401C27FF1F8EE8A300444FFE /* AppliedJobs.swift in Sources */,
 				40162AD31F9300E0007974CE /* JobViewController.swift in Sources */,
+				40162AD81F97BCA4007974CE /* NavController.swift in Sources */,
 				40BBE7221F8B21E200A14336 /* DisplayJobController.swift in Sources */,
 				40499F861F7ED87A007E6EC0 /* CreateAccount.swift in Sources */,
 				40BBE7201F8ADC2C00A14336 /* ProfileStruct.swift in Sources */,
@@ -358,6 +410,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		40162AD41F97B9B7007974CE /* Main-iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40162AD51F97B9B7007974CE /* Base */,
+			);
+			name = "Main-iPad.storyboard";
+			sourceTree = "<group>";
+		};
 		40179B2A1F7B25E9003E0021 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

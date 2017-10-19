@@ -138,7 +138,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func searchButtonAction(_ sender: UIButton) {
         let jobTitleEntered = jobTitleTextField.text
         let locationEntered = locationTextField.text
-        //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
             getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "200", days: YNFilterView.FilterValues.daysEntered)
@@ -194,11 +193,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         debugPrint("saveSearchList: \(saveSearchList)")
     }
     
-    @IBAction func savedSearchesAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: self.homeToSavedSearch, sender: nil)
-    }
-    
-    
     @IBAction func currLocationAction(_ sender: UIButton) {
         debugPrint("currLocationAction")
         
@@ -207,7 +201,6 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         checkUserLocationStatus()
         
     }
-    
     
     @IBAction func filterAction(_ sender: UIButton) {
         debugPrint("filterAction")
@@ -377,9 +370,11 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         print("Location: \(location)")
                         
                         let newCompany = company.replacingOccurrences(of: " ", with: "+")
+                        let newCompany2 = newCompany.replacingOccurrences(of: ",", with: "")
                         let newLocation = location.replacingOccurrences(of: " ", with: "+")
+                        let newLocation2 = newLocation.replacingOccurrences(of: ",", with: "")
                         
-                        let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany + "+" + newLocation + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
+                        let geoCodeString = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newCompany2 + "+" + newLocation2 + "&key=AIzaSyAFR4nAy-FpaCoAFTP3v_FdjPHLxtK3ovk"
                         
                         debugPrint("GeoCodeString URL getJobs: \(geoCodeString)")
                         
@@ -505,7 +500,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             DisplayStruct.jobURLGlobal = annotate.url
             //print(DisplayStruct.jobURLGlobal)
             
-            self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
+            }
         }
         
         
