@@ -33,6 +33,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var locationOutlet: UILabel!
     @IBOutlet weak var summaryOutlet: UILabel!
     @IBOutlet weak var profileImageOutlet: UIImageView!
+    @IBOutlet weak var logoutButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,8 @@ class ProfileController: UIViewController {
         emailOutlet.text = " "
         locationOutlet.text = " "
         summaryOutlet.text = " "
+        
+        logoutButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
         
     }
     

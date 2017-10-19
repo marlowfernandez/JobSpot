@@ -26,6 +26,10 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
     @IBOutlet weak var jobTitleOutlet: UILabel!
     @IBOutlet weak var jobCityStateOutlet: UILabel!
     @IBOutlet weak var datePostedOutlet: UILabel!
+    @IBOutlet weak var saveJobButtonOutlet: UIButton!
+    @IBOutlet weak var shareJobButtonOutlet: UIButton!
+    @IBOutlet weak var applyButtonOutlet: UIButton!
+    
     var rootRef: FIRDatabaseReference!
     var companyName = " "
     var datePostedGlobal = " "
@@ -46,6 +50,9 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
         jobCityStateOutlet.text = DisplayStruct.jobCityStateGlobal
         datePostedOutlet.text = DisplayStruct.datePostedGlobal
         
+        saveJobButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        shareJobButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        applyButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,14 +75,14 @@ class DisplayJobController: UIViewController, MFMailComposeViewControllerDelegat
             
             let jobCityStateGlobal = DisplayStruct.jobCityStateGlobal
             debugPrint("jobCityStateGlobal \(jobCityStateGlobal)")
-            
+        
             let jobIDGlobal = DisplayStruct.jobIDGlobal
             debugPrint("jobIDGlobal \(jobIDGlobal)")
             
-            let jobLatGlobal = DisplayStruct.jobLatGlobal
+            let jobLatGlobal = DisplayStruct.jobLatGlobal as Double
             debugPrint("jobLatGlobal \(jobLatGlobal)")
             
-            let jobLngGlobal = DisplayStruct.jobLngGlobal
+            let jobLngGlobal = DisplayStruct.jobLngGlobal as Double
             debugPrint("jobLngGlobal \(jobLngGlobal)")
             
             let jobTitleGlobal = DisplayStruct.jobTitleGlobal

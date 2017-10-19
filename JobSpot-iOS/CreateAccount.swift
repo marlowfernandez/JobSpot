@@ -17,10 +17,14 @@ class CreateAccount: UIViewController {
     let createAccToHome = "createAccToHome"
     let createAccToLogin = "createAccToLogin"
     
+    @IBOutlet weak var createAccOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.dismissKeyboardTapped()
+        
+        createAccOutlet.backgroundColor = UIColor(hex: "CC0000")
     }
     
     override func didReceiveMemoryWarning() {

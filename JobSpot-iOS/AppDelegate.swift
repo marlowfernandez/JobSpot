@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GADMobileAds.configure(withApplicationID: "ca-app-pub-6204503397505906~5385893242")
         
+        UINavigationBar.appearance().tintColor = UIColor(hex: "FFFFFF")
+        UINavigationBar.appearance().barStyle = UIBarStyle.black
+        UINavigationBar.appearance().barTintColor = UIColor(hex: "CC0000")
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(hex: "FFFFFF")]
+//        UIBarButtonItem.appearance().titleTextAttributes(for: [NSForegroundColorAttributeName: UIColor.white])
+        
         return true
     }
     
@@ -81,5 +87,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension UIColor {
+    convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        
+        var rgbValue: UInt64 = 0
+        
+        scanner.scanHexInt64(&rgbValue)
+        
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+        
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: 1
+        )
+    }
 }
 

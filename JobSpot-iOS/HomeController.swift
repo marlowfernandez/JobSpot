@@ -40,6 +40,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var savedSearchesOutlet: UIButton!
     @IBOutlet weak var filterButtonOutlet: UIButton!
     @IBOutlet weak var bannerViewOutlet: GADBannerView!
+    @IBOutlet weak var mapButtonOutlet: UIButton!
+    @IBOutlet weak var listButtonOutlet: UIButton!
     
     
     var passUserLocationBool : Bool = true
@@ -57,6 +59,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         self.dismissKeyboardTapped()
+        
+        mapButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        listButtonOutlet.setTitleColor(UIColor(hex: "CC0000"), for: UIControlState.normal)
         
 //        let request = GADRequest()
 //        request.testDevices = [ kGADSimulatorID,   // All simulators

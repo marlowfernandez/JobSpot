@@ -32,6 +32,10 @@ class JobViewController: UIViewController, WKNavigationDelegate, MFMailComposeVi
         webViewOutlet.delegate = self as? UIWebViewDelegate
         webViewOutlet.loadRequest(request)
         
+        shareButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        saveButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        markAppliedOutlet.backgroundColor = UIColor(hex: "CC0000")
+        
         debugPrint("web View : \(DisplayStruct.companyNameGlobal)")
         debugPrint("web View : \(DisplayStruct.datePostedGlobal)")
         debugPrint("web View : \(DisplayStruct.jobCityStateGlobal)")
@@ -115,10 +119,10 @@ class JobViewController: UIViewController, WKNavigationDelegate, MFMailComposeVi
             let jobIDGlobal = DisplayStruct.jobIDGlobal
             debugPrint("jobIDGlobal \(jobIDGlobal)")
             
-            let jobLatGlobal = DisplayStruct.jobLatGlobal
+            let jobLatGlobal = DisplayStruct.jobLatGlobal as Double
             debugPrint("jobLatGlobal \(jobLatGlobal)")
             
-            let jobLngGlobal = DisplayStruct.jobLngGlobal
+            let jobLngGlobal = DisplayStruct.jobLngGlobal as Double
             debugPrint("jobLngGlobal \(jobLngGlobal)")
             
             let jobTitleGlobal = DisplayStruct.jobTitleGlobal

@@ -17,8 +17,12 @@ class ViewController: UIViewController {
     let mainToHome = "mainToHome"
     var handle: FIRAuthStateDidChangeListenerHandle?
     
+    @IBOutlet weak var loginOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginOutlet.backgroundColor = UIColor(hex: "CC0000")
         
         self.navigationItem.setHidesBackButton(true, animated: false)
         

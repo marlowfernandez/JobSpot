@@ -41,6 +41,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableViewOutlet: UITableView!
     var passUserLocationBool : Bool = true
     @IBOutlet weak var bannerViewOutlet: GADBannerView!
+    @IBOutlet weak var mapButtonOutlet: UIButton!
+    @IBOutlet weak var listButtonOutlet: UIButton!
     
     var lat : Double = 0
     var lng : Double = 0
@@ -60,6 +62,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         self.dismissKeyboardTapped()
+        
+        listButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        mapButtonOutlet.setTitleColor(UIColor(hex: "CC0000"), for: UIControlState.normal)
         
         self.automaticallyAdjustsScrollViewInsets = false
         
