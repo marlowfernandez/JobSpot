@@ -24,12 +24,12 @@ class YNFilterView: YNDropDownView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
+        self.tintColor = UIColor(hex: "CC0000")
         self.initViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         self.initViews()
     }
     
@@ -58,7 +58,6 @@ class YNFilterView: YNDropDownView {
     }
     
     func initViews() {
-    
         
     }
     

@@ -115,8 +115,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let YNDropDown = Bundle.main.loadNibNamed("YNDropDown", owner: nil, options: nil) as? [UIView]
         if let _YNDropDown = YNDropDown {
-            let frame = CGRect(x: 0, y: 62, width: UIScreen.main.bounds.size.width, height: 32)
+            let frame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 32)
             let view = YNDropDownMenu(frame: frame, dropDownViews: _YNDropDown, dropDownViewTitles: ["Filter"])
+            view.setLabelColorWhen(normal: UIColor(hex: "CC0000"), selected: UIColor(hex: "000000"), disabled: UIColor(hex: "CC0000"))
+            view.setLabelFontWhen(normal: UIFont.boldSystemFont(ofSize: 14), selected: UIFont.boldSystemFont(ofSize: 14), disabled: UIFont.boldSystemFont(ofSize: 14))
+            
+            let image = self.ResizeImage(image: UIImage(named: "filter")!, changeSizeTo: CGSize(30.0, 30.0)) as UIImage
+            view.setImageWhen(normal: image, selected: image, disabled: image)
             self.view.addSubview(view)
         }
     
@@ -159,8 +164,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if jobItems.count > 0 {
             let jobData = jobItems[indexPath.row]
-            cell.textLabel?.text = jobData.companyName
-            cell.detailTextLabel?.text = jobData.jobTitle
+            cell.textLabel?.text = jobData.jobTitle
+            cell.detailTextLabel?.text = jobData.companyName
         } else {
             let noData = noItems[indexPath.row]
             cell.textLabel?.text = noData
@@ -546,6 +551,29 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc(locationManager:didFailWithError:)
     internal func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error: \(error.localizedDescription)")
+    }
+    
+    func ResizeImage(image: UIImage, changeSizeTo: CGSize) -> UIImage {
+        let size = image.size
+        
+        let width  = changeSizeTo.width  / image.size.width
+        let height = changeSizeTo.height / image.size.height
+        
+        var newImageSize: CGSize
+        if(width > height) {
+            newImageSize = CGSize(size.width * height, size.height * height)
+        } else {
+            newImageSize = CGSize(size.width * width,  size.height * width)
+        }
+        
+        let cgRect = CGRect(0, 0, newImageSize.width, newImageSize.height)
+        
+        UIGraphicsBeginImageContextWithOptions(newImageSize, false, 1.0)
+        image.draw(in: cgRect)
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resizedImage!
     }
 
 }

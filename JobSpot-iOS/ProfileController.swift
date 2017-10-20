@@ -48,6 +48,41 @@ class ProfileController: UIViewController {
         
         logoutButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
         
+        let alert = UIAlertController(title: "Note", message: "Currently, the profile information is loaded when only signing in with LinkedIn.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            
+        }
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+        
+        if ProfileStruct.fullNameProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+            self.fullNameOutlet.text = ProfileStruct.fullNameProf
+        }
+        
+        if ProfileStruct.headlineProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+            self.headlineOutlet.text = ProfileStruct.headlineProf
+        }
+        
+        if ProfileStruct.locationProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+            self.locationOutlet.text = ProfileStruct.locationProf
+        }
+        
+        if ProfileStruct.summaryProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+            self.summaryOutlet.text = ProfileStruct.summaryProf
+        }
+        
+        if ProfileStruct.emailProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+            self.emailOutlet.text = ProfileStruct.emailProf
+        }
+        
+        let urlPic = URL(string: ProfileStruct.pictureProf)
+        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+            let dataFromPic = try? Data(contentsOf: urlPic!)
+            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
