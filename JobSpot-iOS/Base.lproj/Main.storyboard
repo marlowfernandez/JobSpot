@@ -51,6 +51,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="gPE-tM-Ulw"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2k-ow-2Qa">
                                 <rect key="frame" x="94" y="341" width="226" height="30"/>
@@ -60,6 +63,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="aS4-bC-8XD"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUi-oN-mfN">
                                 <rect key="frame" x="129" y="428" width="157" height="51"/>
@@ -167,12 +173,18 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LPO-TC-0fS" id="F6t-UG-u1k"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="63j-Mh-bky">
                                 <rect key="frame" x="95" y="341" width="224" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LPO-TC-0fS" id="gSU-eU-c0M"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFY-Qi-5mc">
                                 <rect key="frame" x="100" y="545" width="214" height="30"/>
@@ -324,6 +336,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="f9r-Vy-h5s" id="1Je-WX-QM9"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxw-zK-aeG">
                                 <rect key="frame" x="364" y="35" width="30" height="30"/>
@@ -343,6 +358,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="f9r-Vy-h5s" id="Ifo-KL-CdP"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeh-8g-3mG">
                                 <rect key="frame" x="11" y="35" width="30" height="30"/>
@@ -560,6 +578,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xNV-3r-tSI" id="9b6-4d-0KW"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrI-sJ-HlW">
                                 <rect key="frame" x="364" y="35" width="30" height="30"/>
@@ -579,6 +600,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xNV-3r-tSI" id="jh3-CX-Bqd"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytd-F8-dNs">
                                 <rect key="frame" x="11" y="35" width="30" height="30"/>
@@ -1406,12 +1430,12 @@
         <image name="signin-linkedin" width="292" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Irk-76-Yr8"/>
-        <segue reference="M2f-54-UB9"/>
-        <segue reference="oMs-nm-WxA"/>
-        <segue reference="sKa-Hn-AY0"/>
-        <segue reference="sWR-9V-gvC"/>
-        <segue reference="ydG-jT-b5w"/>
+        <segue reference="q8Q-ig-5zr"/>
+        <segue reference="VRh-GE-KSu"/>
         <segue reference="Kns-Ps-Mei"/>
+        <segue reference="w6x-c5-Rep"/>
+        <segue reference="Vmc-83-637"/>
+        <segue reference="IW3-2A-Cva"/>
+        <segue reference="L4m-AS-6JC"/>
     </inferredMetricsTieBreakers>
 </document>

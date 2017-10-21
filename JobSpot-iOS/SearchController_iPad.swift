@@ -14,7 +14,7 @@ import SwiftyJSON
 import YNDropDownMenu
 import GoogleMobileAds
 
-class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     //segues
     let homeToLogin = "homeToLogin"
@@ -572,5 +572,11 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
         UIGraphicsEndImageContext()
         
         return resizedImage!
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return true
     }
 }

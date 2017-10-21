@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
@@ -89,6 +89,12 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         debugPrint("viewWillDisappear")
         FIRAuth.auth()?.removeStateDidChangeListener(handle!)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return true
     }
     
 }

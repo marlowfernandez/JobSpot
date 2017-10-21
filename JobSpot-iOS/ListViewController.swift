@@ -14,7 +14,7 @@ import SwiftyJSON
 import YNDropDownMenu
 import GoogleMobileAds
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
     
     var handle: FIRAuthStateDidChangeListenerHandle?
     var rootRef: FIRDatabaseReference!
@@ -579,6 +579,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIGraphicsEndImageContext()
         
         return resizedImage!
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return true
     }
 
 }
