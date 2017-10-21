@@ -81,7 +81,7 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
         }
         
         if !(SaveSearch.keywords.isEmpty || SaveSearch.keywords == "") {
-            locationInputTextField.text = SaveSearch.keywords
+            keywordInputTextField.text = SaveSearch.keywords
         }
         
         if !(SaveSearch.days.isEmpty || SaveSearch.days == "") {
@@ -355,6 +355,10 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
+        
+        jobItems = []
+        self.tableView.reloadData()
+        
         let locationFix = location.replacingOccurrences(of: " ", with: "+")
         let locationFix2 = locationFix.replacingOccurrences(of: ",", with: "")
         

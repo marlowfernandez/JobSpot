@@ -329,6 +329,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
+        
+        jobItems = []
+        self.tableViewOutlet.reloadData()
+        
+        
         let locationFix = location.replacingOccurrences(of: " ", with: "+")
         let locationFix2 = locationFix.replacingOccurrences(of: ",", with: "")
         
