@@ -151,7 +151,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             DisplayStruct.jobTitleGlobal = jobItem.jobTitle
             DisplayStruct.jobURLGlobal = jobItem.jobURL
             
-            self.performSegue(withIdentifier: self.listToDisplay, sender: nil)
+//            self.performSegue(withIdentifier: self.listToDisplay, sender: nil)
             
             print("selected Job: \(jobItem)")
         }
@@ -203,7 +203,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //let postalCodeLoc = String(describing: postalCodeLocation)
         
         if jobTitleEntered != "" && locationEntered != "" {
-            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "100", days: YNFilterView.FilterValues.daysEntered)
+            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "50", days: YNFilterView.FilterValues.daysEntered)
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
             emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

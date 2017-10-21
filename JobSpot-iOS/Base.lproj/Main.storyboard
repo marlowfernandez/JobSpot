@@ -441,7 +441,7 @@
                         <segue destination="zeY-Dq-EyD" kind="show" identifier="homeToProfile" id="2EG-7D-vq1"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeToLogin" id="mrU-jZ-LFK"/>
                         <segue destination="xNV-3r-tSI" kind="show" identifier="homeToList" id="dmw-fS-12I"/>
-                        <segue destination="u3N-es-elT" kind="presentation" identifier="homeToDisplay" id="64N-R5-Z8g"/>
+                        <segue destination="u3N-es-elT" kind="show" identifier="homeToDisplay" animates="NO" id="64N-R5-Z8g"/>
                         <segue destination="L4u-tW-6Xe" kind="show" identifier="homeToSavedJobs" id="H5B-yO-5R5"/>
                         <segue destination="aDT-bX-bho" kind="show" identifier="homeToAppliedJobs" id="jyW-Mn-rX1"/>
                     </connections>
@@ -489,6 +489,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="u3N-es-elT" kind="show" animates="NO" id="7ma-QP-Fbl"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -610,7 +613,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="qB9-mC-Ch3" kind="show" id="Kns-Ps-Mei"/>
+                                    <segue destination="qB9-mC-Ch3" kind="show" animates="NO" id="Kns-Ps-Mei"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aP5-XS-dYU" customClass="GADBannerView">
@@ -699,12 +702,12 @@
                         <outlet property="mapButtonOutlet" destination="4RL-e8-4PC" id="bT9-EQ-X5m"/>
                         <outlet property="savedSearchesOutlet" destination="BaD-hy-Cw5" id="qBN-5i-8nB"/>
                         <outlet property="tableViewOutlet" destination="kbI-57-Dye" id="3Dd-fh-Pzu"/>
-                        <segue destination="f9r-Vy-h5s" kind="show" identifier="listToHome" id="hzW-pD-IhX"/>
-                        <segue destination="zeY-Dq-EyD" kind="show" identifier="listToProfile" id="L4m-AS-6JC"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="listToLogin" id="WQH-nU-clU"/>
-                        <segue destination="u3N-es-elT" kind="presentation" identifier="listToDisplay" id="Vmc-83-637"/>
-                        <segue destination="L4u-tW-6Xe" kind="show" identifier="listToSavedJobs" id="IW3-2A-Cva"/>
-                        <segue destination="aDT-bX-bho" kind="show" identifier="listToAppliedJobs" id="w6x-c5-Rep"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="listToHome" animates="NO" id="hzW-pD-IhX"/>
+                        <segue destination="zeY-Dq-EyD" kind="show" identifier="listToProfile" animates="NO" id="L4m-AS-6JC"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="listToLogin" animates="NO" id="WQH-nU-clU"/>
+                        <segue destination="u3N-es-elT" kind="presentation" identifier="listToDisplay" animates="NO" id="Vmc-83-637"/>
+                        <segue destination="L4u-tW-6Xe" kind="show" identifier="listToSavedJobs" animates="NO" id="IW3-2A-Cva"/>
+                        <segue destination="aDT-bX-bho" kind="show" identifier="listToAppliedJobs" animates="NO" id="w6x-c5-Rep"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPc-fT-ojL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -769,7 +772,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableViewOutlet" destination="4Rd-tv-d9b" id="kNn-G4-OWO"/>
-                        <segue destination="f9r-Vy-h5s" kind="show" identifier="savedsearchesToHome" id="jOh-2d-o06"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="savedsearchesToHome" animates="NO" id="jOh-2d-o06"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCm-yz-Exn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -908,7 +911,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JobSpot Logo" translatesAutoresizingMaskIntoConstraints="NO" id="DIb-HR-LcU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JobSpot Logo" translatesAutoresizingMaskIntoConstraints="NO" id="DIb-HR-LcU">
                                 <rect key="frame" x="20" y="62" width="155" height="120.66666666666666"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-bR-sWG">
@@ -1054,7 +1057,7 @@
                         <outlet property="logoutButtonOutlet" destination="DfX-lV-h79" id="5tn-F5-1Nt"/>
                         <outlet property="profileImageOutlet" destination="DIb-HR-LcU" id="a06-C5-gG4"/>
                         <outlet property="summaryOutlet" destination="gwc-GC-eaD" id="rea-YE-1CK"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Irk-76-Yr8"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logout" animates="NO" id="Irk-76-Yr8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3MG-nm-T8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1306,10 +1309,10 @@
                     <connections>
                         <outlet property="bannerViewOutlet" destination="gVZ-LA-yOC" id="scH-hA-3TH"/>
                         <outlet property="tableViewOutlet" destination="LBP-5g-qPU" id="450-o8-8GZ"/>
-                        <segue destination="aDT-bX-bho" kind="show" identifier="savedjobsToAppliedJobs" id="oMs-nm-WxA"/>
-                        <segue destination="f9r-Vy-h5s" kind="show" identifier="savedjobsToHome" id="Cgh-rq-8SX"/>
-                        <segue destination="u3N-es-elT" kind="show" identifier="savedjobsToDisplay" id="aSe-cl-1WY"/>
-                        <segue destination="zeY-Dq-EyD" kind="show" identifier="savedjobsToProfile" id="HTc-39-lnh"/>
+                        <segue destination="aDT-bX-bho" kind="show" identifier="savedjobsToAppliedJobs" animates="NO" id="oMs-nm-WxA"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="savedjobsToHome" animates="NO" id="Cgh-rq-8SX"/>
+                        <segue destination="u3N-es-elT" kind="show" identifier="savedjobsToDisplay" animates="NO" id="aSe-cl-1WY"/>
+                        <segue destination="zeY-Dq-EyD" kind="show" identifier="savedjobsToProfile" animates="NO" id="HTc-39-lnh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1n-sF-xbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1387,10 +1390,10 @@
                     <connections>
                         <outlet property="bannerViewOutlet" destination="FUM-Oa-KK9" id="2sN-3r-VSW"/>
                         <outlet property="tableViewOutlet" destination="WGl-wM-8Sb" id="gkD-F5-tMd"/>
-                        <segue destination="L4u-tW-6Xe" kind="show" identifier="appliedToSavedJobs" id="sKa-Hn-AY0"/>
-                        <segue destination="f9r-Vy-h5s" kind="show" identifier="appliedToHome" id="ydG-jT-b5w"/>
-                        <segue destination="zeY-Dq-EyD" kind="show" identifier="appliedToProfile" id="M2f-54-UB9"/>
-                        <segue destination="u3N-es-elT" kind="show" identifier="appliedToDisplay" id="sWR-9V-gvC"/>
+                        <segue destination="L4u-tW-6Xe" kind="show" identifier="appliedToSavedJobs" animates="NO" id="sKa-Hn-AY0"/>
+                        <segue destination="f9r-Vy-h5s" kind="show" identifier="appliedToHome" animates="NO" id="ydG-jT-b5w"/>
+                        <segue destination="zeY-Dq-EyD" kind="show" identifier="appliedToProfile" animates="NO" id="M2f-54-UB9"/>
+                        <segue destination="u3N-es-elT" kind="show" identifier="appliedToDisplay" animates="NO" id="sWR-9V-gvC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d79-gR-CSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1407,9 +1410,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="Irk-76-Yr8"/>
         <segue reference="2EG-7D-vq1"/>
-        <segue reference="jOh-2d-o06"/>
-        <segue reference="kog-mA-Hsb"/>
+        <segue reference="ydG-jT-b5w"/>
         <segue reference="jyW-Mn-rX1"/>
+        <segue reference="kog-mA-Hsb"/>
         <segue reference="64N-R5-Z8g"/>
         <segue reference="H5B-yO-5R5"/>
     </inferredMetricsTieBreakers>

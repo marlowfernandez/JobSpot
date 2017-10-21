@@ -134,7 +134,7 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
         let locationEntered = locationInputTextField.text
         
         if jobTitleEntered != "" && locationEntered != "" {
-            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "200", days: YNFilterView.FilterValues.daysEntered)
+            getJobs(location: locationEntered!, jobTitle: jobTitleEntered!, radius: YNFilterView.FilterValues.radiusString, sortColumns: YNFilterView.FilterValues.jobSort, sortOrder: "desc", pageSize: "50", days: YNFilterView.FilterValues.daysEntered)
         } else {
             let emptyFields = UIAlertController(title: "Error", message: "Enter text into location and job title fields", preferredStyle: UIAlertControllerStyle.alert)
             emptyFields.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -172,7 +172,7 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
             DisplayStruct.jobTitleGlobal = jobItem.jobTitle
             DisplayStruct.jobURLGlobal = jobItem.jobURL
             
-            self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
+//            self.performSegue(withIdentifier: self.homeToDisplay, sender: nil)
             
             print("selected Job: \(jobItem)")
         }
