@@ -140,8 +140,8 @@
                                 <rect key="frame" x="129" y="428" width="157" height="51"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="157" id="dTl-o1-Lzc"/>
-                                    <constraint firstAttribute="height" constant="51" id="xd7-Oy-qwU"/>
+                                    <constraint firstAttribute="height" constant="51" id="AfY-x7-jvo"/>
+                                    <constraint firstAttribute="width" constant="157" id="ibU-oo-lfa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                 <state key="normal" title="Create Account">
@@ -192,18 +192,16 @@
                         <constraints>
                             <constraint firstItem="BFY-Qi-5mc" firstAttribute="leading" secondItem="Xlg-Up-GvN" secondAttribute="leadingMargin" constant="80" id="2fj-N7-wGo"/>
                             <constraint firstItem="qBz-cL-VrI" firstAttribute="centerX" secondItem="Xlg-Up-GvN" secondAttribute="centerX" id="AyL-xy-bHQ"/>
+                            <constraint firstItem="XWO-pk-kSz" firstAttribute="centerX" secondItem="63j-Mh-bky" secondAttribute="centerX" id="CNb-Tt-dhB"/>
                             <constraint firstItem="JuW-6H-eJ1" firstAttribute="centerX" secondItem="Xlg-Up-GvN" secondAttribute="centerX" id="Ouk-0C-lRc"/>
                             <constraint firstItem="qBz-cL-VrI" firstAttribute="top" secondItem="JuW-6H-eJ1" secondAttribute="bottom" constant="61" id="QUp-rz-Qzn"/>
-                            <constraint firstItem="XWO-pk-kSz" firstAttribute="centerX" secondItem="BFY-Qi-5mc" secondAttribute="centerX" id="UYN-5a-vmf"/>
                             <constraint firstItem="YE9-bW-2yD" firstAttribute="top" secondItem="BFY-Qi-5mc" secondAttribute="bottom" constant="161" id="XhI-7H-G2g"/>
-                            <constraint firstItem="XWO-pk-kSz" firstAttribute="top" secondItem="63j-Mh-bky" secondAttribute="bottom" constant="57" id="bAU-dm-DLS"/>
-                            <constraint firstItem="BFY-Qi-5mc" firstAttribute="top" secondItem="XWO-pk-kSz" secondAttribute="bottom" constant="66" id="dHg-W4-DlF"/>
                             <constraint firstItem="qBz-cL-VrI" firstAttribute="leading" secondItem="Xlg-Up-GvN" secondAttribute="leadingMargin" constant="74" id="dsr-tO-LTs"/>
+                            <constraint firstItem="XWO-pk-kSz" firstAttribute="top" secondItem="63j-Mh-bky" secondAttribute="bottom" constant="57" id="gmf-Wh-Gwp"/>
                             <constraint firstItem="63j-Mh-bky" firstAttribute="centerX" secondItem="qBz-cL-VrI" secondAttribute="centerX" id="h5m-jI-DGU"/>
                             <constraint firstItem="JuW-6H-eJ1" firstAttribute="leading" secondItem="Xlg-Up-GvN" secondAttribute="leadingMargin" constant="78" id="kkQ-9h-9fb"/>
                             <constraint firstItem="63j-Mh-bky" firstAttribute="top" secondItem="qBz-cL-VrI" secondAttribute="bottom" constant="46" id="lhG-zc-6Yw"/>
                             <constraint firstItem="BFY-Qi-5mc" firstAttribute="centerX" secondItem="Xlg-Up-GvN" secondAttribute="centerX" id="liE-Ea-zIg"/>
-                            <constraint firstItem="XWO-pk-kSz" firstAttribute="centerX" secondItem="Xlg-Up-GvN" secondAttribute="centerX" id="pEs-IB-nPr"/>
                             <constraint firstItem="JuW-6H-eJ1" firstAttribute="top" secondItem="e0k-Ri-nYm" secondAttribute="bottom" constant="66" id="uQm-1W-AJz"/>
                             <constraint firstItem="63j-Mh-bky" firstAttribute="trailing" secondItem="qBz-cL-VrI" secondAttribute="trailing" id="wDo-Ae-rtA"/>
                         </constraints>
@@ -1098,20 +1096,14 @@
                                     <segue destination="LMl-Dm-Ppy" kind="show" id="Rxe-Eh-eMs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-MD-M0f">
-                                <rect key="frame" x="143.66666666666663" y="69" width="127.33333333333337" height="14"/>
-                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afc-Rf-5Qe">
-                                <rect key="frame" x="143.66666666666663" y="160" width="127.33333333333337" height="14"/>
+                                <rect key="frame" x="152" y="160" width="110.66666666666669" height="14"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job City State:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H7-SA-kMG">
-                                <rect key="frame" x="143.66666666666663" y="254" width="127.33333333333337" height="14"/>
+                                <rect key="frame" x="152" y="254" width="110.66666666666669" height="14"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1146,7 +1138,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Posted:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CwV-Pf-LZx">
-                                <rect key="frame" x="143.33333333333331" y="353" width="127.33333333333331" height="14"/>
+                                <rect key="frame" x="151.66666666666669" y="353" width="110.66666666666669" height="14"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1154,6 +1146,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date posted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT8-ua-XDm">
                                 <rect key="frame" x="20" y="375" width="374" height="32"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-MD-M0f">
+                                <rect key="frame" x="123" y="80" width="168" height="14"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1165,18 +1163,18 @@
                             <constraint firstItem="2dV-Sh-NQk" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="102" id="35U-q0-tH3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5ut-3z-QzR" secondAttribute="trailing" id="3Qs-fS-eno"/>
                             <constraint firstItem="ngY-8O-naS" firstAttribute="width" secondItem="2dV-Sh-NQk" secondAttribute="width" id="4wi-v0-rsK"/>
-                            <constraint firstItem="afc-Rf-5Qe" firstAttribute="width" secondItem="aFX-MD-M0f" secondAttribute="width" id="7NH-CN-uod"/>
+                            <constraint firstItem="afc-Rf-5Qe" firstAttribute="width" secondItem="aFX-MD-M0f" secondAttribute="width" constant="-57.333333333333314" id="7NH-CN-uod"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Q3H-J0-Qfu" secondAttribute="leading" id="8pq-2O-SCP"/>
                             <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="afc-Rf-5Qe" secondAttribute="bottom" constant="498" id="AEN-Jd-j6W"/>
                             <constraint firstItem="Q3H-J0-Qfu" firstAttribute="width" secondItem="2dV-Sh-NQk" secondAttribute="width" id="BYq-Tv-X7B"/>
-                            <constraint firstItem="CwV-Pf-LZx" firstAttribute="width" secondItem="aFX-MD-M0f" secondAttribute="width" id="BdA-hb-6vJ"/>
+                            <constraint firstItem="CwV-Pf-LZx" firstAttribute="width" secondItem="aFX-MD-M0f" secondAttribute="width" constant="-57.333333333333314" id="BdA-hb-6vJ"/>
                             <constraint firstItem="Q3H-J0-Qfu" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="181" id="Blo-3I-Pjh"/>
                             <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="6H7-SA-kMG" secondAttribute="bottom" constant="404" id="C8D-bJ-gBd"/>
                             <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="5ut-3z-QzR" secondAttribute="bottom" constant="133" id="DWK-hH-B49"/>
                             <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="oXI-Gt-HQ1" secondAttribute="bottom" constant="133" id="De4-p2-H4e"/>
                             <constraint firstItem="afc-Rf-5Qe" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="160" id="EPt-LD-dhR"/>
                             <constraint firstItem="5ut-3z-QzR" firstAttribute="width" secondItem="oXI-Gt-HQ1" secondAttribute="width" id="GXc-NB-5eK"/>
-                            <constraint firstItem="aFX-MD-M0f" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="69" id="HDZ-NB-p7q"/>
+                            <constraint firstItem="aFX-MD-M0f" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="80" id="HDZ-NB-p7q"/>
                             <constraint firstItem="aFX-MD-M0f" firstAttribute="centerX" secondItem="yCR-Io-dN1" secondAttribute="centerX" id="Iq1-Sg-tn1"/>
                             <constraint firstItem="Q3H-J0-Qfu" firstAttribute="top" secondItem="afc-Rf-5Qe" secondAttribute="bottom" constant="7" id="JMc-ZI-zAJ"/>
                             <constraint firstItem="sT8-ua-XDm" firstAttribute="height" secondItem="2dV-Sh-NQk" secondAttribute="height" id="KZC-Zs-54F"/>
@@ -1198,7 +1196,7 @@
                             <constraint firstItem="sT8-ua-XDm" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="375" id="fJb-1H-SWU"/>
                             <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="8wZ-3p-Wcn" secondAttribute="bottom" constant="133" id="fQd-4j-m5g"/>
                             <constraint firstItem="CwV-Pf-LZx" firstAttribute="height" secondItem="aFX-MD-M0f" secondAttribute="height" id="fdD-fq-0xx"/>
-                            <constraint firstItem="6H7-SA-kMG" firstAttribute="width" secondItem="aFX-MD-M0f" secondAttribute="width" id="gSA-Hu-S3G"/>
+                            <constraint firstItem="6H7-SA-kMG" firstAttribute="width" secondItem="aFX-MD-M0f" secondAttribute="width" constant="-57.333333333333314" id="gSA-Hu-S3G"/>
                             <constraint firstItem="5ut-3z-QzR" firstAttribute="height" secondItem="oXI-Gt-HQ1" secondAttribute="height" id="gui-Iq-pRF"/>
                             <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="2dV-Sh-NQk" secondAttribute="bottom" constant="538" id="h5p-JY-EJT"/>
                             <constraint firstItem="oXI-Gt-HQ1" firstAttribute="centerX" secondItem="yCR-Io-dN1" secondAttribute="centerX" id="hKU-0K-bW6"/>
@@ -1213,14 +1211,14 @@
                             <constraint firstItem="CwV-Pf-LZx" firstAttribute="top" secondItem="ngY-8O-naS" secondAttribute="bottom" constant="30" id="oKt-gr-bzv"/>
                             <constraint firstItem="6H7-SA-kMG" firstAttribute="height" secondItem="aFX-MD-M0f" secondAttribute="height" id="rsP-p5-qkj"/>
                             <constraint firstItem="CwV-Pf-LZx" firstAttribute="centerX" secondItem="yCR-Io-dN1" secondAttribute="centerX" id="ryL-FL-qhO"/>
-                            <constraint firstItem="2dV-Sh-NQk" firstAttribute="top" secondItem="aFX-MD-M0f" secondAttribute="bottom" constant="19" id="sAt-fZ-8Iz"/>
+                            <constraint firstItem="2dV-Sh-NQk" firstAttribute="top" secondItem="aFX-MD-M0f" secondAttribute="bottom" constant="8" id="sAt-fZ-8Iz"/>
                             <constraint firstItem="ngY-8O-naS" firstAttribute="top" secondItem="Flh-JA-be8" secondAttribute="bottom" constant="290" id="shA-co-69P"/>
                             <constraint firstItem="6H7-SA-kMG" firstAttribute="top" secondItem="Q3H-J0-Qfu" secondAttribute="bottom" constant="8" id="tlk-79-mTR"/>
                             <constraint firstItem="ngY-8O-naS" firstAttribute="height" secondItem="2dV-Sh-NQk" secondAttribute="height" constant="1" id="tpW-tS-Oy7"/>
                             <constraint firstItem="afc-Rf-5Qe" firstAttribute="height" secondItem="aFX-MD-M0f" secondAttribute="height" id="ty5-DT-Asw"/>
                             <constraint firstItem="6H7-SA-kMG" firstAttribute="centerX" secondItem="yCR-Io-dN1" secondAttribute="centerX" id="z3O-Ds-R3r"/>
                             <constraint firstItem="2dV-Sh-NQk" firstAttribute="centerX" secondItem="yCR-Io-dN1" secondAttribute="centerX" id="zCu-Fo-ZKa"/>
-                            <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="aFX-MD-M0f" secondAttribute="bottom" constant="589" id="zoe-Nw-tnf"/>
+                            <constraint firstItem="THO-Re-pit" firstAttribute="top" secondItem="aFX-MD-M0f" secondAttribute="bottom" constant="578" id="zoe-Nw-tnf"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1409,11 +1407,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Irk-76-Yr8"/>
-        <segue reference="2EG-7D-vq1"/>
+        <segue reference="M2f-54-UB9"/>
+        <segue reference="oMs-nm-WxA"/>
+        <segue reference="sKa-Hn-AY0"/>
+        <segue reference="sWR-9V-gvC"/>
         <segue reference="ydG-jT-b5w"/>
-        <segue reference="jyW-Mn-rX1"/>
-        <segue reference="kog-mA-Hsb"/>
-        <segue reference="64N-R5-Z8g"/>
-        <segue reference="H5B-yO-5R5"/>
+        <segue reference="Kns-Ps-Mei"/>
     </inferredMetricsTieBreakers>
 </document>
