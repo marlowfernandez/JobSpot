@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let mainToCreateAcc = "mainToCreateAcc"
     let mainToHome = "mainToHome"
     var handle: FIRAuthStateDidChangeListenerHandle?
+    var email : String = " "
+    var rootRef: FIRDatabaseReference!
     
     @IBOutlet weak var loginOutlet: UIButton!
     
@@ -37,11 +39,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func buttonLogin(_ sender: UIButton) {
         debugPrint("button login pressed")
         
-        let email = emailAddress.text
+        email = emailAddress.text!
         let password = inputPassword.text
         
         if email != "" && password != "" {
-            FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
+            FIRAuth.auth()?.signIn(withEmail: email, password: password!) { (user, error) in
                 if error != nil {
                     debugPrint("not able to login")
                     
@@ -56,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             
             
-            debugPrint(email!,password!)
+            debugPrint(email,password!)
             emailAddress.text = ""
             inputPassword.text = ""
         } else {
@@ -76,8 +78,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         debugPrint("viewWillAppear")
         
+        rootRef = FIRDatabase.database().reference()
+        
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if user != nil {
+                
+                let userID = FIRAuth.auth()?.currentUser?.uid
+                let usersRef = self.rootRef.child("users")
+                let idRef = usersRef.child(userID!)
+                let listRef = idRef.child("email")
+                
+                //TODO: check if email name is already there before setting...
+                //listRef.setValue(self.email)
+                
                 self.performSegue(withIdentifier: self.mainToHome, sender: nil)
                 debugPrint(user?.email! as Any)
             }

@@ -27,6 +27,8 @@ class ProfileController: UIViewController {
     var summary : String = " "
     var picture : String = " "
     
+    var rootRef: FIRDatabaseReference!
+    
     @IBOutlet weak var fullNameOutlet: UILabel!
     @IBOutlet weak var headlineOutlet: UILabel!
     @IBOutlet weak var emailOutlet: UILabel!
@@ -40,22 +42,13 @@ class ProfileController: UIViewController {
         
         self.dismissKeyboardTapped()
         
-        fullNameOutlet.text = " "
-        headlineOutlet.text = " "
-        emailOutlet.text = " "
-        locationOutlet.text = " "
-        summaryOutlet.text = " "
+        fullNameOutlet.text = "N/A"
+        headlineOutlet.text = "N/A"
+        emailOutlet.text = "N/A"
+        locationOutlet.text = "N/A"
+        summaryOutlet.text = "N/A"
         
         logoutButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
-        
-        let alert = UIAlertController(title: "Note", message: "Currently, the profile information is loaded when only signing in with LinkedIn.", preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-            
-        }
-        
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
         
         if ProfileStruct.fullNameProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
             self.fullNameOutlet.text = ProfileStruct.fullNameProf
@@ -78,9 +71,10 @@ class ProfileController: UIViewController {
         }
         
         let urlPic = URL(string: ProfileStruct.pictureProf)
-        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 1 {
             let dataFromPic = try? Data(contentsOf: urlPic!)
             self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+            self.profileImageOutlet.setNeedsDisplay()
         }
         
     }
@@ -105,6 +99,89 @@ class ProfileController: UIViewController {
                 
             }
         }
+        
+//        if ProfileStruct.fullNameProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.fullNameOutlet.text = ProfileStruct.fullNameProf
+//        }
+//        
+//        if ProfileStruct.headlineProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.headlineOutlet.text = ProfileStruct.headlineProf
+//        }
+//        
+//        if ProfileStruct.locationProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.locationOutlet.text = ProfileStruct.locationProf
+//        }
+//        
+//        if ProfileStruct.summaryProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.summaryOutlet.text = ProfileStruct.summaryProf
+//        }
+//        
+//        if ProfileStruct.emailProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.emailOutlet.text = ProfileStruct.emailProf
+//        }
+//        
+//        let urlPic = URL(string: ProfileStruct.pictureProf)
+//        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 1 {
+//            let dataFromPic = try? Data(contentsOf: urlPic!)
+//            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+//        }
+        
+        rootRef = FIRDatabase.database().reference()
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let usersRef = self.rootRef.child("users")
+        let idRef = usersRef.child(userID!)
+        let listRef = idRef.child("userProfile")
+        
+        listRef.observe(.value, with: { snapshot in
+            
+            if snapshot.childrenCount == 0 {
+                self.fullNameOutlet.text = "N/A"
+                self.headlineOutlet.text = "N/A"
+                self.emailOutlet.text = "N/A"
+                self.locationOutlet.text = "N/A"
+                self.summaryOutlet.text = "N/A"
+            } else {
+                for item in snapshot.children {
+                    debugPrint("item children: \(item)")
+                    
+                    let profileItem = ProfileStruct(snapshot: item as! FIRDataSnapshot)
+                    print("profileItem: \(profileItem)")
+                    
+                    print("name \(profileItem.fullNameSave)")
+                    print("email \(profileItem.emailSave)")
+                    print("location \(profileItem.locationSave)")
+                    print("headline \(profileItem.headlineSave)")
+                    print("summary \(profileItem.summarySave)")
+                    print("picture \(profileItem.pictureSave)")
+                    
+                    ProfileStruct.fullNameProf = profileItem.fullNameSave
+                    ProfileStruct.headlineProf = profileItem.headlineSave
+                    ProfileStruct.locationProf = profileItem.locationSave
+                    ProfileStruct.summaryProf = profileItem.summarySave
+                    ProfileStruct.pictureProf = profileItem.pictureSave
+                    ProfileStruct.emailProf = profileItem.emailSave
+                    
+                    DispatchQueue.main.async {
+                            self.emailOutlet.text = ProfileStruct.emailProf
+                            self.fullNameOutlet.text = ProfileStruct.fullNameProf
+                            self.summaryOutlet.text = ProfileStruct.summaryProf
+                            self.headlineOutlet.text = ProfileStruct.headlineProf
+                            self.locationOutlet.text = ProfileStruct.locationProf
+                        
+                            let urlPic = URL(string: ProfileStruct.pictureProf)
+                            if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 5 {
+                            
+                                let dataFromPic = try? Data(contentsOf: urlPic!)
+                                self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                                self.profileImageOutlet.setNeedsDisplay()
+                            }
+                    }
+                }
+            }
+            
+        })
+
     }
     
     @IBAction func signInLinkedIn(_ sender: UIButton) {
@@ -210,29 +287,120 @@ class ProfileController: UIViewController {
 //                    }
                     
                     let profileStructItem = ProfileStruct(fullName: self.fullName, headline: self.headline, location: self.location, summary: self.summary, picture: self.picture, email: self.email)
-                        
-                    //print("profileStructItem: \(profileStructItem)")
-                        
-                    ProfileStruct.fullNameProf = profileStructItem.fullName
-                    ProfileStruct.headlineProf = profileStructItem.headline
-                    ProfileStruct.locationProf = profileStructItem.location
-                    ProfileStruct.summaryProf = profileStructItem.summary
-                    ProfileStruct.pictureProf = profileStructItem.picture
-                    ProfileStruct.emailProf = profileStructItem.email
                     
-                    DispatchQueue.main.async {
-                        self.fullNameOutlet.text = ProfileStruct.fullNameProf
-                        self.headlineOutlet.text = ProfileStruct.headlineProf
-                        self.locationOutlet.text = ProfileStruct.locationProf
-                        self.summaryOutlet.text = ProfileStruct.summaryProf
-                        self.emailOutlet.text = ProfileStruct.emailProf
+                    let profileItem = ProfileStruct(fullNameNew: self.fullName, headlineNew: self.headline, locationNew: self.location, summaryNew: self.summary, pictureNew: self.picture, emailNew: self.email)
+//                    print("profileItem: \(profileItem.fullName)")
+                    
+                    let userID = FIRAuth.auth()?.currentUser?.uid
+                    
+                    let usersRef = self.rootRef.child("users")
+                    
+                    let idRef = usersRef.child(userID!)
+                    
+                    let listRef = idRef.child("userProfile")
+                    
+                    listRef.observe(.value, with: { snapshot in
+                        print(snapshot.childrenCount)
                         
-                        let urlPic = URL(string: ProfileStruct.pictureProf)
-                        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                            let dataFromPic = try? Data(contentsOf: urlPic!)
-                            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                        if snapshot.childrenCount == 0 {
+                            
+                            let alert = UIAlertController(title: "Create User Profile", message: "Would you like to save this information to your profile?", preferredStyle: .alert)
+                            
+                            let saveAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                                let addChildStr = listRef.childByAutoId()
+                                addChildStr.setValue(profileItem.toAnyObject())
+                                
+                                ProfileStruct.fullNameProf = self.fullName
+                                ProfileStruct.headlineProf = self.headline
+                                ProfileStruct.locationProf = self.location
+                                ProfileStruct.summaryProf = self.summary
+                                ProfileStruct.pictureProf = self.picture
+                                ProfileStruct.emailProf = self.email
+                                print(ProfileStruct.emailProf)
+                                
+                                DispatchQueue.main.async {
+                                    self.fullNameOutlet.text = self.fullName
+                                    self.headlineOutlet.text = self.headline
+                                    self.locationOutlet.text = self.location
+                                    self.summaryOutlet.text = self.summary
+                                    self.emailOutlet.text = self.email
+                                    
+                                    let urlPic = URL(string: self.picture)
+                                    if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                                        let dataFromPic = try? Data(contentsOf: urlPic!)
+                                        self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                                    }
+                                }
+                            }
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                            
+                            alert.addAction(saveAction)
+                            alert.addAction(cancelAction)
+                            self.present(alert, animated: true, completion: nil)
+                            
+                        } else {
+                            for item in snapshot.children {
+                                
+                                let alert = UIAlertController(title: "User Profile Exists", message: "Would you like to update this information to your profile?", preferredStyle: .alert)
+                                
+                                let saveAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                                    let profileItem = ProfileStruct(snapshot: item as! FIRDataSnapshot)
+                                    print("profileItem: \(profileItem)")
+                                    
+                                    let ref = profileItem.ref
+                                    print("ref from Profile: \(String(describing: ref))")
+                                    
+                                    ref?.updateChildValues(["email": self.email])
+                                    ref?.updateChildValues(["fullName": self.fullName])
+                                    ref?.updateChildValues(["headline": self.headline])
+                                    ref?.updateChildValues(["location": self.location])
+                                    ref?.updateChildValues(["picture": self.picture])
+                                    ref?.updateChildValues(["summary": self.summary])
+                                    
+                                    ProfileStruct.fullNameProf = self.fullName
+                                    ProfileStruct.headlineProf = self.headline
+                                    ProfileStruct.locationProf = self.location
+                                    ProfileStruct.summaryProf = self.summary
+                                    ProfileStruct.pictureProf = self.picture
+                                    ProfileStruct.emailProf = self.email
+                                    print(ProfileStruct.emailProf)
+                                    
+                                    DispatchQueue.main.async {
+                                        self.fullNameOutlet.text = self.fullName
+                                        self.headlineOutlet.text = self.headline
+                                        self.locationOutlet.text = self.location
+                                        self.summaryOutlet.text = self.summary
+                                        self.emailOutlet.text = self.email
+                                        
+                                        let urlPic = URL(string: self.picture)
+                                        debugPrint("urlPic: \(String(describing: urlPic))")
+                                        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                                            let dataFromPic = try? Data(contentsOf: urlPic!)
+                                            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                                            self.profileImageOutlet.setNeedsDisplay()
+                                        }
+                                    }
+                                    
+                                }
+                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                                
+                                alert.addAction(saveAction)
+                                alert.addAction(cancelAction)
+                                self.present(alert, animated: true, completion: nil)
+                                
+                            }
                         }
-                    }
+                    })
+
+                        
+//                    ProfileStruct.fullNameProf = profileStructItem.fullName
+//                    ProfileStruct.headlineProf = profileStructItem.headline
+//                    ProfileStruct.locationProf = profileStructItem.location
+//                    ProfileStruct.summaryProf = profileStructItem.summary
+//                    ProfileStruct.pictureProf = profileStructItem.picture
+//                    ProfileStruct.emailProf = profileStructItem.email
+                    
+                    
                         
                         
                 }, error: { (error) in

@@ -16,6 +16,8 @@ class CreateAccount: UIViewController, UITextFieldDelegate {
     var handle: FIRAuthStateDidChangeListenerHandle?
     let createAccToHome = "createAccToHome"
     let createAccToLogin = "createAccToLogin"
+    var email : String = " "
+    var rootRef: FIRDatabaseReference!
     
     @IBOutlet weak var createAccOutlet: UIButton!
     
@@ -35,12 +37,12 @@ class CreateAccount: UIViewController, UITextFieldDelegate {
     
     @IBAction func registerButtonAction(_ sender: Any) {
         
-        let email = emailAddress.text
+        email = emailAddress.text!
         let password = inputPassword.text
         
         if email != "" && password != "" {
             
-            FIRAuth.auth()?.createUser(withEmail: email!, password: password!) { (user, error) in
+            FIRAuth.auth()?.createUser(withEmail: email, password: password!) { (user, error) in
                 if let error = error {
                     
                     let createError = UIAlertController(title: "Account Creation Error", message: "\(error.localizedDescription) Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
@@ -52,7 +54,7 @@ class CreateAccount: UIViewController, UITextFieldDelegate {
                 debugPrint("\(user!.email!) was created")
             }
             
-            debugPrint(email!,password!)
+            debugPrint(email,password!)
             emailAddress.text = ""
             inputPassword.text = ""
         } else {
@@ -75,8 +77,19 @@ class CreateAccount: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         debugPrint("viewWillAppear")
         
+        rootRef = FIRDatabase.database().reference()
+        
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if user != nil {
+                
+                //firebase.child("users").child(firebaseUser.getUid()).child("email").setValue(email);
+                
+                let userID = FIRAuth.auth()?.currentUser?.uid
+                let usersRef = self.rootRef.child("users")
+                let idRef = usersRef.child(userID!)
+                let listRef = idRef.child("email")
+                listRef.setValue(self.email)
+                
                 self.performSegue(withIdentifier: self.createAccToHome, sender: nil)
                 debugPrint(user?.email! as Any)
             }

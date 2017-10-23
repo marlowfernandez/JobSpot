@@ -36,6 +36,7 @@
 		40BBE7201F8ADC2C00A14336 /* ProfileStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */; };
 		40BBE7221F8B21E200A14336 /* DisplayJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBE7211F8B21E200A14336 /* DisplayJobController.swift */; };
 		40C58EC81F8AA2FF00F216D7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */; };
+		40EA745C1F9D80410029F69E /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA745B1F9D80410029F69E /* EditProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		40BBE7211F8B21E200A14336 /* DisplayJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayJobController.swift; sourceTree = "<group>"; };
 		40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "linkedin-sdk.framework"; path = "JobSpot-iOS/linkedin-sdk.framework"; sourceTree = "<group>"; };
 		40C58EC91F8AA95B00F216D7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		40EA745B1F9D80410029F69E /* EditProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		D27025ACAE22468321F205B2 /* Pods-JobSpot-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSpot-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobSpot-iOS/Pods-JobSpot-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,15 +101,16 @@
 		40162ADA1F97BF10007974CE /* Controllers-Global */ = {
 			isa = PBXGroup;
 			children = (
+				40162AD71F97BCA4007974CE /* NavController.swift */,
 				40179B281F7B25E9003E0021 /* ViewController.swift */,
 				40499F851F7ED87A007E6EC0 /* CreateAccount.swift */,
-				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
 				401A04A51F89B6540061AA79 /* SavedSearchesController.swift */,
 				40BBE7211F8B21E200A14336 /* DisplayJobController.swift */,
 				401C27FC1F8EE89700444FFE /* SavedJobs.swift */,
 				401C27FE1F8EE8A300444FFE /* AppliedJobs.swift */,
 				40162AD21F9300E0007974CE /* JobViewController.swift */,
-				40162AD71F97BCA4007974CE /* NavController.swift */,
+				40499F891F7EFF44007E6EC0 /* ProfileController.swift */,
+				40EA745B1F9D80410029F69E /* EditProfile.swift */,
 			);
 			name = "Controllers-Global";
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				400F9CA41F81AD0000572B04 /* DisplayAnnotation.swift in Sources */,
 				40499F881F7EF581007E6EC0 /* HomeController.swift in Sources */,
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
+				40EA745C1F9D80410029F69E /* EditProfile.swift in Sources */,
 				401C27FD1F8EE89700444FFE /* SavedJobs.swift in Sources */,
 				401C27FF1F8EE8A300444FFE /* AppliedJobs.swift in Sources */,
 				40162AD31F9300E0007974CE /* JobViewController.swift in Sources */,

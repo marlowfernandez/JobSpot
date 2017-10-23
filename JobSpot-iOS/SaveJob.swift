@@ -61,6 +61,8 @@ struct SaveJob {
     init(snapshot: FIRDataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         
+        debugPrint("snapshotValue: \(snapshotValue)")
+        
         if snapshotValue["applyDate"] != nil {
             applyDateGlobal = snapshotValue["applyDate"] as! String
             print("applyDate: \(applyDateGlobal)")
