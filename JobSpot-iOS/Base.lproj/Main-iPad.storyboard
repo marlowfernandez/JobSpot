@@ -798,6 +798,7 @@
                             <constraint firstItem="iV9-G9-Oay" firstAttribute="leading" secondItem="ZjW-OR-tp8" secondAttribute="leading" id="5jU-49-GKQ"/>
                             <constraint firstItem="DfX-lV-h79" firstAttribute="top" secondItem="oDN-9b-SnO" secondAttribute="top" id="6RX-QV-R4p"/>
                             <constraint firstItem="DFK-9O-b3t" firstAttribute="top" secondItem="hdM-m5-4HY" secondAttribute="bottom" constant="44" id="C0w-rW-vNs"/>
+                            <constraint firstItem="s0M-yY-3Ws" firstAttribute="leading" secondItem="ZjW-OR-tp8" secondAttribute="leading" id="DCO-tJ-aer"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Khd-9k-e5W" secondAttribute="trailing" constant="163" id="E9G-Dg-24T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hdM-m5-4HY" secondAttribute="trailing" id="Egn-aU-OFC"/>
                             <constraint firstItem="iV9-G9-Oay" firstAttribute="trailing" secondItem="t0I-7S-mZR" secondAttribute="trailing" id="FFz-md-blL"/>
@@ -816,6 +817,7 @@
                             <constraint firstItem="cWD-hi-BDO" firstAttribute="top" secondItem="DFK-9O-b3t" secondAttribute="bottom" constant="11" id="OE0-bt-fyn"/>
                             <constraint firstItem="gwc-GC-eaD" firstAttribute="top" secondItem="cWD-hi-BDO" secondAttribute="bottom" constant="9" id="OIf-on-51b"/>
                             <constraint firstItem="DfX-lV-h79" firstAttribute="leading" secondItem="oDN-9b-SnO" secondAttribute="trailing" constant="8" id="OVI-b2-dSf"/>
+                            <constraint firstItem="hdM-m5-4HY" firstAttribute="leading" secondItem="s0M-yY-3Ws" secondAttribute="leading" id="Pbt-Ir-drq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gwc-GC-eaD" secondAttribute="trailing" constant="62" id="QgJ-3c-Sqp"/>
                             <constraint firstItem="DFK-9O-b3t" firstAttribute="top" secondItem="1jI-bR-sWG" secondAttribute="bottom" constant="-1" id="Qtj-9b-69W"/>
                             <constraint firstItem="gwc-GC-eaD" firstAttribute="leading" secondItem="BzX-qB-MBV" secondAttribute="leadingMargin" constant="63" id="Qvj-wS-RRH"/>
@@ -847,6 +849,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="editProfileButtonOutlet" destination="Kp6-Z4-7QQ" id="inv-4E-yii"/>
                         <outlet property="emailOutlet" destination="s0M-yY-3Ws" id="tl9-kR-ApJ"/>
                         <outlet property="fullNameOutlet" destination="ZjW-OR-tp8" id="uhl-3n-AGK"/>
                         <outlet property="headlineOutlet" destination="DFK-9O-b3t" id="Shy-bz-aYg"/>
@@ -1355,6 +1358,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbM-ch-k0J">
+                                <rect key="frame" x="269" y="264" width="141" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="7gx-85-d22"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                <state key="normal" title="Edit Photo"/>
+                                <connections>
+                                    <action selector="editPhotoAction:" destination="hPi-uq-tnc" eventType="touchUpInside" id="VfC-AW-Or3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1379,6 +1393,7 @@
                             <constraint firstItem="k6g-Df-bfR" firstAttribute="top" secondItem="p1J-gS-tXh" secondAttribute="top" id="IyZ-z9-LsH"/>
                             <constraint firstItem="gzB-ho-AkQ" firstAttribute="top" secondItem="p1J-gS-tXh" secondAttribute="top" id="JHl-V8-h33"/>
                             <constraint firstItem="Qip-XV-pkl" firstAttribute="top" secondItem="pUB-dm-M59" secondAttribute="top" constant="-16" id="LU1-o2-trb"/>
+                            <constraint firstItem="lbM-ch-k0J" firstAttribute="top" secondItem="Qip-XV-pkl" secondAttribute="bottom" constant="16" id="LbN-WI-F3m"/>
                             <constraint firstItem="8dp-ai-jAL" firstAttribute="trailing" secondItem="JpA-0Z-qHl" secondAttribute="trailing" id="M4i-aM-U29"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qip-XV-pkl" secondAttribute="trailing" constant="565" id="MLz-1N-ZtH"/>
                             <constraint firstItem="HZW-rq-sDC" firstAttribute="top" secondItem="Qip-XV-pkl" secondAttribute="bottom" constant="77" id="OMl-T0-HKa"/>
@@ -1397,10 +1412,12 @@
                             <constraint firstItem="JpA-0Z-qHl" firstAttribute="width" secondItem="8dp-ai-jAL" secondAttribute="width" id="eBp-LV-Qao"/>
                             <constraint firstItem="p1J-gS-tXh" firstAttribute="centerX" secondItem="riy-Ct-1an" secondAttribute="centerX" id="fGS-Oe-EvL"/>
                             <constraint firstItem="HZW-rq-sDC" firstAttribute="trailing" secondItem="Xnc-76-BTq" secondAttribute="trailing" id="gqG-MW-IXH"/>
+                            <constraint firstItem="lbM-ch-k0J" firstAttribute="centerX" secondItem="Qip-XV-pkl" secondAttribute="centerX" id="hIk-ub-4ov"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8dp-ai-jAL" secondAttribute="trailing" constant="26" id="i5k-Rl-5M5"/>
                             <constraint firstItem="CXs-Yo-mSV" firstAttribute="top" secondItem="p1J-gS-tXh" secondAttribute="bottom" constant="56" id="jLm-oy-mCR"/>
                             <constraint firstItem="hLf-cb-szj" firstAttribute="top" secondItem="JpA-0Z-qHl" secondAttribute="bottom" constant="7" id="mfp-Ko-ZjD"/>
                             <constraint firstItem="pUB-dm-M59" firstAttribute="leading" secondItem="Qip-XV-pkl" secondAttribute="trailing" constant="104" id="mmf-e1-4gL"/>
+                            <constraint firstItem="HZW-rq-sDC" firstAttribute="top" secondItem="lbM-ch-k0J" secondAttribute="bottom" constant="31" id="oeN-79-i2O"/>
                             <constraint firstItem="Xnc-76-BTq" firstAttribute="leading" secondItem="HZW-rq-sDC" secondAttribute="leading" id="rJp-8w-kdj"/>
                             <constraint firstItem="zuj-9g-hVj" firstAttribute="leading" secondItem="Xnc-76-BTq" secondAttribute="leading" id="rSA-34-PXc"/>
                             <constraint firstItem="p1J-gS-tXh" firstAttribute="top" secondItem="5H2-Mk-u5o" secondAttribute="bottom" constant="63" id="sG1-Ci-Tfh"/>
@@ -1416,10 +1433,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="cancelButtonOutlet" destination="k6g-Df-bfR" id="4MP-Qc-fLg"/>
+                        <outlet property="editPhotoOutlet" destination="lbM-ch-k0J" id="8s7-Ka-w2e"/>
                         <outlet property="emailTextField" destination="JpA-0Z-qHl" id="L37-dk-5fa"/>
                         <outlet property="headlineTextField" destination="zuj-9g-hVj" id="QyY-9d-YaV"/>
                         <outlet property="locationTextField" destination="Fsp-31-Vqb" id="yg9-IP-uOJ"/>
                         <outlet property="nameTextField" destination="8dp-ai-jAL" id="7x9-lR-F40"/>
+                        <outlet property="profileImageOutlet" destination="Qip-XV-pkl" id="bfP-kn-Udf"/>
                         <outlet property="saveButtonOutlet" destination="gzB-ho-AkQ" id="uNX-gi-pdm"/>
                         <outlet property="summaryTextField" destination="5H2-Mk-u5o" id="S6x-XK-GkB"/>
                         <segue destination="zeY-Dq-EyD" kind="show" identifier="saveProfile" id="XhT-LC-4gb"/>

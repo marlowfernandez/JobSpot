@@ -28,6 +28,7 @@ class ProfileController: UIViewController {
     var picture : String = " "
     
     var rootRef: FIRDatabaseReference!
+    var listRef: FIRDatabaseReference!
     
     @IBOutlet weak var fullNameOutlet: UILabel!
     @IBOutlet weak var headlineOutlet: UILabel!
@@ -36,6 +37,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var summaryOutlet: UILabel!
     @IBOutlet weak var profileImageOutlet: UIImageView!
     @IBOutlet weak var logoutButtonOutlet: UIButton!
+    @IBOutlet weak var editProfileButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,33 +51,41 @@ class ProfileController: UIViewController {
         summaryOutlet.text = "N/A"
         
         logoutButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        editProfileButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
         
-        if ProfileStruct.fullNameProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-            self.fullNameOutlet.text = ProfileStruct.fullNameProf
-        }
+        rootRef = FIRDatabase.database().reference()
         
-        if ProfileStruct.headlineProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-            self.headlineOutlet.text = ProfileStruct.headlineProf
-        }
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let usersRef = self.rootRef.child("users")
+        let idRef = usersRef.child(userID!)
+        listRef = idRef.child("userProfile")
         
-        if ProfileStruct.locationProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-            self.locationOutlet.text = ProfileStruct.locationProf
-        }
-        
-        if ProfileStruct.summaryProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-            self.summaryOutlet.text = ProfileStruct.summaryProf
-        }
-        
-        if ProfileStruct.emailProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-            self.emailOutlet.text = ProfileStruct.emailProf
-        }
-        
-        let urlPic = URL(string: ProfileStruct.pictureProf)
-        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 1 {
-            let dataFromPic = try? Data(contentsOf: urlPic!)
-            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
-            self.profileImageOutlet.setNeedsDisplay()
-        }
+//        if ProfileStruct.fullNameProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.fullNameOutlet.text = ProfileStruct.fullNameProf
+//        }
+//        
+//        if ProfileStruct.headlineProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.headlineOutlet.text = ProfileStruct.headlineProf
+//        }
+//        
+//        if ProfileStruct.locationProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.locationOutlet.text = ProfileStruct.locationProf
+//        }
+//        
+//        if ProfileStruct.summaryProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.summaryOutlet.text = ProfileStruct.summaryProf
+//        }
+//        
+//        if ProfileStruct.emailProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//            self.emailOutlet.text = ProfileStruct.emailProf
+//        }
+//        
+//        let urlPic = URL(string: ProfileStruct.pictureProf)
+//        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 1 {
+//            let dataFromPic = try? Data(contentsOf: urlPic!)
+//            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+//            self.profileImageOutlet.setNeedsDisplay()
+//        }
         
     }
     
@@ -125,13 +135,6 @@ class ProfileController: UIViewController {
 //            let dataFromPic = try? Data(contentsOf: urlPic!)
 //            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
 //        }
-        
-        rootRef = FIRDatabase.database().reference()
-        
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        let usersRef = self.rootRef.child("users")
-        let idRef = usersRef.child(userID!)
-        let listRef = idRef.child("userProfile")
         
         listRef.observe(.value, with: { snapshot in
             
@@ -184,173 +187,130 @@ class ProfileController: UIViewController {
 
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        listRef.removeAllObservers()
+    }
+    
     @IBAction func signInLinkedIn(_ sender: UIButton) {
-        LISDKSessionManager.createSession(withAuth: [LISDK_BASIC_PROFILE_PERMISSION], state: nil, showGoToAppStoreDialog: true, successBlock: {(success) in
-                //let session = LISDKSessionManager.sharedInstance().session
-            
-                //let url = "https://api.linkedin.com/v1/people/~"
-            //let url = "https://api.linkedin.com/v1/people/~:(formatted-name,email-address,headline,location,industry,summary,picture-url)"
-                //debugPrint("url linkedin: \(url)")
-            
-            let urlJson = "https://api.linkedin.com/v1/people/~:(formatted-name,email-address,headline,location,industry,summary,picture-url)?format=json"
-            
-//            Alamofire.request(urlJson, method: .post).responseJSON { response in
-//            
-//                let jsonResponseLI = response.data
-//                let jsonResponseLIData = JSON(data: jsonResponseLI!)
-//                
-//                debugPrint("jsonResponseLIData: \(jsonResponseLIData)")
-//            
-//            }
-//            
-            
-            if(LISDKSessionManager.hasValidSession()){
-                LISDKAPIHelper.sharedInstance().getRequest(urlJson, success: { (response) in
-                    //print("response API linkedin: \(self.convertToDictionary(input: (response?.data)!)!)")
-                    
-                    let jsonResponseLI = response?.data.data(using: String.Encoding.utf8, allowLossyConversion: false)
-                    
-                    let jsonResponseLIData = JSON(data: jsonResponseLI!)
-                    
-                    let formattedName = jsonResponseLIData["formattedName"].stringValue
-                    if formattedName.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                        self.fullName = formattedName
-                    }
-                    
-                    let headline = jsonResponseLIData["headline"].stringValue
-                    if headline.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                        self.headline = headline
-                    }
-                    
-                    let summary = jsonResponseLIData["summary"].stringValue
-                    if summary.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                        self.summary = summary
-                    }
-                    
-                    let pictureUrl = jsonResponseLIData["pictureUrl"].stringValue
-                    if pictureUrl.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                        self.picture = pictureUrl
-                    }
-                    
-                    let email = jsonResponseLIData["email"].stringValue
-                    if email.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                        self.email = email
-                    }
-                    
-                    print("formattedName: \(jsonResponseLIData["formattedName"].stringValue)") //
-                    print("headline: \(jsonResponseLIData["headline"].stringValue)") //
-                    print("summary: \(jsonResponseLIData["summary"].stringValue))") //
-                    print("location: \(jsonResponseLIData["location"].arrayValue)") //
-                    for locationResults in jsonResponseLIData["location"].arrayValue{
+        
+        let alert = UIAlertController(title: "Profile", message: "Would you like to use your LinkedIn information for your profile?", preferredStyle: .alert)
+        
+        let linkedInAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+        
+            LISDKSessionManager.createSession(withAuth: [LISDK_BASIC_PROFILE_PERMISSION], state: nil, showGoToAppStoreDialog: true, successBlock: {(success) in
+                    //let session = LISDKSessionManager.sharedInstance().session
+                
+                    //let url = "https://api.linkedin.com/v1/people/~"
+                //let url = "https://api.linkedin.com/v1/people/~:(formatted-name,email-address,headline,location,industry,summary,picture-url)"
+                    //debugPrint("url linkedin: \(url)")
+                
+                let urlJson = "https://api.linkedin.com/v1/people/~:(formatted-name,email-address,headline,location,industry,summary,picture-url)?format=json"
+                
+    //            Alamofire.request(urlJson, method: .post).responseJSON { response in
+    //            
+    //                let jsonResponseLI = response.data
+    //                let jsonResponseLIData = JSON(data: jsonResponseLI!)
+    //                
+    //                debugPrint("jsonResponseLIData: \(jsonResponseLIData)")
+    //            
+    //            }
+    //            
+                
+                if(LISDKSessionManager.hasValidSession()){
+                    LISDKAPIHelper.sharedInstance().getRequest(urlJson, success: { (response) in
+                        //print("response API linkedin: \(self.convertToDictionary(input: (response?.data)!)!)")
                         
-                        print("locationResults \(locationResults)")
-                    }
-                    print("pictureUrl: \(jsonResponseLIData["pictureUrl"].stringValue)") //
-                    print("email: \(jsonResponseLIData["email"].stringValue)") //
-                    
-                    //print(jsonResponseLIData)
-//                    let responseDict = self.convertToDictionary(input: (response?.data)!)
-//                    
-//                    if responseDict?["formattedName"] != nil {
-//                        self.fullName = responseDict?["formattedName"] as! String
-//                        print("fullName: \(self.fullName))")
-//                    }
-//                        
-//                    if responseDict?["headline"] != nil {
-//                        self.headline = responseDict?["headline"] as! String
-//                        print("headline: \(self.headline))")
-//                    }
-//                        
-//                    if responseDict?["location"] != nil {
-//                        let locationDict = responseDict?["location"]
-//                        //let locationName = self.convertToDictionary(input: locationDict as! String)
-//                        //self.location = locationName?["location"] as! String
-//                        
-//                        
-//                        //print("location: \(self.location))")
-//                        print("locationName: \(locationDict!)")
-//                    }
-//                        
-//                    if responseDict?["summary"] != nil {
-//                        self.summary = responseDict?["summary"] as! String
-//                        print("summary: \(self.summary)")
-//                    }
-//                        
-//                    if responseDict?["pictureUrl"] != nil {
-//                        self.picture = responseDict?["pictureUrl"] as! String
-//                        print("pictureUrl: \(self.picture)")
-//                    }
-//                        
-//                    if responseDict?["emailAddress"] != nil {
-//                        self.email = responseDict?["emailAddress"] as! String
-//                        print("emailAddress: \(self.email)")
-//                    }
-                    
-                    let profileStructItem = ProfileStruct(fullName: self.fullName, headline: self.headline, location: self.location, summary: self.summary, picture: self.picture, email: self.email)
-                    
-                    let profileItem = ProfileStruct(fullNameNew: self.fullName, headlineNew: self.headline, locationNew: self.location, summaryNew: self.summary, pictureNew: self.picture, emailNew: self.email)
-//                    print("profileItem: \(profileItem.fullName)")
-                    
-                    let userID = FIRAuth.auth()?.currentUser?.uid
-                    
-                    let usersRef = self.rootRef.child("users")
-                    
-                    let idRef = usersRef.child(userID!)
-                    
-                    let listRef = idRef.child("userProfile")
-                    
-                    listRef.observe(.value, with: { snapshot in
-                        print(snapshot.childrenCount)
+                        let jsonResponseLI = response?.data.data(using: String.Encoding.utf8, allowLossyConversion: false)
                         
-                        if snapshot.childrenCount == 0 {
+                        let jsonResponseLIData = JSON(data: jsonResponseLI!)
+                        
+                        let formattedName = jsonResponseLIData["formattedName"].stringValue
+                        if formattedName.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                            self.fullName = formattedName
+                        }
+                        
+                        let headline = jsonResponseLIData["headline"].stringValue
+                        if headline.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                            self.headline = headline
+                        }
+                        
+                        let summary = jsonResponseLIData["summary"].stringValue
+                        if summary.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                            self.summary = summary
+                        }
+                        
+                        let pictureUrl = jsonResponseLIData["pictureUrl"].stringValue
+                        if pictureUrl.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                            self.picture = pictureUrl
+                        }
+                        
+//                        let email = jsonResponseLIData["email"].stringValue
+//                        if email.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//                            self.email = email
+//                        }
+                        
+                        print("formattedName: \(jsonResponseLIData["formattedName"].stringValue)") //
+                        print("headline: \(jsonResponseLIData["headline"].stringValue)") //
+                        print("summary: \(jsonResponseLIData["summary"].stringValue))") //
+                        print("location: \(jsonResponseLIData["location"].arrayValue)") //
+                        for locationResults in jsonResponseLIData["location"].arrayValue{
                             
-                            let alert = UIAlertController(title: "Create User Profile", message: "Would you like to save this information to your profile?", preferredStyle: .alert)
+                            print("locationResults \(locationResults)")
+                        }
+                        print("pictureUrl: \(jsonResponseLIData["pictureUrl"].stringValue)") //
+                        print("email: \(jsonResponseLIData["email"].stringValue)") //
+                        
+//                        let profileStructItem = ProfileStruct(fullName: self.fullName, headline: self.headline, location: self.location, summary: self.summary, picture: self.picture, email: ProfileStruct.emailProf)
+                        
+                        let profileItem = ProfileStruct(fullNameNew: self.fullName, headlineNew: self.headline, locationNew: self.location, summaryNew: self.summary, pictureNew: self.picture, emailNew: ProfileStruct.emailProf)
+    //                    print("profileItem: \(profileItem.fullName)")
+                        
+//                        let userID = FIRAuth.auth()?.currentUser?.uid
+//                        
+//                        let usersRef = self.rootRef.child("users")
+//                        
+//                        let idRef = usersRef.child(userID!)
+//                        
+//                        let listRef = idRef.child("userProfile")
+                        
+                        self.listRef.observe(.value, with: { snapshot in
+                            print(snapshot.childrenCount)
                             
-                            let saveAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-                                let addChildStr = listRef.childByAutoId()
+                            if snapshot.childrenCount == 0 {
+                                let addChildStr = self.listRef.childByAutoId()
                                 addChildStr.setValue(profileItem.toAnyObject())
                                 
-                                ProfileStruct.fullNameProf = self.fullName
-                                ProfileStruct.headlineProf = self.headline
-                                ProfileStruct.locationProf = self.location
-                                ProfileStruct.summaryProf = self.summary
-                                ProfileStruct.pictureProf = self.picture
-                                ProfileStruct.emailProf = self.email
-                                print(ProfileStruct.emailProf)
+                                ProfileStruct.fullNameProf = profileItem.fullNameSave
+                                ProfileStruct.headlineProf = profileItem.headlineSave
+                                ProfileStruct.locationProf = profileItem.locationSave
+                                ProfileStruct.summaryProf = profileItem.summarySave
+                                ProfileStruct.pictureProf = profileItem.pictureSave
                                 
                                 DispatchQueue.main.async {
-                                    self.fullNameOutlet.text = self.fullName
-                                    self.headlineOutlet.text = self.headline
-                                    self.locationOutlet.text = self.location
-                                    self.summaryOutlet.text = self.summary
-                                    self.emailOutlet.text = self.email
+                                    self.fullNameOutlet.text = ProfileStruct.fullNameProf
+                                    self.headlineOutlet.text = ProfileStruct.headlineProf
+                                    self.locationOutlet.text = ProfileStruct.locationProf
+                                    self.summaryOutlet.text = ProfileStruct.summaryProf
                                     
-                                    let urlPic = URL(string: self.picture)
+                                    let urlPic = URL(string: ProfileStruct.pictureProf)
                                     if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
                                         let dataFromPic = try? Data(contentsOf: urlPic!)
                                         self.profileImageOutlet.image = UIImage(data: dataFromPic!)
                                     }
                                 }
-                            }
-                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                            
-                            alert.addAction(saveAction)
-                            alert.addAction(cancelAction)
-                            self.present(alert, animated: true, completion: nil)
-                            
-                        } else {
-                            for item in snapshot.children {
                                 
-                                let alert = UIAlertController(title: "User Profile Exists", message: "Would you like to update this information to your profile?", preferredStyle: .alert)
                                 
-                                let saveAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                                
+                            } else {
+                                for item in snapshot.children {
+                                    
                                     let profileItem = ProfileStruct(snapshot: item as! FIRDataSnapshot)
                                     print("profileItem: \(profileItem)")
                                     
                                     let ref = profileItem.ref
                                     print("ref from Profile: \(String(describing: ref))")
                                     
-                                    ref?.updateChildValues(["email": self.email])
+//                                    ref?.updateChildValues(["email": self.email])
                                     ref?.updateChildValues(["fullName": self.fullName])
                                     ref?.updateChildValues(["headline": self.headline])
                                     ref?.updateChildValues(["location": self.location])
@@ -362,55 +322,56 @@ class ProfileController: UIViewController {
                                     ProfileStruct.locationProf = self.location
                                     ProfileStruct.summaryProf = self.summary
                                     ProfileStruct.pictureProf = self.picture
-                                    ProfileStruct.emailProf = self.email
-                                    print(ProfileStruct.emailProf)
+//                                    ProfileStruct.emailProf = self.email
                                     
-                                    DispatchQueue.main.async {
-                                        self.fullNameOutlet.text = self.fullName
-                                        self.headlineOutlet.text = self.headline
-                                        self.locationOutlet.text = self.location
-                                        self.summaryOutlet.text = self.summary
-                                        self.emailOutlet.text = self.email
-                                        
-                                        let urlPic = URL(string: self.picture)
-                                        debugPrint("urlPic: \(String(describing: urlPic))")
-                                        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-                                            let dataFromPic = try? Data(contentsOf: urlPic!)
-                                            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
-                                            self.profileImageOutlet.setNeedsDisplay()
-                                        }
-                                    }
+//                                    DispatchQueue.main.async {
+//                                        self.fullNameOutlet.text = self.fullName
+//                                        self.headlineOutlet.text = self.headline
+//                                        self.locationOutlet.text = self.location
+//                                        self.summaryOutlet.text = self.summary
+//                                        self.emailOutlet.text = self.email
+//                                        
+//                                        let urlPic = URL(string: self.picture)
+//                                        debugPrint("urlPic: \(String(describing: urlPic))")
+//                                        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+//                                            let dataFromPic = try? Data(contentsOf: urlPic!)
+//                                            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+//                                            self.profileImageOutlet.setNeedsDisplay()
+//                                        }
+//                                    }
                                     
                                 }
-                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                                
-                                alert.addAction(saveAction)
-                                alert.addAction(cancelAction)
-                                self.present(alert, animated: true, completion: nil)
-                                
                             }
-                        }
-                    })
+                        })
 
-                        
-//                    ProfileStruct.fullNameProf = profileStructItem.fullName
-//                    ProfileStruct.headlineProf = profileStructItem.headline
-//                    ProfileStruct.locationProf = profileStructItem.location
-//                    ProfileStruct.summaryProf = profileStructItem.summary
-//                    ProfileStruct.pictureProf = profileStructItem.picture
-//                    ProfileStruct.emailProf = profileStructItem.email
-                    
-                    
+                            
+    //                    ProfileStruct.fullNameProf = profileStructItem.fullName
+    //                    ProfileStruct.headlineProf = profileStructItem.headline
+    //                    ProfileStruct.locationProf = profileStructItem.location
+    //                    ProfileStruct.summaryProf = profileStructItem.summary
+    //                    ProfileStruct.pictureProf = profileStructItem.picture
+    //                    ProfileStruct.emailProf = profileStructItem.email
                         
                         
-                }, error: { (error) in
-                    debugPrint("error respon API Linkedin: \(error!)")
-                })
+                            
+                            
+                    }, error: { (error) in
+                        debugPrint("error respon API Linkedin: \(error!)")
+                    })
+                }
             }
+            ) { (error) in
+                debugPrint("error: \(String(describing: error))")
+            }
+            
         }
-        ) { (error) in
-            debugPrint("error: \(String(describing: error))")
-        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(linkedInAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+            
     }
     
     func convertToDictionary(input: String)-> [String:Any]?{

@@ -13,6 +13,7 @@ import UIKit
 class EditProfile: UIViewController, UITextFieldDelegate {
     
     var rootRef: FIRDatabaseReference!
+    var listRef: FIRDatabaseReference!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var headlineTextField: UITextField!
@@ -26,20 +27,28 @@ class EditProfile: UIViewController, UITextFieldDelegate {
     var summary : String = " "
     var location : String = " "
     var profilePic : String = " "
+    @IBOutlet weak var profileImageOutlet: UIImageView!
+    @IBOutlet weak var editPhotoOutlet: UIButton!
+    let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         
         self.dismissKeyboardTapped()
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
+        cancelButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        saveButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
+        
         rootRef = FIRDatabase.database().reference()
         
         let userID = FIRAuth.auth()?.currentUser?.uid
         let usersRef = self.rootRef.child("users")
         let idRef = usersRef.child(userID!)
-        let listRef = idRef.child("userProfile")
+        listRef = idRef.child("userProfile")
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         
         listRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
@@ -55,14 +64,44 @@ class EditProfile: UIViewController, UITextFieldDelegate {
                 print("summary \(profileItem.summarySave)")
                 print("picture \(profileItem.pictureSave)")
                 
-                self.emailTextField.text = profileItem.emailSave
-                self.nameTextField.text = profileItem.fullNameSave
-                self.summaryTextField.text = profileItem.summarySave
-                self.headlineTextField.text = profileItem.headlineSave
-                self.locationTextField.text = profileItem.locationSave
+                ProfileStruct.fullNameProf = profileItem.fullNameSave
+                ProfileStruct.headlineProf = profileItem.headlineSave
+                ProfileStruct.locationProf = profileItem.locationSave
+                ProfileStruct.summaryProf = profileItem.summarySave
+                ProfileStruct.pictureProf = profileItem.pictureSave
+                ProfileStruct.emailProf = profileItem.emailSave
+                
+                self.fullName = ProfileStruct.fullNameProf
+                self.headline = ProfileStruct.headlineProf
+                self.location = ProfileStruct.locationProf
+                self.summary = ProfileStruct.summaryProf
+                self.profilePic = ProfileStruct.pictureProf
+                self.email = ProfileStruct.emailProf
+                
+                self.emailTextField.text = ProfileStruct.emailProf
+                self.nameTextField.text = ProfileStruct.fullNameProf
+                self.summaryTextField.text = ProfileStruct.summaryProf
+                self.headlineTextField.text = ProfileStruct.headlineProf
+                self.locationTextField.text = ProfileStruct.locationProf
+                
+                let urlPic = URL(string: ProfileStruct.pictureProf)
+                if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 5 {
+                    
+                    let dataFromPic = try? Data(contentsOf: urlPic!)
+                    self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                    self.profileImageOutlet.setNeedsDisplay()
+                }
             }
         })
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        listRef.removeAllObservers()
+    }
+    
+    @IBAction func editPhotoAction(_ sender: UIButton) {
+    }
+    
     
     @IBAction func saveAction(_ sender: UIButton) {
         
@@ -71,18 +110,17 @@ class EditProfile: UIViewController, UITextFieldDelegate {
         location = locationTextField.text!
         headline = headlineTextField.text!
         summary = summaryTextField.text!
-        profilePic = " "
         
         let profileItem = ProfileStruct(fullNameNew: fullName, headlineNew: headline, locationNew: location, summaryNew: summary, pictureNew: profilePic, emailNew: email)
             print("profileItem: \(profileItem.fullName)")
         
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        
-        let usersRef = self.rootRef.child("users")
-        
-        let idRef = usersRef.child(userID!)
-        
-        let listRef = idRef.child("userProfile")
+//        let userID = FIRAuth.auth()?.currentUser?.uid
+//        
+//        let usersRef = self.rootRef.child("users")
+//        
+//        let idRef = usersRef.child(userID!)
+//        
+//        let listRef = idRef.child("userProfile")
         
         listRef.observe(.value, with: { snapshot in
             print(snapshot.childrenCount)
@@ -92,16 +130,15 @@ class EditProfile: UIViewController, UITextFieldDelegate {
                 let alert = UIAlertController(title: "Create User Profile", message: "Would you like to save this information to your profile?", preferredStyle: .alert)
                 
                 let saveAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-                    let addChildStr = listRef.childByAutoId()
+                    let addChildStr = self.listRef.childByAutoId()
                     addChildStr.setValue(profileItem.toAnyObject())
                     
-                    ProfileStruct.fullNameProf = self.fullName
-                    ProfileStruct.headlineProf = self.headline
-                    ProfileStruct.locationProf = self.location
-                    ProfileStruct.summaryProf = self.summary
-                    ProfileStruct.pictureProf = self.profilePic
-                    ProfileStruct.emailProf = self.email
-                    print(ProfileStruct.emailProf)
+                    ProfileStruct.fullNameProf = profileItem.fullNameSave
+                    ProfileStruct.headlineProf = profileItem.headlineSave
+                    ProfileStruct.locationProf = profileItem.locationSave
+                    ProfileStruct.summaryProf = profileItem.summarySave
+                    ProfileStruct.pictureProf = profileItem.pictureSave
+                    ProfileStruct.emailProf = profileItem.emailSave
                     
                     DispatchQueue.main.async {
                         self.navigationController!.popViewController(animated: true)
@@ -138,7 +175,6 @@ class EditProfile: UIViewController, UITextFieldDelegate {
                         ProfileStruct.summaryProf = self.summary
                         ProfileStruct.pictureProf = self.profilePic
                         ProfileStruct.emailProf = self.email
-                        print(ProfileStruct.emailProf)
                         
                         DispatchQueue.main.async {
                             self.navigationController!.popViewController(animated: true)
@@ -156,9 +192,6 @@ class EditProfile: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func cancelAction(_ senfer: UIButton) {
-        
-        //navigationController!.popViewController(animated: true)
-        
         DispatchQueue.main.async {
             self.navigationController!.popViewController(animated: true)
         }
