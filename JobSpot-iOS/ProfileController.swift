@@ -223,6 +223,7 @@ class ProfileController: UIViewController {
                         let jsonResponseLI = response?.data.data(using: String.Encoding.utf8, allowLossyConversion: false)
                         
                         let jsonResponseLIData = JSON(data: jsonResponseLI!)
+                        debugPrint("jsonResponseLIData: \(jsonResponseLIData)")
                         
                         let formattedName = jsonResponseLIData["formattedName"].stringValue
                         if formattedName.lengthOfBytes(using: String.Encoding.utf8) > 0 {
@@ -244,7 +245,7 @@ class ProfileController: UIViewController {
                             self.picture = pictureUrl
                         }
                         
-//                        let email = jsonResponseLIData["email"].stringValue
+//                        let email = jsonResponseLIData["emailAddress"].stringValue
 //                        if email.lengthOfBytes(using: String.Encoding.utf8) > 0 {
 //                            self.email = email
 //                        }

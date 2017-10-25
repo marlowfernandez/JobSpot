@@ -86,6 +86,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    @nonobjc func application(application: UIApplication,
+                     supportedInterfaceOrientationsForWindow window: UIWindow?)
+        -> UIInterfaceOrientationMask {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return .landscape
+            } else {
+                return .portrait
+            }
+    }
 
 }
 

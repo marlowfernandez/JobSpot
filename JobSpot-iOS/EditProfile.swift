@@ -8,9 +8,11 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 import UIKit
 
-class EditProfile: UIViewController, UITextFieldDelegate {
+class EditProfile: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate  {
     
     var rootRef: FIRDatabaseReference!
     var listRef: FIRDatabaseReference!
@@ -29,15 +31,21 @@ class EditProfile: UIViewController, UITextFieldDelegate {
     var profilePic : String = " "
     @IBOutlet weak var profileImageOutlet: UIImageView!
     @IBOutlet weak var editPhotoOutlet: UIButton!
-    let picker = UIImagePickerController()
+    var picker = UIImagePickerController()
+    let storage = FIRStorage.storage()
+    var storageRef = FIRStorageReference()
     
     override func viewDidLoad() {
         
         self.dismissKeyboardTapped()
         
+        picker = UIImagePickerController()
+        picker.delegate = self
+        
         cancelButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
         saveButtonOutlet.backgroundColor = UIColor(hex: "CC0000")
         
+        storageRef = storage.reference()
         rootRef = FIRDatabase.database().reference()
         
         let userID = FIRAuth.auth()?.currentUser?.uid
@@ -100,6 +108,29 @@ class EditProfile: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func editPhotoAction(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Update Profile Picture", message: "Would you like to uppload a new profile picture?", preferredStyle: .alert)
+        
+        let galleryAction = UIAlertAction(title: "Yes, from Gallery", style: .default) { (action) in
+            self.picker.allowsEditing = false
+            self.picker.sourceType = .photoLibrary
+            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            self.picker.modalPresentationStyle = .popover
+            self.present(self.picker, animated: true, completion: nil)
+            self.picker.popoverPresentationController?.sourceView = sender
+        }
+        
+        let cameraAction = UIAlertAction(title: "Yes, from Camera", style: .default) { (action) in
+            
+            //self.galleryAlert()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(galleryAction)
+        alert.addAction(cameraAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     
@@ -197,10 +228,75 @@ class EditProfile: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func ResizeImage(image: UIImage, changeSizeTo: CGSize) -> UIImage {
+        let size = image.size
+        
+        let width  = changeSizeTo.width  / image.size.width
+        let height = changeSizeTo.height / image.size.height
+        
+        var newImageSize: CGSize
+        if(width > height) {
+            newImageSize = CGSize(size.width * height, size.height * height)
+        } else {
+            newImageSize = CGSize(size.width * width,  size.height * width)
+        }
+        
+        let cgRect = CGRect(0, 0, newImageSize.width, newImageSize.height)
+        
+        UIGraphicsBeginImageContextWithOptions(newImageSize, false, 1.0)
+        image.draw(in: cgRect)
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resizedImage!
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImageOutlet.contentMode = .scaleAspectFit
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                profileImageOutlet.image = self.ResizeImage(image: image, changeSizeTo: CGSize(200.0, 200.0))
+            } else {
+                profileImageOutlet.image = self.ResizeImage(image: image, changeSizeTo: CGSize(150.0, 150.0))
+            }
+            
+            let data = UIImageJPEGRepresentation(profileImageOutlet.image!, 0.8)! as NSData
+            
+            let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\("userPhoto")"
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpg"
+            self.storageRef.child(filePath).put(data as Data, metadata: metaData){(metaData,error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }else{
+                    let downloadURL = metaData?.downloadURL()?.absoluteString
+                    debugPrint("PICTUREUPDATE downloadURL: \(String(describing: downloadURL))")
+                }
+            }
+            
+            
+            dismiss(animated:true, completion: nil)
+        } else{
+            print("Something went wrong")
+        }
+        
+        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
         return true
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
 }

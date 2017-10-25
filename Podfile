@@ -9,6 +9,7 @@ target 'JobSpot-iOS' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'YNDropDownMenu'
