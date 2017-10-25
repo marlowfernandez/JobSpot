@@ -1501,7 +1501,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tai-ls-hSC" userLabel="summary text">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your summary..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tai-ls-hSC" userLabel="summary text">
                                 <rect key="frame" x="20" y="359" width="374" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cgE-T5-YcV"/>
@@ -1513,7 +1513,7 @@
                                     <outlet property="delegate" destination="Qbm-bF-DGl" id="8YC-2h-6yu"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3E-A3-EDc" userLabel="location text">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your location..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3E-A3-EDc" userLabel="location text">
                                 <rect key="frame" x="20" y="286" width="374" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HbH-43-Vez"/>
@@ -1525,7 +1525,7 @@
                                     <outlet property="delegate" destination="Qbm-bF-DGl" id="eVu-Sh-GCJ"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XoZ-nU-5iC" userLabel="headline text">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter headline..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XoZ-nU-5iC" userLabel="headline text">
                                 <rect key="frame" x="20" y="209" width="374" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="W4d-9G-MYD"/>
@@ -1537,7 +1537,7 @@
                                     <outlet property="delegate" destination="Qbm-bF-DGl" id="6FI-C1-LB7"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ehh-gH-2Gj" userLabel="email text">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ehh-gH-2Gj" userLabel="email text">
                                 <rect key="frame" x="210" y="116" width="184" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1546,7 +1546,7 @@
                                     <outlet property="delegate" destination="Qbm-bF-DGl" id="ZGX-6a-VcK"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ies-bC-9GC" userLabel="name text">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter full name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ies-bC-9GC" userLabel="name text">
                                 <rect key="frame" x="210" y="49" width="184" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="CLY-R0-HyT"/>

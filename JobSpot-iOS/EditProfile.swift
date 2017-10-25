@@ -34,6 +34,7 @@ UINavigationControllerDelegate  {
     var picker = UIImagePickerController()
     let storage = FIRStorage.storage()
     var storageRef = FIRStorageReference()
+    var boolCheck : BooleanLiteralType = false
     
     override func viewDidLoad() {
         
@@ -59,54 +60,69 @@ UINavigationControllerDelegate  {
         
         
         listRef.observe(.value, with: { snapshot in
-            for item in snapshot.children {
-                debugPrint("item children: \(item)")
-                
-                let profileItem = ProfileStruct(snapshot: item as! FIRDataSnapshot)
-                print("profileItem: \(profileItem)")
-                
-                print("name \(profileItem.fullNameSave)")
-                print("email \(profileItem.emailSave)")
-                print("location \(profileItem.locationSave)")
-                print("headline \(profileItem.headlineSave)")
-                print("summary \(profileItem.summarySave)")
-                print("picture \(profileItem.pictureSave)")
-                
-                ProfileStruct.fullNameProf = profileItem.fullNameSave
-                ProfileStruct.headlineProf = profileItem.headlineSave
-                ProfileStruct.locationProf = profileItem.locationSave
-                ProfileStruct.summaryProf = profileItem.summarySave
-                ProfileStruct.pictureProf = profileItem.pictureSave
-                ProfileStruct.emailProf = profileItem.emailSave
-                
-                self.fullName = ProfileStruct.fullNameProf
-                self.headline = ProfileStruct.headlineProf
-                self.location = ProfileStruct.locationProf
-                self.summary = ProfileStruct.summaryProf
-                self.profilePic = ProfileStruct.pictureProf
-                self.email = ProfileStruct.emailProf
-                
-                self.emailTextField.text = ProfileStruct.emailProf
-                self.nameTextField.text = ProfileStruct.fullNameProf
-                self.summaryTextField.text = ProfileStruct.summaryProf
-                self.headlineTextField.text = ProfileStruct.headlineProf
-                self.locationTextField.text = ProfileStruct.locationProf
-                
-                let urlPic = URL(string: ProfileStruct.pictureProf)
-                if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 5 {
+            if snapshot.childrenCount == 0 {
+                self.saveButtonOutlet.setTitle("Save", for: .normal)
+            } else {
+                for item in snapshot.children {
+                    debugPrint("item children: \(item)")
                     
-                    let dataFromPic = try? Data(contentsOf: urlPic!)
-                    if dataFromPic != nil {
-                        self.profileImageOutlet.image = UIImage(data: dataFromPic!)
-                        self.profileImageOutlet.setNeedsDisplay()
+                    let profileItem = ProfileStruct(snapshot: item as! FIRDataSnapshot)
+                    print("profileItem: \(profileItem)")
+                    
+                    print("name \(profileItem.fullNameSave)")
+                    print("email \(profileItem.emailSave)")
+                    print("location \(profileItem.locationSave)")
+                    print("headline \(profileItem.headlineSave)")
+                    print("summary \(profileItem.summarySave)")
+                    print("picture \(profileItem.pictureSave)")
+                    
+                    ProfileStruct.fullNameProf = profileItem.fullNameSave
+                    ProfileStruct.headlineProf = profileItem.headlineSave
+                    ProfileStruct.locationProf = profileItem.locationSave
+                    ProfileStruct.summaryProf = profileItem.summarySave
+                    ProfileStruct.pictureProf = profileItem.pictureSave
+                    ProfileStruct.emailProf = profileItem.emailSave
+                    
+                    self.fullName = ProfileStruct.fullNameProf
+                    self.headline = ProfileStruct.headlineProf
+                    self.location = ProfileStruct.locationProf
+                    self.summary = ProfileStruct.summaryProf
+                    self.profilePic = ProfileStruct.pictureProf
+                    self.email = ProfileStruct.emailProf
+                    
+                    self.emailTextField.text = ProfileStruct.emailProf
+                    self.nameTextField.text = ProfileStruct.fullNameProf
+                    self.summaryTextField.text = ProfileStruct.summaryProf
+                    self.headlineTextField.text = ProfileStruct.headlineProf
+                    self.locationTextField.text = ProfileStruct.locationProf
+                    
+                    let urlPic = URL(string: ProfileStruct.pictureProf)
+                    if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 5 {
+                        
+                        let dataFromPic = try? Data(contentsOf: urlPic!)
+                        if dataFromPic != nil {
+                            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                            self.profileImageOutlet.setNeedsDisplay()
+                        }
                     }
+                    
+                    self.saveButtonOutlet.setTitle("Update", for: .normal)
                 }
             }
+            
         })
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         listRef.removeAllObservers()
+        
+        listRef.observe(.value, with: { snapshot in
+            if snapshot.childrenCount == 0 {
+                self.saveButtonOutlet.setTitle("Save", for: .normal)
+            } else {
+                self.saveButtonOutlet.setTitle("Update", for: .normal)
+            }
+        })
     }
     
     @IBAction func editPhotoAction(_ sender: UIButton) {
@@ -148,6 +164,8 @@ UINavigationControllerDelegate  {
     
     @IBAction func saveAction(_ sender: UIButton) {
         
+        boolCheck = false
+        
         email = emailTextField.text!
         fullName = nameTextField.text!
         location = locationTextField.text!
@@ -155,7 +173,7 @@ UINavigationControllerDelegate  {
         summary = summaryTextField.text!
         profilePic = ProfileStruct.pictureProf
         
-        let profileItem = ProfileStruct(fullNameNew: fullName, headlineNew: headline, locationNew: location, summaryNew: summary, pictureNew: ProfileStruct.pictureProf, emailNew: email)
+        let profileItem = ProfileStruct(fullNameNew: fullName, headlineNew: headline, locationNew: location, summaryNew: summary, pictureNew: profilePic, emailNew: email)
             print("profileItem: \(profileItem.fullName)")
         
         listRef.observe(.value, with: { snapshot in
@@ -186,7 +204,9 @@ UINavigationControllerDelegate  {
                 alert.addAction(cancelAction)
                 self.present(alert, animated: true, completion: nil)
                 
-            } else {
+                self.boolCheck = true
+                
+            } else if (snapshot.childrenCount > 0) && (self.boolCheck == false) {
                 for item in snapshot.children {
                     
                     let alert = UIAlertController(title: "User Profile Exists", message: "Would you like to update this information to your profile?", preferredStyle: .alert)
@@ -290,6 +310,10 @@ UINavigationControllerDelegate  {
                                 
                                 debugPrint("PICTUREUPDATE downloadURL: \(ProfileStruct.pictureProf))")
                             }
+                        } else {
+                                let downloadURL = metaData?.downloadURL()?.absoluteString
+                            
+                                ProfileStruct.pictureProf = downloadURL!
                         }
                     })
 
