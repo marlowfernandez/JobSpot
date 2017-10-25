@@ -108,7 +108,7 @@ UINavigationControllerDelegate  {
     }
     
     @IBAction func editPhotoAction(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Update Profile Picture", message: "Would you like to uppload a new profile picture?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Update Profile Picture", message: "Would you like to upload a new profile picture?", preferredStyle: .alert)
         
         let galleryAction = UIAlertAction(title: "Yes, from Gallery", style: .default) { (action) in
             self.picker.allowsEditing = false
@@ -120,8 +120,18 @@ UINavigationControllerDelegate  {
         }
         
         let cameraAction = UIAlertAction(title: "Yes, from Camera", style: .default) { (action) in
-            
-            //self.galleryAlert()
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.picker.allowsEditing = false
+                self.picker.sourceType = UIImagePickerControllerSourceType.camera
+                self.picker.cameraCaptureMode = .photo
+                self.picker.modalPresentationStyle = .fullScreen
+                self.present(self.picker,animated: true,completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Camera Error", message: "You do not have a camera to use this feature.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style:.default, handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -141,17 +151,10 @@ UINavigationControllerDelegate  {
         location = locationTextField.text!
         headline = headlineTextField.text!
         summary = summaryTextField.text!
+        profilePic = ProfileStruct.pictureProf
         
-        let profileItem = ProfileStruct(fullNameNew: fullName, headlineNew: headline, locationNew: location, summaryNew: summary, pictureNew: profilePic, emailNew: email)
+        let profileItem = ProfileStruct(fullNameNew: fullName, headlineNew: headline, locationNew: location, summaryNew: summary, pictureNew: ProfileStruct.pictureProf, emailNew: email)
             print("profileItem: \(profileItem.fullName)")
-        
-//        let userID = FIRAuth.auth()?.currentUser?.uid
-//        
-//        let usersRef = self.rootRef.child("users")
-//        
-//        let idRef = usersRef.child(userID!)
-//        
-//        let listRef = idRef.child("userProfile")
         
         listRef.observe(.value, with: { snapshot in
             print(snapshot.childrenCount)
@@ -253,14 +256,8 @@ UINavigationControllerDelegate  {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profileImageOutlet.contentMode = .scaleAspectFit
             
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                profileImageOutlet.image = self.ResizeImage(image: image, changeSizeTo: CGSize(200.0, 200.0))
-            } else {
-                profileImageOutlet.image = self.ResizeImage(image: image, changeSizeTo: CGSize(150.0, 150.0))
-            }
-            
+            profileImageOutlet.image = image
             let data = UIImageJPEGRepresentation(profileImageOutlet.image!, 0.8)! as NSData
             
             let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\("userPhoto")"
@@ -271,15 +268,27 @@ UINavigationControllerDelegate  {
                     print(error.localizedDescription)
                     return
                 }else{
+                    
                     let downloadURL = metaData?.downloadURL()?.absoluteString
-                    debugPrint("PICTUREUPDATE downloadURL: \(String(describing: downloadURL))")
+                    
+                    ProfileStruct.pictureProf = downloadURL!
+                    
+                    debugPrint("PICTUREUPDATE downloadURL: \(ProfileStruct.pictureProf))")
+
                 }
             }
             
+            profileImageOutlet.contentMode = .scaleAspectFit
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                profileImageOutlet.image = self.ResizeImage(image: image, changeSizeTo: CGSize(200.0, 200.0))
+            } else {
+                profileImageOutlet.image = self.ResizeImage(image: image, changeSizeTo: CGSize(150.0, 150.0))
+            }
             
             dismiss(animated:true, completion: nil)
         } else{
-            print("Something went wrong")
+            print("Image was not able to be returned.")
         }
         
         //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
