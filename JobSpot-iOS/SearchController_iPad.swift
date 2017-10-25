@@ -60,6 +60,8 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
         
         self.dismissKeyboardTapped()
         
+        rootRef = FIRDatabase.database().reference()
+        
         mapView.delegate = self
         
         cLLocationManager.delegate = self
@@ -117,7 +119,6 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
             }
         }
         
-        rootRef = FIRDatabase.database().reference()
     }
     
     override func viewDidAppear(_ animated: Bool) {

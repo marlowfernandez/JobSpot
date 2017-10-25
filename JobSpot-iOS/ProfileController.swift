@@ -110,32 +110,6 @@ class ProfileController: UIViewController {
             }
         }
         
-//        if ProfileStruct.fullNameProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-//            self.fullNameOutlet.text = ProfileStruct.fullNameProf
-//        }
-//        
-//        if ProfileStruct.headlineProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-//            self.headlineOutlet.text = ProfileStruct.headlineProf
-//        }
-//        
-//        if ProfileStruct.locationProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-//            self.locationOutlet.text = ProfileStruct.locationProf
-//        }
-//        
-//        if ProfileStruct.summaryProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-//            self.summaryOutlet.text = ProfileStruct.summaryProf
-//        }
-//        
-//        if ProfileStruct.emailProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-//            self.emailOutlet.text = ProfileStruct.emailProf
-//        }
-//        
-//        let urlPic = URL(string: ProfileStruct.pictureProf)
-//        if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 1 {
-//            let dataFromPic = try? Data(contentsOf: urlPic!)
-//            self.profileImageOutlet.image = UIImage(data: dataFromPic!)
-//        }
-        
         listRef.observe(.value, with: { snapshot in
             
             if snapshot.childrenCount == 0 {
@@ -158,12 +132,41 @@ class ProfileController: UIViewController {
                     print("summary \(profileItem.summarySave)")
                     print("picture \(profileItem.pictureSave)")
                     
-                    ProfileStruct.fullNameProf = profileItem.fullNameSave
-                    ProfileStruct.headlineProf = profileItem.headlineSave
-                    ProfileStruct.locationProf = profileItem.locationSave
-                    ProfileStruct.summaryProf = profileItem.summarySave
-                    ProfileStruct.pictureProf = profileItem.pictureSave
-                    ProfileStruct.emailProf = profileItem.emailSave
+                    if profileItem.fullNameSave.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                        ProfileStruct.fullNameProf = profileItem.fullNameSave
+                    } else {
+                        ProfileStruct.fullNameProf = " "
+                    }
+            
+                    if profileItem.headlineSave.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                        ProfileStruct.headlineProf = profileItem.headlineSave
+                    } else {
+                        ProfileStruct.headlineProf = " "
+                    }
+            
+                    if profileItem.locationSave.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                        ProfileStruct.locationProf = profileItem.locationSave
+                    } else {
+                        ProfileStruct.locationProf = " "
+                    }
+            
+                    if profileItem.summarySave.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                        ProfileStruct.summaryProf = profileItem.summarySave
+                    } else {
+                        ProfileStruct.summaryProf = " "
+                    }
+            
+                    if profileItem.emailSave.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                        ProfileStruct.emailProf = profileItem.emailSave
+                    } else {
+                        ProfileStruct.emailProf = " "
+                    }
+                    
+                    if profileItem.pictureSave.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                        ProfileStruct.pictureProf = profileItem.pictureSave
+                    } else {
+                        ProfileStruct.pictureProf = " "
+                    }
                     
                     DispatchQueue.main.async {
                             self.emailOutlet.text = ProfileStruct.emailProf
@@ -176,8 +179,10 @@ class ProfileController: UIViewController {
                             if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 5 {
                             
                                 let dataFromPic = try? Data(contentsOf: urlPic!)
-                                self.profileImageOutlet.image = UIImage(data: dataFromPic!)
-                                self.profileImageOutlet.setNeedsDisplay()
+                                if dataFromPic != nil {
+                                    self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                                    self.profileImageOutlet.setNeedsDisplay()
+                                }
                             }
                     }
                 }
@@ -245,10 +250,10 @@ class ProfileController: UIViewController {
                             self.picture = pictureUrl
                         }
                         
-//                        let email = jsonResponseLIData["emailAddress"].stringValue
-//                        if email.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-//                            self.email = email
-//                        }
+                        let email = jsonResponseLIData["emailAddress"].stringValue
+                        if email.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+                            self.email = email
+                        }
                         
                         print("formattedName: \(jsonResponseLIData["formattedName"].stringValue)") //
                         print("headline: \(jsonResponseLIData["headline"].stringValue)") //
@@ -259,20 +264,12 @@ class ProfileController: UIViewController {
                             print("locationResults \(locationResults)")
                         }
                         print("pictureUrl: \(jsonResponseLIData["pictureUrl"].stringValue)") //
-                        print("email: \(jsonResponseLIData["email"].stringValue)") //
+                        print("emailAddress: \(jsonResponseLIData["emailAddress"].stringValue)") //
                         
 //                        let profileStructItem = ProfileStruct(fullName: self.fullName, headline: self.headline, location: self.location, summary: self.summary, picture: self.picture, email: ProfileStruct.emailProf)
                         
-                        let profileItem = ProfileStruct(fullNameNew: self.fullName, headlineNew: self.headline, locationNew: self.location, summaryNew: self.summary, pictureNew: self.picture, emailNew: ProfileStruct.emailProf)
-    //                    print("profileItem: \(profileItem.fullName)")
-                        
-//                        let userID = FIRAuth.auth()?.currentUser?.uid
-//                        
-//                        let usersRef = self.rootRef.child("users")
-//                        
-//                        let idRef = usersRef.child(userID!)
-//                        
-//                        let listRef = idRef.child("userProfile")
+                        let profileItem = ProfileStruct(fullNameNew: self.fullName, headlineNew: self.headline, locationNew: self.location, summaryNew: self.summary, pictureNew: self.picture, emailNew: self.email)
+                        print("profileItem: \(profileItem.emailSave)")
                         
                         self.listRef.observe(.value, with: { snapshot in
                             print(snapshot.childrenCount)
@@ -286,12 +283,14 @@ class ProfileController: UIViewController {
                                 ProfileStruct.locationProf = profileItem.locationSave
                                 ProfileStruct.summaryProf = profileItem.summarySave
                                 ProfileStruct.pictureProf = profileItem.pictureSave
+                                ProfileStruct.emailProf = profileItem.emailSave
                                 
                                 DispatchQueue.main.async {
                                     self.fullNameOutlet.text = ProfileStruct.fullNameProf
                                     self.headlineOutlet.text = ProfileStruct.headlineProf
                                     self.locationOutlet.text = ProfileStruct.locationProf
                                     self.summaryOutlet.text = ProfileStruct.summaryProf
+                                    self.emailOutlet.text = ProfileStruct.emailProf
                                     
                                     let urlPic = URL(string: ProfileStruct.pictureProf)
                                     if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 0 {
@@ -311,7 +310,7 @@ class ProfileController: UIViewController {
                                     let ref = profileItem.ref
                                     print("ref from Profile: \(String(describing: ref))")
                                     
-//                                    ref?.updateChildValues(["email": self.email])
+                                    ref?.updateChildValues(["email": self.email])
                                     ref?.updateChildValues(["fullName": self.fullName])
                                     ref?.updateChildValues(["headline": self.headline])
                                     ref?.updateChildValues(["location": self.location])
@@ -323,7 +322,7 @@ class ProfileController: UIViewController {
                                     ProfileStruct.locationProf = self.location
                                     ProfileStruct.summaryProf = self.summary
                                     ProfileStruct.pictureProf = self.picture
-//                                    ProfileStruct.emailProf = self.email
+                                    ProfileStruct.emailProf = self.email
                                     
 //                                    DispatchQueue.main.async {
 //                                        self.fullNameOutlet.text = self.fullName
@@ -357,7 +356,7 @@ class ProfileController: UIViewController {
                             
                             
                     }, error: { (error) in
-                        debugPrint("error respon API Linkedin: \(error!)")
+                        debugPrint("error response API Linkedin: \(error!)")
                     })
                 }
             }

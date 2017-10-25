@@ -24,6 +24,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        rootRef = FIRDatabase.database().reference()
+        
         loginOutlet.backgroundColor = UIColor(hex: "CC0000")
         
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -77,8 +79,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         debugPrint("viewWillAppear")
-        
-        rootRef = FIRDatabase.database().reference()
         
         handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if user != nil {

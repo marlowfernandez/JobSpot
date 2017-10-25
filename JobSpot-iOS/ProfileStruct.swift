@@ -106,6 +106,13 @@ struct ProfileStruct {
         
         ref = snapshot.ref
         print("ref: \(String(describing: ref))")
+        
+        ProfileStruct.fullNameProf = fullNameSave
+        ProfileStruct.headlineProf = headlineSave
+        ProfileStruct.locationProf = locationSave
+        ProfileStruct.summaryProf = summarySave
+        ProfileStruct.pictureProf = pictureSave
+        ProfileStruct.emailProf = emailSave
     }
     
     func toAnyObject() -> [String:Any] {

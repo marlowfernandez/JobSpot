@@ -96,8 +96,10 @@ UINavigationControllerDelegate  {
                 if ProfileStruct.pictureProf.lengthOfBytes(using: String.Encoding.utf8) > 5 {
                     
                     let dataFromPic = try? Data(contentsOf: urlPic!)
-                    self.profileImageOutlet.image = UIImage(data: dataFromPic!)
-                    self.profileImageOutlet.setNeedsDisplay()
+                    if dataFromPic != nil {
+                        self.profileImageOutlet.image = UIImage(data: dataFromPic!)
+                        self.profileImageOutlet.setNeedsDisplay()
+                    }
                 }
             }
         })
@@ -269,11 +271,27 @@ UINavigationControllerDelegate  {
                     return
                 }else{
                     
-                    let downloadURL = metaData?.downloadURL()?.absoluteString
-                    
-                    ProfileStruct.pictureProf = downloadURL!
-                    
-                    debugPrint("PICTUREUPDATE downloadURL: \(ProfileStruct.pictureProf))")
+                    self.listRef.observe(.value, with: { snapshot in
+                        print(snapshot.childrenCount)
+                        
+                        if snapshot.childrenCount > 0 {
+                            for item in snapshot.children {
+                                let profileItem = ProfileStruct(snapshot: item as! FIRDataSnapshot)
+                                print("profileItem: \(profileItem)")
+                                
+                                let ref = profileItem.ref
+                                print("ref from Profile: \(String(describing: ref))")
+                                
+                                let downloadURL = metaData?.downloadURL()?.absoluteString
+                                
+                                ref?.updateChildValues(["picture": downloadURL!])
+                                
+                                ProfileStruct.pictureProf = downloadURL!
+                                
+                                debugPrint("PICTUREUPDATE downloadURL: \(ProfileStruct.pictureProf))")
+                            }
+                        }
+                    })
 
                 }
             }
@@ -290,8 +308,6 @@ UINavigationControllerDelegate  {
         } else{
             print("Image was not able to be returned.")
         }
-        
-        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
