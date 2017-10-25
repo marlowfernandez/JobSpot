@@ -1290,6 +1290,10 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLf-cb-szj">
                                 <rect key="frame" x="543" y="242" width="298" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="298" id="bI0-R6-FFl"/>
+                                    <constraint firstAttribute="height" constant="46" id="m4q-GZ-34f"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
