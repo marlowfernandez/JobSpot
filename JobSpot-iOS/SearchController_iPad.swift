@@ -33,6 +33,7 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
     var noItems = ["No jobs to display"]
     var lat : Double = 0
     var lng : Double = 0
+    var searchMatchFound : Bool = false
     
     //Header for authentication
     let headers: HTTPHeaders = [
@@ -506,6 +507,8 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
     private func saveSearchToFireBase(location: String, keyword: String, radius: String, days: String) {
         var saveSearchList = self.searchSaveItems
         
+        searchMatchFound = false
+        
         saveSearchList.removeAll()
         
         let dateTime = Date().timeIntervalSince1970 * 1000
@@ -530,20 +533,63 @@ class SearchController_iPad: UIViewController, MKMapViewDelegate, CLLocationMana
         
         let listRef = idRef.child("savedsearches")
         
-//        print("listRef: \(listRef)")
+        listRef.observe(.value, with: { snapshot in
+            
+            if snapshot.childrenCount > 0 {
+                
+                for item in snapshot.children {
+                    
+                   //check Snapshot values and compare them
+                    
+                   let saveItemCompare = SaveSearch(snapshot: item as! FIRDataSnapshot)
+                    
+                    if (saveItemCompare.location2 == location) && (saveItemCompare.radius2 == radius) && (saveItemCompare.keyword2 == keyword) && (saveItemCompare.days2 == days) {
+                        debugPrint("this matches... do not save")
+                        
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.location2)")
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.radius2)")
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.keyword2)")
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.days2)")
+                        
+                        self.searchMatchFound = true
+                    }
+                    
+                    if self.searchMatchFound == false {
+                        let dateTimeStr = SaveSearch.dateTime
+                        
+                        let addChildStr = listRef.child(dateTimeStr)
+                        
+                        addChildStr.setValue(saveSearchItem.toAnyObject())
+                        
+                        saveSearchList.append(saveSearchItem)
+                    }
+                    
+                }
+                
+            } else {
+                
+                    //save to history since there is no history saved in savedsearches
+                
+                //        print("listRef: \(listRef)")
+                
+                //let itemsRef = listRef.childByAutoId()
+                //itemsRef.setValue(structItems.toAnyObject())
+                
+                let dateTimeStr = SaveSearch.dateTime
+                
+                let addChildStr = listRef.child(dateTimeStr)
+                //        print("addChildStr: \(addChildStr)")
+                
+                addChildStr.setValue(saveSearchItem.toAnyObject())
+                
+                saveSearchList.append(saveSearchItem)
+                //        debugPrint("saveSearchList: \(saveSearchList)")
+                
+            }
+            
+        })
         
-        //let itemsRef = listRef.childByAutoId()
-        //itemsRef.setValue(structItems.toAnyObject())
-        
-        let dateTimeStr = SaveSearch.dateTime
-        
-        let addChildStr = listRef.child(dateTimeStr)
-//        print("addChildStr: \(addChildStr)")
-        
-        addChildStr.setValue(saveSearchItem.toAnyObject())
-        
-        saveSearchList.append(saveSearchItem)
-//        debugPrint("saveSearchList: \(saveSearchList)")
+
     }
 
     

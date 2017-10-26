@@ -42,6 +42,7 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var bannerViewOutlet: GADBannerView!
     @IBOutlet weak var mapButtonOutlet: UIButton!
     @IBOutlet weak var listButtonOutlet: UIButton!
+    var searchMatchFound : Bool = false
     
     
     var passUserLocationBool : Bool = true
@@ -162,6 +163,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     private func saveSearchToFireBase(location: String, keyword: String, radius: String, days: String) {
         var saveSearchList = self.searchSaveItems
         
+        searchMatchFound = false
+        
         saveSearchList.removeAll()
         
         let dateTime = Date().timeIntervalSince1970 * 1000
@@ -187,20 +190,74 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let listRef = idRef.child("savedsearches")
         
-        print("listRef: \(listRef)")
+        listRef.observe(.value, with: { snapshot in
+            
+            if snapshot.childrenCount > 0 {
+                
+                for item in snapshot.children {
+                    
+                    //check Snapshot values and compare them
+                    
+                    let saveItemCompare = SaveSearch(snapshot: item as! FIRDataSnapshot)
+                    
+                    if (saveItemCompare.location2 == location) && (saveItemCompare.radius2 == radius) && (saveItemCompare.keyword2 == keyword) && (saveItemCompare.days2 == days) {
+                        debugPrint("this matches... do not save")
+                        
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.location2)")
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.radius2)")
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.keyword2)")
+                        print("DONT SAVE - MATCHES SEARCH \(saveItemCompare.days2)")
+                        
+                        self.searchMatchFound = true
+                    }
+                    
+                    if self.searchMatchFound == false {
+                        let dateTimeStr = SaveSearch.dateTime
+                        
+                        let addChildStr = listRef.child(dateTimeStr)
+                        
+                        addChildStr.setValue(saveSearchItem.toAnyObject())
+                        
+                        saveSearchList.append(saveSearchItem)
+                    }
+                    
+                }
+                
+            } else {
+                
+                //save to history since there is no history saved in savedsearches
+                
+                //        print("listRef: \(listRef)")
+                
+                //let itemsRef = listRef.childByAutoId()
+                //itemsRef.setValue(structItems.toAnyObject())
+                
+                let dateTimeStr = SaveSearch.dateTime
+                
+                let addChildStr = listRef.child(dateTimeStr)
+                //        print("addChildStr: \(addChildStr)")
+                
+                addChildStr.setValue(saveSearchItem.toAnyObject())
+                
+                saveSearchList.append(saveSearchItem)
+                //        debugPrint("saveSearchList: \(saveSearchList)")
+                
+            }
+            
+        })
+
         
-        //let itemsRef = listRef.childByAutoId()
-        //itemsRef.setValue(structItems.toAnyObject())
-        
-        let dateTimeStr = SaveSearch.dateTime
-        
-        let addChildStr = listRef.child(dateTimeStr)
-        print("addChildStr: \(addChildStr)")
-        
-        addChildStr.setValue(saveSearchItem.toAnyObject())
-        
-        saveSearchList.append(saveSearchItem)
-        debugPrint("saveSearchList: \(saveSearchList)")
+//        print("listRef: \(listRef)")
+//        
+//        let dateTimeStr = SaveSearch.dateTime
+//        
+//        let addChildStr = listRef.child(dateTimeStr)
+//        print("addChildStr: \(addChildStr)")
+//        
+//        addChildStr.setValue(saveSearchItem.toAnyObject())
+//        
+//        saveSearchList.append(saveSearchItem)
+//        debugPrint("saveSearchList: \(saveSearchList)")
     }
     
     @IBAction func currLocationAction(_ sender: UIButton) {
@@ -242,6 +299,10 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         rootRef = FIRDatabase.database().reference()
+        
+        if ListTransfer.listTransfer.count > 0 {
+            //self.jobItems = ListTransfer.listTransfer
+        }
         
     }
     
@@ -294,6 +355,8 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func getJobs(location: String, jobTitle: String, radius: String, sortColumns: String, sortOrder: String, pageSize: String, days: String) {
         let locationFix = location.replacingOccurrences(of: " ", with: "+")
         let locationFix2 = locationFix.replacingOccurrences(of: ",", with: "")
+        
+        ListTransfer.listTransfer.removeAll()
         
         //                                                                      user id         keyword         location        radius          sortColumns        sortOrder       startRecord   pageSize       days
         let urlRequestString = "https://api.careeronestop.org/v1/jobsearch/TZ1zgEyKTNm69nF/" + jobTitle + "/" + locationFix2 + "/" + radius + "/" + sortColumns + "/" + sortOrder + "/" + "0" + "/" + pageSize + "/" + days + "/"
@@ -416,6 +479,9 @@ class HomeController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             }
                             
                         }
+                        
+                        let structItem = DisplayStruct(company: company, datePosted: accquisitionDate, jobCityState: location, jobID: jobID, jobLat: DisplayStruct.jobLatGlobal, jobLng: DisplayStruct.jobLngGlobal, jobTitle: jobTitle, jobURL: url)
+                        ListTransfer.listTransfer.append(structItem)
                         
                     }
                 } else {

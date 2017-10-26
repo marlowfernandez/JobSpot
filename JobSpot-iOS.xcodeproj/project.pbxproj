@@ -36,6 +36,7 @@
 		40BBE7201F8ADC2C00A14336 /* ProfileStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */; };
 		40BBE7221F8B21E200A14336 /* DisplayJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BBE7211F8B21E200A14336 /* DisplayJobController.swift */; };
 		40C58EC81F8AA2FF00F216D7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */; };
+		40E1DEF21FA1AC4F002F0551 /* ListTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1DEF11FA1AC4F002F0551 /* ListTransfer.swift */; };
 		40EA745C1F9D80410029F69E /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA745B1F9D80410029F69E /* EditProfile.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		40BBE7211F8B21E200A14336 /* DisplayJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayJobController.swift; sourceTree = "<group>"; };
 		40C58EC71F8AA2FF00F216D7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "linkedin-sdk.framework"; path = "JobSpot-iOS/linkedin-sdk.framework"; sourceTree = "<group>"; };
 		40C58EC91F8AA95B00F216D7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		40E1DEF11FA1AC4F002F0551 /* ListTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTransfer.swift; sourceTree = "<group>"; };
 		40EA745B1F9D80410029F69E /* EditProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		D27025ACAE22468321F205B2 /* Pods-JobSpot-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobSpot-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobSpot-iOS/Pods-JobSpot-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,6 +191,7 @@
 				40BBE71F1F8ADC2C00A14336 /* ProfileStruct.swift */,
 				401A04A31F897FA50061AA79 /* SaveSearch.swift */,
 				401C27FA1F8D82EF00444FFE /* SaveJob.swift */,
+				40E1DEF11FA1AC4F002F0551 /* ListTransfer.swift */,
 			);
 			name = "Structures-Modal";
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				40179B291F7B25E9003E0021 /* ViewController.swift in Sources */,
 				40EA745C1F9D80410029F69E /* EditProfile.swift in Sources */,
 				401C27FD1F8EE89700444FFE /* SavedJobs.swift in Sources */,
+				40E1DEF21FA1AC4F002F0551 /* ListTransfer.swift in Sources */,
 				401C27FF1F8EE8A300444FFE /* AppliedJobs.swift in Sources */,
 				40162AD31F9300E0007974CE /* JobViewController.swift in Sources */,
 				40162AD81F97BCA4007974CE /* NavController.swift in Sources */,
